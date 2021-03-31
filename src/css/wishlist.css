@@ -1,0 +1,14 @@
+.card--dismiss {
+  color: #000;
+}
+
+.wishlist-section {
+  text-align: center;
+}
+
+.wish-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  margin: 4rem 6rem;
+}

@@ -1,0 +1,62 @@
+@import "./css/products.css";
+
+:root {
+  --gray1: #617d98;
+}
+
+.card--body {
+  position: relative;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #fff !important;
+  color: black !important;
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.nav-item {
+  padding-right: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-item a {
+  color: black !important;
+}
+
+.nav--logo p {
+  padding-left: 1.5rem;
+  font-size: 2.2rem;
+}
+
+.nav--logo ion-icon {
+  color: #000;
+}
+
+.center-tabs {
+  font-size: 1.5rem;
+}
+
+.snackbar {
+  width: 100%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+}
+
+@media (max-width: 786px) {
+  .nav--logo p {
+    font-size: 1.5rem;
+  }
+
+  .nav-item {
+    padding-right: 0.5rem;
+  }
+
+  .nav--logo p {
+    padding-left: 0.5rem;
+  }
+}

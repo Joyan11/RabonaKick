@@ -1,0 +1,145 @@
+import uuid from "react-uuid";
+import faker from "faker";
+
+// faker.seed(123);
+// const data = [...Array(25)].map((item) => ({
+//   id: faker.random.uuid(),
+//   name: faker.commerce.productName(),
+//   image: faker.random.image(),
+//   price: faker.commerce.price(),
+// }));
+
+export const productList = [
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-united-home-jersey-2020-21-online-in-india-1-1.webp",
+    name: "Man United [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/Buy-FC-Barcelona-Home-Jersey-2020-21-online-in-India-1.webp",
+    name: "Barcelona [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-juventus-home-jersey-2020-21-online-in-india-1-1.webp",
+    name: "Juventus [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "outofstock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-arsenal-home-jersey-online-in-india-1-1.webp",
+    name: "Arsenal [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-home-away-jersey-2020-21-online-in-india-1.jpg",
+    name: "Man United [A]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-chelsea-home-jersey-2020-21-online-in-india-1.jpg",
+    name: "Chelsea [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-city-home-jersey-2020-21-online-in-india-1.webp",
+    name: "Man City [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-ac-milan-home-jersey-2020-21-online-in-india-1.webp",
+    name: "AC Milan [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "outofstock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image: "https://footballmonk.in/wp-content/uploads/2020/10/third-kit-2.jpg",
+    name: "Arsenal [A]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-borussia-dortmund-home-jersey-online-in-india-1.webp",
+    name: "Dortmund [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-inter-milan-home-jersey-online-in-india-1.webp",
+    name: "Inter Milan [H]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "outofstock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/10/buy-liverpool-away-kit-2020-21-online-in-india-1.jpg",
+    name: "Liverpool [A]",
+    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    quantity: 0,
+    stock: "outofstock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+  },
+];

@@ -1,0 +1,46 @@
+.homepage-container {
+  display: flex;
+  height: 90vh;
+}
+
+.homepage-container img {
+  width: 100%;
+  max-width: 90%;
+}
+
+figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+.main-title {
+  width: 700px;
+  height: 100%;
+}
+
+.main-heading {
+  position: absolute;
+  top: 27%;
+  max-width: 400px;
+  padding: 2rem;
+  word-spacing: 0.1rem;
+  letter-spacing: 0.2rem;
+  line-height: 3rem;
+}
+.main-heading h1 {
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.main-heading p {
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 786px) {
+  .homepage-container figure {
+    display: none;
+  }
+}
