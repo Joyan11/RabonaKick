@@ -104,6 +104,32 @@ export const reducer = (state, action) => {
         displayModal: true,
         modalContent: "Removed from Wishlist",
       };
+    case "MOVE_TO_CART":
+      if (
+        state.cart.some((items) => items.id === action.payload.id) === false
+      ) {
+        const newObj = state.wishList.filter(
+          (items) => items.id !== action.payload.id
+        );
+        return {
+          ...state,
+          cart: [
+            ...state.cart,
+            {
+              ...action.payload,
+              quantity: action.payload.quantity + 1,
+            },
+          ],
+          wishList: newObj,
+          displayModal: true,
+          modalContent: "Added to cart",
+        };
+      }
+      return {
+        ...state,
+        displayModal: true,
+        modalContent: "Already in cart",
+      };
     case "UPDATE_CART_TOTAL":
       const totalQuantity = state.cart.reduce((acc, item) => {
         const sum = acc + item.quantity;
@@ -163,6 +189,11 @@ export const reducer = (state, action) => {
         ...state,
         priceRange: action.payload,
       };
+    case "TEAM_FILTER":
+      return {
+        ...state,
+        teamFilter: action.payload,
+      };
     case "CLEAR_FILTER":
       return {
         ...state,
@@ -170,33 +201,9 @@ export const reducer = (state, action) => {
         stockSort: "totalstock",
         fastDelivery: "allDeliveries",
         priceRange: "2099",
+        teamFilter: "allteams",
       };
-    case "MOVE_TO_CART":
-      if (
-        state.cart.some((items) => items.id === action.payload.id) === false
-      ) {
-        const newObj = state.wishList.filter(
-          (items) => items.id !== action.payload.id
-        );
-        return {
-          ...state,
-          cart: [
-            ...state.cart,
-            {
-              ...action.payload,
-              quantity: action.payload.quantity + 1,
-            },
-          ],
-          wishList: newObj,
-          displayModal: true,
-          modalContent: "Added to cart",
-        };
-      }
-      return {
-        ...state,
-        displayModal: true,
-        modalContent: "Already in cart",
-      };
+
     default:
       return state;
   }
