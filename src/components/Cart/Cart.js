@@ -8,8 +8,8 @@ export const Cart = () => {
       <div className="cart--container">
         <CartItem />
       </div>
-      <h1>Total price:{totalCartPrice}</h1>
-      <button className="btn btn-secondary" onClick={clearCart}>
+      <h1 className="total--cart-price">Total price:{totalCartPrice}</h1>
+      <button className="btn btn-secondary clear--cart" onClick={clearCart}>
         Clear Cart
       </button>
     </div>
