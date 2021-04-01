@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { CartProvider } from "./context/context";
+import { MainProvider } from "./context/context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartProvider>
+    <MainProvider>
       <App />
-    </CartProvider>
+    </MainProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

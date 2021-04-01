@@ -1,6 +1,6 @@
 import { useReducer, createContext, useContext, useEffect } from "react";
 import { reducer } from "../reducer";
-export const cartContext = createContext();
+export const mainContext = createContext();
 
 const initialState = {
   cart: [],
@@ -16,7 +16,7 @@ const initialState = {
   priceRange: "2099",
 };
 
-export const CartProvider = ({ children }) => {
+export const MainProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addToCart = (item) => {
@@ -98,7 +98,7 @@ export const CartProvider = ({ children }) => {
   }, [state.displayModal]);
 
   return (
-    <cartContext.Provider
+    <mainContext.Provider
       value={{
         ...state,
         addToCart,
@@ -117,10 +117,10 @@ export const CartProvider = ({ children }) => {
         moveToCart,
       }}>
       {children}
-    </cartContext.Provider>
+    </mainContext.Provider>
   );
 };
 
-export const useCart = () => {
-  return useContext(cartContext);
+export const useMainContext = () => {
+  return useContext(mainContext);
 };

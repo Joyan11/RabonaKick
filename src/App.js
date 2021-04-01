@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "./context/context";
+import { useMainContext } from "./context/context";
 import "./App.css";
 import { Products } from "./components/Products/Products";
 import { Cart } from "./components/Cart/Cart";
@@ -15,7 +15,7 @@ export default function App() {
     totalWishes,
     displayModal,
     modalContent,
-  } = useCart();
+  } = useMainContext();
 
   return (
     <div className="App">

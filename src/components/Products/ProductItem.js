@@ -1,7 +1,8 @@
-import { useCart } from "../../context/context";
+import { useMainContext } from "../../context/context";
 
 export const ProductItem = ({ productFilters }) => {
-  const { addToCart, addToWishlist } = useCart();
+  const { addToCart, addToWishlist, inWishList } = useMainContext();
+
   return (
     <>
       {productFilters.map((item) => {
@@ -40,7 +41,7 @@ export const ProductItem = ({ productFilters }) => {
                   onClick={() => addToWishlist(item)}>
                   <ion-icon
                     class={`wishlist-icon ${
-                      item.inWishList === "yes"
+                      inWishList === "yes"
                         ? "wishlist-active"
                         : "wishlist-inactive"
                     }`}

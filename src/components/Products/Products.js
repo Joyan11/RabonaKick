@@ -1,4 +1,4 @@
-import { useCart } from "../../context/context";
+import { useMainContext } from "../../context/context";
 import { ProductItem } from "./ProductItem";
 import { productList } from "../../data/productdata";
 import "../../css/products.css";
@@ -14,7 +14,7 @@ export const Products = () => {
     sortByDelivery,
     sortBySliderRange,
     clearAllFilters,
-  } = useCart();
+  } = useMainContext();
 
   const filterByPrice = (productList, priceSort) => {
     if (priceSort === "lowtohigh") {

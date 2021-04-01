@@ -1,10 +1,10 @@
 import React from "react";
-import { useCart } from "../../context/context";
+import { useMainContext } from "../../context/context";
 import { WishItem } from "./WishItem";
 import "../../css/wishlist.css";
 
 export const Wishlist = () => {
-  const { clearWishlist } = useCart();
+  const { clearWishlist } = useMainContext();
   return (
     <div className="wishlist-section">
       <div className="wish-container">

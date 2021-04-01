@@ -1,7 +1,7 @@
-import { useCart } from "../../context/context";
+import { useMainContext } from "../../context/context";
 
 export const WishItem = () => {
-  const { wishList, removeFromWishlist, moveToCart } = useCart();
+  const { wishList, removeFromWishlist, moveToCart } = useMainContext();
   return (
     <>
       {wishList.map((item) => {

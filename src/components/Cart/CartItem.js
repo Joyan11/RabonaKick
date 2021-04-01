@@ -1,4 +1,4 @@
-import { useCart } from "../../context/context";
+import { useMainContext } from "../../context/context";
 
 export const CartItem = () => {
   const {
@@ -6,7 +6,7 @@ export const CartItem = () => {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
-  } = useCart();
+  } = useMainContext();
 
   return (
     <>
