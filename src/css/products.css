@@ -47,6 +47,9 @@
   padding: 2rem;
 }
 
+.product-filter {
+  margin-left: 1rem;
+}
 /* product cards */
 
 .card {
@@ -76,5 +79,18 @@
 @media (max-width: 786px) {
   .product-section {
     flex-direction: column;
+  }
+
+  .sidebar {
+    z-index: 1;
+    background-color: white;
+    justify-content: center;
+    height: 60%;
+    padding-bottom: 3rem;
+  }
+
+  .filter {
+    justify-content: center;
+    align-items: center;
   }
 }
