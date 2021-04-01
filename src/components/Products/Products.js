@@ -42,7 +42,7 @@ export const Products = () => {
 
   const filterByPriceRange = (prevItems, priceRangeValue) => {
     const newArr = prevItems.filter((items) => {
-      return items.price < priceRangeValue;
+      return items.price <= priceRangeValue;
     });
 
     return newArr;
@@ -89,7 +89,7 @@ export const Products = () => {
               checked={stockSort === "totalstock" ? false : true}
               onChange={(e) => sortByStock(e)}
             />
-            <label htmlFor="stockfilter">In Stock</label>
+            <label htmlFor="stockfilter">Only In Stock</label>
           </div>
           <div className="delivery-filter">
             <input
@@ -105,7 +105,7 @@ export const Products = () => {
             <p>Price range:</p>
             <input
               min="799"
-              max="4999"
+              max="2099"
               type="range"
               name="slider"
               id="slider"
@@ -125,6 +125,7 @@ export const Products = () => {
         <div class="price-filter">
           <label htmlFor="sortproducts">Sort by:</label>
           <select
+            className="product-filter"
             name="productFilter"
             id="sortproducts"
             value={priceSort}
