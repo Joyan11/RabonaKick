@@ -10,7 +10,7 @@ export const Wishlist = () => {
       <div className="wish-container">
         <WishItem />
       </div>
-      <button class="btn btn-secondary" onClick={clearWishlist}>
+      <button className="btn btn-secondary" onClick={clearWishlist}>
         Clear Wishlist
       </button>
     </div>
