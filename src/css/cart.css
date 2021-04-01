@@ -3,7 +3,8 @@
 }
 
 .cart--card {
-  max-width: 80%;
+  width: 100%;
+  max-width: 60%;
   position: relative;
 }
 
@@ -16,14 +17,26 @@
 }
 
 .cart--card-body {
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 2rem;
   align-items: baseline;
 }
 
 .cart--buttons {
   padding: 1rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+  background-color: #fff;
+  color: #000;
+}
+
+.cart--buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.cart--buttons-container * {
+  margin-right: 2rem;
 }
 
 .cart-dismiss {
@@ -32,4 +45,19 @@
   right: 2rem;
   color: black;
   font-size: 3rem;
+}
+
+.total--cart-price {
+  margin-top: 3rem;
+}
+
+.clear--cart {
+  margin-top: 2rem;
+}
+
+@media (max-width: 786px) {
+  .cart--card {
+    max-width: 100%;
+    position: relative;
+  }
 }
