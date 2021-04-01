@@ -25,11 +25,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
-  padding: 5rem 6rem 0 4rem;
+  padding: 6rem 6rem 0 4rem;
 }
 
 .filter * {
-  margin-top: 1.5rem;
+  margin-top: 1.3rem;
 }
 
 .filter input[type="checkbox"] {
@@ -45,7 +45,6 @@
   display: flex;
   flex-wrap: wrap;
   padding-top: 2rem;
-  justify-content: space-evenly;
 }
 
 .product-filter {
@@ -55,6 +54,14 @@
 
 .card {
   margin-bottom: 2rem;
+}
+.card:nth-child(even) {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.disabled {
+  filter: brightness(1.3);
 }
 
 .wishlist-button {
