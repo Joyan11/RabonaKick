@@ -92,7 +92,7 @@ export const productList = [
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-ac-milan-home-jersey-2020-21-online-in-india-1.webp",
     name: "AC Milan [H]",
-    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
@@ -102,7 +102,7 @@ export const productList = [
     id: uuid(),
     image: "https://footballmonk.in/wp-content/uploads/2020/10/third-kit-2.jpg",
     name: "Arsenal [A]",
-    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
@@ -113,7 +113,7 @@ export const productList = [
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-borussia-dortmund-home-jersey-online-in-india-1.webp",
     name: "Dortmund [H]",
-    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
@@ -124,7 +124,7 @@ export const productList = [
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-inter-milan-home-jersey-online-in-india-1.webp",
     name: "Inter Milan [H]",
-    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
@@ -136,7 +136,7 @@ export const productList = [
     image:
       "https://footballmonk.in/wp-content/uploads/2020/10/buy-liverpool-away-kit-2020-21-online-in-india-1.jpg",
     name: "Liverpool [A]",
-    price: faker.random.arrayElement([699, 799, 1099, 2099]),
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
