@@ -7,23 +7,7 @@ export const ProductItem = ({ productFilters }) => {
     <>
       {productFilters.map((item) => {
         return (
-          <div>
-            {/* <div
-              key={item.id}
-              style={{
-                border: "1px solid black",
-                width: "50%",
-                padding: "1rem",
-                margin: "1rem",
-              }}>
-              <img style={{ width: "200px" }} src={item.image} />
-              <h3>{item.name}</h3>
-              <p>{item.price}</p>
-              <button onClick={() => addToCart(item)}>Add to cart</button>
-              <button onClick={() => addToWishlist(item)}>
-                Add to wishList
-              </button>
-            </div> */}
+          <>
             <div key={item.id} className="card card--verticle card--m border">
               <figure className="card--image">
                 {item.stock === "outofstock" && (
@@ -60,14 +44,30 @@ export const ProductItem = ({ productFilters }) => {
                   onClick={() => addToCart(item)}>
                   Add to Cart
                 </button>
-                {/* <button onClick={() => addToWishlist(item)}>
-                    Add to wishlist
-                  </button> */}
               </div>
             </div>
-          </div>
+          </>
         );
       })}
     </>
   );
 };
+
+{
+  /* <div
+              key={item.id}
+              style={{
+                border: "1px solid black",
+                width: "50%",
+                padding: "1rem",
+                margin: "1rem",
+              }}>
+              <img style={{ width: "200px" }} src={item.image} />
+              <h3>{item.name}</h3>
+              <p>{item.price}</p>
+              <button onClick={() => addToCart(item)}>Add to cart</button>
+              <button onClick={() => addToWishlist(item)}>
+                Add to wishList
+              </button>
+            </div> */
+}
