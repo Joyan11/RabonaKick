@@ -12,13 +12,15 @@ export const CartItem = () => {
     <>
       {cart.map((item) => {
         return (
-          <div key={item.id} class="card card--horizontal border cart--card">
-            <figure class="card--image">
-              <img src={item.image} alt="" />
+          <div
+            key={item.id}
+            className="card card--horizontal border cart--card">
+            <figure className="card--image">
+              <img src={item.image} alt="{item.name}" />
             </figure>
-            <div class="card--body cart--card-body">
-              <span class="card--title">{item.name}</span>
-              <p class="card--text"> &#8377;{item.price}</p>
+            <div className="card--body cart--card-body">
+              <span className="card--title">{item.name}</span>
+              <p className="card--text"> &#8377;{item.price}</p>
               <div className="cart--buttons-container">
                 <button
                   className="cart--buttons btn btn-primary"
