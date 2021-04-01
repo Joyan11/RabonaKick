@@ -9,10 +9,12 @@ export const Products = () => {
     stockSort,
     fastDelivery,
     priceRange,
+    teamFilter,
     sortByStock,
     sortByCost,
     sortByDelivery,
     sortBySliderRange,
+    sortByTeam,
     clearAllFilters,
   } = useMainContext();
 
@@ -44,43 +46,65 @@ export const Products = () => {
     const newArr = prevItems.filter((items) => {
       return items.price <= priceRangeValue;
     });
-
     return newArr;
   };
 
-  // const toggleWishlist = (prevItems) => {
-  //   const newArr = prevItems.map((items) => {
-  //     if (items.inWishList === "no") {
-  //       return { ...items, inWishList: "yes" };
-  //     } else {
-  //       return { ...items, inWishList: "no" };
-  //     }
-  //   });
-  //   return newArr;
-  // };
-  // console.log(priceRange);
+  const filterByTeam = (prevItems, teamName) => {
+    if (teamName === "allteams") {
+      return prevItems;
+    } else {
+      return prevItems.filter((items) => {
+        return items.club === teamName;
+      });
+    }
+  };
+
   // const filteredItems = filterByPrice(productList, priceSort);
   // const filteredItemsWithStock = filterByStock(filteredItems, stockSort);
   // const filterByFastDelivery = filterByDelivery(
   //   filteredItemsWithStock,
   //   fastDelivery
   // );
-  // const productFilters = toggleWishlist(
-  //   filterByPriceRange(filterByFastDelivery, priceRange)
-  //);
-
-  const productFilters = filterByPriceRange(
-    filterByDelivery(
-      filterByStock(filterByPrice(productList, priceSort), stockSort),
-      fastDelivery
+  // const filterByPriceSlider = filterByPriceRange(
+  //   filterByFastDelivery,
+  //   priceRange
+  // );
+  const productFilters = filterByTeam(
+    filterByPriceRange(
+      filterByDelivery(
+        filterByStock(filterByPrice(productList, priceSort), stockSort),
+        fastDelivery
+      ),
+      priceRange
     ),
-    priceRange
+    teamFilter
   );
-  // console.log(productFilters);
+
+  console.log(productFilters);
   return (
-    <div class="product-section">
+    <div className="product-section">
       <div className="sidebar">
         <div className="filter">
+          <div className="team-filter">
+            <label htmlFor="teamfilter">Sort by Teams:</label>
+            <select
+              className="teamselection"
+              name="teamfilter"
+              id="teamfilter"
+              value={teamFilter}
+              onChange={(e) => sortByTeam(e)}>
+              <option value="allteams">All</option>
+              <option value="manutd">Manchester United</option>
+              <option value="mancity">Manchester City</option>
+              <option value="juventus">Juventus</option>
+              <option value="intermilan">Inter Milan</option>
+              <option value="acmilan">AC Milan</option>
+              <option value="arsenal">Arsenal</option>
+              <option value="chelsea">Chelsea</option>
+              <option value="dortmund">Dortmund</option>
+              <option value="liverpool">Liverpool</option>
+            </select>
+          </div>
           <div className="stock-filter">
             <input
               type="checkbox"
@@ -115,14 +139,16 @@ export const Products = () => {
             <p> &#8377; {priceRange}</p>
           </div>
           <div className="clearFilter">
-            <button class="btn btn-secondary" onClick={() => clearAllFilters()}>
+            <button
+              className="btn btn-secondary"
+              onClick={() => clearAllFilters()}>
               Clear Filters
             </button>
           </div>
         </div>
       </div>
       <div className="products-page">
-        <div class="price-filter">
+        <div className="price-filter">
           <label htmlFor="sortproducts">Sort by:</label>
           <select
             className="product-filter"
