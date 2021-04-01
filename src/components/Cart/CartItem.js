@@ -19,17 +19,19 @@ export const CartItem = () => {
             <div class="card--body cart--card-body">
               <span class="card--title">{item.name}</span>
               <p class="card--text"> &#8377;{item.price}</p>
-              <button
-                className="cart--buttons btn btn-primary"
-                onClick={() => decreaseQuantity(item.id)}>
-                -
-              </button>
-              <p>{item.quantity}</p>
-              <button
-                className="cart--buttons btn btn-primary"
-                onClick={() => increaseQuantity(item.id)}>
-                +
-              </button>
+              <div className="cart--buttons-container">
+                <button
+                  className="cart--buttons btn btn-primary"
+                  onClick={() => decreaseQuantity(item.id)}>
+                  -
+                </button>
+                <p>{item.quantity}</p>
+                <button
+                  className="cart--buttons btn btn-primary"
+                  onClick={() => increaseQuantity(item.id)}>
+                  +
+                </button>
+              </div>
             </div>
             <ion-icon
               class="cart-dismiss"
