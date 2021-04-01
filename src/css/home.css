@@ -5,7 +5,7 @@
 
 .homepage-container img {
   width: 100%;
-  max-width: 90%;
+  max-width: 92%;
 }
 
 figure {
@@ -28,6 +28,7 @@ figure {
   word-spacing: 0.1rem;
   letter-spacing: 0.2rem;
   line-height: 3rem;
+  margin-left: 3rem;
 }
 .main-heading h1 {
   font-weight: 300;
