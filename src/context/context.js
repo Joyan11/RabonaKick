@@ -13,7 +13,7 @@ const initialState = {
   priceSort: "lowtohigh",
   stockSort: "totalstock",
   fastDelivery: "allDeliveries",
-  priceRange: "4999",
+  priceRange: "2099",
 };
 
 export const CartProvider = ({ children }) => {
