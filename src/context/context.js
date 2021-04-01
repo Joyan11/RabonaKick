@@ -14,6 +14,7 @@ const initialState = {
   stockSort: "totalstock",
   fastDelivery: "allDeliveries",
   priceRange: "2099",
+  teamFilter: "allteams",
 };
 
 export const MainProvider = ({ children }) => {
@@ -85,6 +86,11 @@ export const MainProvider = ({ children }) => {
     dispatch({ type: "MOVE_TO_CART", payload: item });
   };
 
+  const sortByTeam = (e) => {
+    console.log(e.target.value);
+    dispatch({ type: "TEAM_FILTER", payload: e.target.value });
+  };
+
   useEffect(() => {
     dispatch({ type: "UPDATE_CART_TOTAL" });
   }, [state.cart]);
@@ -113,6 +119,7 @@ export const MainProvider = ({ children }) => {
         sortByStock,
         sortByDelivery,
         sortBySliderRange,
+        sortByTeam,
         clearAllFilters,
         moveToCart,
       }}>
