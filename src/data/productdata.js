@@ -20,6 +20,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "manutd",
   },
   {
     id: uuid(),
@@ -31,6 +32,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "barselona",
   },
   {
     id: uuid(),
@@ -42,6 +44,7 @@ export const productList = [
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "juventus",
   },
   {
     id: uuid(),
@@ -53,6 +56,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "arsenal",
   },
   {
     id: uuid(),
@@ -64,6 +68,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "manutd",
   },
   {
     id: uuid(),
@@ -75,6 +80,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "chelsea",
   },
   {
     id: uuid(),
@@ -86,6 +92,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "mancity",
   },
   {
     id: uuid(),
@@ -97,6 +104,7 @@ export const productList = [
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "acmilan",
   },
   {
     id: uuid(),
@@ -107,6 +115,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "arsenal",
   },
   {
     id: uuid(),
@@ -118,6 +127,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "dortmund",
   },
   {
     id: uuid(),
@@ -126,9 +136,10 @@ export const productList = [
     name: "Inter Milan [H]",
     price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
     quantity: 0,
-    stock: "outofstock",
+    stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "intermilan",
   },
 
   {
@@ -141,5 +152,6 @@ export const productList = [
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
+    club: "liverpool",
   },
 ];
