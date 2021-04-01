@@ -4,7 +4,7 @@ import "../../css/cart.css";
 export const Cart = () => {
   const { totalCartPrice, clearCart } = useMainContext();
   return (
-    <div class="cart-section">
+    <div className="cart-section">
       <div className="cart--container">
         <CartItem />
       </div>
