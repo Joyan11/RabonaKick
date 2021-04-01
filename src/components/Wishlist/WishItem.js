@@ -21,11 +21,18 @@ export const WishItem = () => {
           // </div>
           <div key={item.id} className="card card--verticle card--m border ">
             <figure className="card--image">
+              {item.stock === "outofstock" && (
+                <p className="card--overlay--text">Out of Stock</p>
+              )}
               <ion-icon
                 class="card--dismiss"
                 name="close-circle-outline"
                 onClick={() => removeFromWishlist(item.id)}></ion-icon>
-              <img src={item.image} alt="" />
+              <img
+                className={item.stock === "outofstock" && "card--overlay "}
+                src={item.image}
+                alt={item.name}
+              />
             </figure>
             <div className="card--body">
               <span className="card--title">{item.name}</span>
@@ -38,7 +45,10 @@ export const WishItem = () => {
               </p>
               <button
                 onClick={() => moveToCart(item)}
-                className="btn btn--round btn-primary card--button">
+                disabled={item.stock === "outofstock" && true}
+                className={`btn btn--round btn-primary card--button ${
+                  item.stock === "outofstock" && "disabled"
+                }`}>
                 Move To Cart
               </button>
             </div>
