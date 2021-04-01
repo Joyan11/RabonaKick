@@ -11,7 +11,7 @@ export const Home = ({ setRoute }) => {
             authentic Football jerseys to support your club.
           </p>
           <button
-            className="btn btn--round btn--icon btn--icon--back btn-outline-secondary"
+            className="btn btn--round btn--icon btn--icon--back btn-secondary"
             onClick={() => setRoute("products")}>
             <div>Shop Now</div>
             <ion-icon name="cart"></ion-icon>
@@ -21,7 +21,7 @@ export const Home = ({ setRoute }) => {
       <figure className="main-figure">
         <img
           class="main-image"
-          src="https://e0.365dm.com/19/05/2048x1152/skysports-manchester-united_4670245.jpg"
+          src="https://a.espncdn.com/photo/2020/0730/r725410_1296x864_3-2.jpg"
           alt="football"
         />
       </figure>
