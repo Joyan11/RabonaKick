@@ -11,12 +11,12 @@ export const ProductItem = ({ productFilters }) => {
             <div key={item.id} className="card card--verticle card--m border">
               <figure className="card--image">
                 {item.stock === "outofstock" && (
-                  <p class="card--overlay--text">Out of Stock</p>
+                  <p className="card--overlay--text">Out of Stock</p>
                 )}
                 <img
                   src={item.image}
-                  class={item.stock === "outofstock" && "card--overlay "}
-                  alt=""
+                  className={item.stock === "outofstock" && "card--overlay "}
+                  alt={item.name}
                 />
               </figure>
               <div className="card--body">
@@ -40,7 +40,10 @@ export const ProductItem = ({ productFilters }) => {
                 </p>
 
                 <button
-                  className="btn btn--round btn-primary card--button"
+                  className={`btn btn--round btn-primary card--button ${
+                    item.stock === "outofstock" && "disabled"
+                  }`}
+                  disabled={item.stock === "outofstock" && true}
                   onClick={() => addToCart(item)}>
                   Add to Cart
                 </button>
