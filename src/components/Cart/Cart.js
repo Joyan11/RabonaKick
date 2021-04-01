@@ -8,7 +8,9 @@ export const Cart = () => {
       <div className="cart--container">
         <CartItem />
       </div>
-      <h1 className="total--cart-price">Total price:{totalCartPrice}</h1>
+      <h1 className="total--cart-price">
+        Total price: &#8377;{totalCartPrice}
+      </h1>
       <button className="btn btn-secondary clear--cart" onClick={clearCart}>
         Clear Cart
       </button>
