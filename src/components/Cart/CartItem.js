@@ -1,12 +1,7 @@
 import { useMainContext } from "../../context/context";
 
 export const CartItem = () => {
-  const {
-    cart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useMainContext();
+  const { cart, dispatch } = useMainContext();
 
   return (
     <>
@@ -24,13 +19,17 @@ export const CartItem = () => {
               <div className="cart--buttons-container">
                 <button
                   className="cart--buttons btn btn-primary"
-                  onClick={() => decreaseQuantity(item.id)}>
+                  onClick={() =>
+                    dispatch({ type: "DECREASE_QUANTITY", payload: item.id })
+                  }>
                   -
                 </button>
                 <p>{item.quantity}</p>
                 <button
                   className="cart--buttons btn btn-primary"
-                  onClick={() => increaseQuantity(item.id)}>
+                  onClick={() =>
+                    dispatch({ type: "INCREASE_QUANTITY", payload: item.id })
+                  }>
                   +
                 </button>
               </div>
@@ -38,7 +37,9 @@ export const CartItem = () => {
             <ion-icon
               class="cart-dismiss"
               name="close-circle-outline"
-              onClick={() => removeFromCart(item.id)}></ion-icon>
+              onClick={() =>
+                dispatch({ type: "REMOVE_ITEM", payload: item.id })
+              }></ion-icon>
           </div>
         );
       })}
