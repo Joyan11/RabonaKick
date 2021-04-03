@@ -25,7 +25,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
-  padding: 6rem 6rem 0 4rem;
+  padding: 4rem 6rem 0 4rem;
 }
 
 .filter * {
@@ -47,9 +47,37 @@
   padding-top: 2rem;
 }
 
-.product-filter {
-  margin-left: 1rem;
+.filter-heading {
+  text-transform: uppercase;
+  font-size: 2rem;
 }
+
+.product-page-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  width: 100%;
+  max-width: 60%;
+  position: relative;
+}
+
+.search input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+}
+
+.search ion-icon {
+  position: absolute;
+  right: 30%;
+  top: 30%;
+  font-size: 1.5rem;
+}
+
 /* product cards */
 
 .card {
@@ -89,15 +117,47 @@
   }
 
   .sidebar {
-    z-index: 1;
     background-color: white;
     justify-content: center;
     height: 60%;
     padding-bottom: 3rem;
+    position: static;
   }
 
   .filter {
     justify-content: center;
     align-items: center;
+  }
+
+  .product-container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .price-filter {
+    align-self: center;
+    padding: 0;
+  }
+
+  .product-page-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 80%;
+    position: relative;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .search ion-icon {
+    position: absolute;
+    right: 15%;
+    top: 10%;
+    font-size: 1.5rem;
   }
 }
