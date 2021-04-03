@@ -60,4 +60,9 @@
     max-width: 100%;
     position: relative;
   }
+
+  .cart-dismiss {
+    top: 1rem;
+    right: 1rem;
+  }
 }
