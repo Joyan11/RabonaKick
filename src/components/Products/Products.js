@@ -1,10 +1,10 @@
 import { useMainContext } from "../../context/context";
 import { ProductItem } from "./ProductItem";
-import { productList } from "../../data/productdata";
 import "../../css/products.css";
-// import { useState } from "react";
+import { useState } from "react";
 export const Products = () => {
   const {
+    products,
     priceSort,
     stockSort,
     fastDelivery,
@@ -15,8 +15,10 @@ export const Products = () => {
     sortByDelivery,
     sortBySliderRange,
     sortByTeam,
-    clearAllFilters,
+    dispatch,
   } = useMainContext();
+
+  const [searchText, setSearchText] = useState("");
 
   const filterByPrice = (productList, priceSort) => {
     if (priceSort === "lowtohigh") {
@@ -59,6 +61,16 @@ export const Products = () => {
     }
   };
 
+  const filterBySearch = (prevItems) => {
+    const searchData = prevItems.filter((items) => {
+      return items.name
+        .toLowerCase()
+        .trim()
+        .includes(searchText.toLowerCase().trim());
+    });
+    return searchData;
+  };
+
   // const filteredItems = filterByPrice(productList, priceSort);
   // const filteredItemsWithStock = filterByStock(filteredItems, stockSort);
   // const filterByFastDelivery = filterByDelivery(
@@ -69,22 +81,24 @@ export const Products = () => {
   //   filterByFastDelivery,
   //   priceRange
   // );
-  const productFilters = filterByTeam(
-    filterByPriceRange(
-      filterByDelivery(
-        filterByStock(filterByPrice(productList, priceSort), stockSort),
-        fastDelivery
+  const productFilters = filterBySearch(
+    filterByTeam(
+      filterByPriceRange(
+        filterByDelivery(
+          filterByStock(filterByPrice(products, priceSort), stockSort),
+          fastDelivery
+        ),
+        priceRange
       ),
-      priceRange
-    ),
-    teamFilter
+      teamFilter
+    )
   );
 
-  console.log(productFilters);
   return (
     <div className="product-section">
       <div className="sidebar">
         <div className="filter">
+          <p className="filter-heading">Filters</p>
           <div className="team-filter">
             <label htmlFor="teamfilter">Sort by Teams:</label>
             <select
@@ -141,25 +155,39 @@ export const Products = () => {
           <div className="clearFilter">
             <button
               className="btn btn-secondary"
-              onClick={() => clearAllFilters()}>
+              onClick={() => dispatch({ type: "CLEAR_FILTER" })}>
               Clear Filters
             </button>
           </div>
         </div>
       </div>
       <div className="products-page">
-        <div className="price-filter">
-          <label htmlFor="sortproducts">Sort by:</label>
-          <select
-            className="product-filter"
-            name="productFilter"
-            id="sortproducts"
-            value={priceSort}
-            onChange={(e) => sortByCost(e)}>
-            <option value="lowtohigh">Price: Low to High</option>
-            <option value="hightolow">Price: High to Low</option>
-          </select>
+        <div className="product-page-filter">
+          <div className="search">
+            <input
+              className="input"
+              type="text"
+              name="text"
+              id="text"
+              placeholder="Search for products"
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <ion-icon name="search-outline"></ion-icon>
+          </div>
+          <div className="price-filter">
+            <label htmlFor="sortproducts">Sort by:</label>
+            <select
+              className="product-filter"
+              name="productFilter"
+              id="sortproducts"
+              value={priceSort}
+              onChange={(e) => sortByCost(e)}>
+              <option value="lowtohigh">Price: Low to High</option>
+              <option value="hightolow">Price: High to Low</option>
+            </select>
+          </div>
         </div>
+
         <div className="product-container">
           <ProductItem productFilters={productFilters} />
         </div>
