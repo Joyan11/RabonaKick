@@ -4,13 +4,15 @@ import { WishItem } from "./WishItem";
 import "../../css/wishlist.css";
 
 export const Wishlist = () => {
-  const { clearWishlist } = useMainContext();
+  const { dispatch } = useMainContext();
   return (
     <div className="wishlist-section">
       <div className="wish-container">
         <WishItem />
       </div>
-      <button className="btn btn-secondary" onClick={clearWishlist}>
+      <button
+        className="btn btn-secondary"
+        onClick={() => dispatch({ type: "CLEAR_WISHLIST" })}>
         Clear Wishlist
       </button>
     </div>
