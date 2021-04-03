@@ -1,24 +1,17 @@
 import { useMainContext } from "../../context/context";
 
 export const WishItem = () => {
-  const { wishList, removeFromWishlist, moveToCart } = useMainContext();
+  const { wishList, dispatch } = useMainContext();
+
+  const removeFromWishList = (id) => {
+    dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+    dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: id });
+  };
+
   return (
     <>
       {wishList.map((item) => {
         return (
-          // <div
-          //   key={item.id}
-          //   style={{
-          //     border: "1px solid black",
-          //     width: "50%",
-          //     padding: "1rem",
-          //     margin: "1rem",
-          //   }}>
-          //   <h3>{item.name}</h3>
-          //   <p>{item.price}</p>
-          //   <button onClick={() => removeFromWishlist(item.id)}>Remove</button>
-          //   <button onClick={() => moveToCart(item)}>Move to cart</button>
-          // </div>
           <div key={item.id} className="card card--verticle card--m border ">
             <figure className="card--image">
               {item.stock === "outofstock" && (
@@ -27,7 +20,7 @@ export const WishItem = () => {
               <ion-icon
                 class="card--dismiss"
                 name="close-circle-outline"
-                onClick={() => removeFromWishlist(item.id)}></ion-icon>
+                onClick={() => removeFromWishList(item.id)}></ion-icon>
               <img
                 className={item.stock === "outofstock" && "card--overlay "}
                 src={item.image}
@@ -39,12 +32,13 @@ export const WishItem = () => {
               <p class="card--text">
                 &#8377; {item.price}
                 <span className="card--subtext">
-                  {" "}
                   &#8377; {item.price + 100}
                 </span>
               </p>
               <button
-                onClick={() => moveToCart(item)}
+                onClick={() =>
+                  dispatch({ type: "MOVE_TO_CART", payload: item })
+                }
                 disabled={item.stock === "outofstock" && true}
                 className={`btn btn--round btn-primary card--button ${
                   item.stock === "outofstock" && "disabled"
