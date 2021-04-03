@@ -1,24 +1,17 @@
 export const reducer = (state, action) => {
   // console.log(action.payload);
   switch (action.type) {
+    case "FETCHED_PRODUCTS":
+      return {
+        ...state,
+        products: action.payload,
+      };
     case "ADD_ITEM":
-      if (state.cart.length === 0) {
-        return {
-          ...state,
-          cart: [
-            ...state.cart,
-            { ...action.payload, quantity: action.payload.quantity + 1 },
-          ],
-          displayModal: true,
-          modalContent: "Added to cart",
-        };
-      } else if (
+      if (
         state.cart.some((items) => items.id === action.payload.id) === false
       ) {
         return {
           ...state,
-          displayModal: true,
-          modalContent: "Added to cart",
           cart: [
             ...state.cart,
             {
@@ -26,6 +19,8 @@ export const reducer = (state, action) => {
               quantity: action.payload.quantity + 1,
             },
           ],
+          displayModal: true,
+          modalContent: "Added to cart",
         };
       } else {
         const newObj = state.cart.map((elements) => {
@@ -84,25 +79,42 @@ export const reducer = (state, action) => {
       ) {
         return {
           ...state,
-          wishList: [...state.wishList, action.payload],
+          wishList: [
+            ...state.wishList,
+            { ...action.payload, inWishList: "yes" },
+          ],
           displayModal: true,
           modalContent: "Added to Wishlist",
         };
       }
       return {
         ...state,
-        displayModal: true,
-        modalContent: "Already in Wishlist",
       };
     case "REMOVE_FROM_WISHLIST":
       const newObj = state.wishList.filter(
         (items) => items.id !== action.payload
       );
+      console.log(action.payload);
       return {
         ...state,
         wishList: newObj,
         displayModal: true,
         modalContent: "Removed from Wishlist",
+      };
+    case "TOGGLE_PRODUCT_WISH":
+      const productToggle = state.products.map((items) => {
+        if (items.id === action.payload) {
+          return {
+            ...items,
+            inWishList: items.inWishList === "no" ? "yes" : "no",
+          };
+        } else {
+          return items;
+        }
+      });
+      return {
+        ...state,
+        products: productToggle,
       };
     case "MOVE_TO_CART":
       if (
@@ -123,6 +135,12 @@ export const reducer = (state, action) => {
           wishList: newObj,
           displayModal: true,
           modalContent: "Added to cart",
+          products: state.products.map((items) => {
+            return {
+              ...items,
+              inWishList: "no",
+            };
+          }),
         };
       }
       return {
@@ -158,6 +176,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         wishList: [],
+        products: state.products.map((items) => {
+          return {
+            ...items,
+            inWishList: "no",
+          };
+        }),
       };
     case "DISPLAY_MODAL":
       return {
