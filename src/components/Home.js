@@ -18,13 +18,6 @@ export const Home = ({ setRoute }) => {
           </button>
         </div>
       </div>
-      <figure className="main-figure">
-        <img
-          className="main-image"
-          src="https://a.espncdn.com/photo/2020/0730/r725410_1296x864_3-2.jpg"
-          alt="football"
-        />
-      </figure>
     </div>
   );
 };
