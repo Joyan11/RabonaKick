@@ -62,6 +62,7 @@
   width: 100%;
   max-width: 60%;
   position: relative;
+  margin-left: 2rem;
 }
 
 .search input {
@@ -82,10 +83,7 @@
 
 .card {
   margin-bottom: 2rem;
-}
-.card:nth-child(even) {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  margin-left: 2rem;
 }
 
 .disabled {
@@ -112,6 +110,9 @@
 }
 
 @media (max-width: 786px) {
+  .card {
+    margin-left: 0;
+  }
   .product-section {
     flex-direction: column;
   }
