@@ -1,7 +1,17 @@
 import { useMainContext } from "../../context/context";
 
 export const ProductItem = ({ productFilters }) => {
-  const { addToCart, addToWishlist, inWishList } = useMainContext();
+  const { wishList, dispatch } = useMainContext();
+
+  const wishListButtonHandler = (item, wishList) => {
+    if (wishList.some((products) => products.id === item.id) === false) {
+      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+      dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: item.id });
+    } else {
+      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item.id });
+      dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: item.id });
+    }
+  };
 
   return (
     <>
@@ -21,15 +31,13 @@ export const ProductItem = ({ productFilters }) => {
               </figure>
               <div className="card--body">
                 <span
-                  className="wishlist-button"
-                  onClick={() => addToWishlist(item)}>
-                  <ion-icon
-                    class={`wishlist-icon ${
-                      inWishList === "yes"
-                        ? "wishlist-active"
-                        : "wishlist-inactive"
-                    }`}
-                    name="heart"></ion-icon>
+                  className={`wishlist-button wishlist-icon ${
+                    item.inWishList === "no"
+                      ? "wishlist-inactive"
+                      : "wishlist-active"
+                  }`}
+                  onClick={() => wishListButtonHandler(item, wishList)}>
+                  <ion-icon name="heart"></ion-icon>
                 </span>
                 <span className="card--title">{item.name}</span>
                 <p className="card--text">
@@ -44,7 +52,7 @@ export const ProductItem = ({ productFilters }) => {
                     item.stock === "outofstock" && "disabled"
                   }`}
                   disabled={item.stock === "outofstock" && true}
-                  onClick={() => addToCart(item)}>
+                  onClick={() => dispatch({ type: "ADD_ITEM", payload: item })}>
                   Add to Cart
                 </button>
               </div>
@@ -55,22 +63,3 @@ export const ProductItem = ({ productFilters }) => {
     </>
   );
 };
-
-{
-  /* <div
-              key={item.id}
-              style={{
-                border: "1px solid black",
-                width: "50%",
-                padding: "1rem",
-                margin: "1rem",
-              }}>
-              <img style={{ width: "200px" }} src={item.image} />
-              <h3>{item.name}</h3>
-              <p>{item.price}</p>
-              <button onClick={() => addToCart(item)}>Add to cart</button>
-              <button onClick={() => addToWishlist(item)}>
-                Add to wishList
-              </button>
-            </div> */
-}
