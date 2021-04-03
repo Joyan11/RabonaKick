@@ -1,8 +1,11 @@
 import { useReducer, createContext, useContext, useEffect } from "react";
-import { reducer } from "../reducer";
+import { reducer } from "../reducer/reducer";
+import { productList } from "../data/productdata";
+
 export const mainContext = createContext();
 
 const initialState = {
+  products: productList,
   cart: [],
   wishList: [],
   totalCartPrice: 0,
@@ -19,38 +22,6 @@ const initialState = {
 
 export const MainProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const addToCart = (item) => {
-    dispatch({ type: "ADD_ITEM", payload: item });
-  };
-
-  const removeFromCart = (id) => {
-    dispatch({ type: "REMOVE_ITEM", payload: id });
-  };
-
-  const increaseQuantity = (id) => {
-    dispatch({ type: "INCREASE_QUANTITY", payload: id });
-  };
-
-  const decreaseQuantity = (id) => {
-    dispatch({ type: "DECREASE_QUANTITY", payload: id });
-  };
-
-  const addToWishlist = (item) => {
-    dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-  };
-
-  const removeFromWishlist = (id) => [
-    dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id }),
-  ];
-
-  const clearCart = () => {
-    dispatch({ type: "CLEAR_CART" });
-  };
-
-  const clearWishlist = () => {
-    dispatch({ type: "CLEAR_WISHLIST" });
-  };
 
   const sortByCost = (e) => {
     if (e.target.value === "lowTohigh") {
@@ -78,14 +49,6 @@ export const MainProvider = ({ children }) => {
     dispatch({ type: "PRICE_SLIDER", payload: e.target.value });
   };
 
-  const clearAllFilters = () => {
-    dispatch({ type: "CLEAR_FILTER" });
-  };
-
-  const moveToCart = (item) => {
-    dispatch({ type: "MOVE_TO_CART", payload: item });
-  };
-
   const sortByTeam = (e) => {
     console.log(e.target.value);
     dispatch({ type: "TEAM_FILTER", payload: e.target.value });
@@ -101,27 +64,22 @@ export const MainProvider = ({ children }) => {
 
   useEffect(() => {
     setTimeout(() => dispatch({ type: "DISPLAY_MODAL" }), 3000);
+    return () => {
+      clearTimeout();
+    };
   }, [state.displayModal]);
 
+  // Passed diapatch in functions instead of passing it directly
   return (
     <mainContext.Provider
       value={{
         ...state,
-        addToCart,
-        removeFromCart,
-        increaseQuantity,
-        decreaseQuantity,
-        addToWishlist,
-        removeFromWishlist,
-        clearCart,
-        clearWishlist,
         sortByCost,
         sortByStock,
         sortByDelivery,
         sortBySliderRange,
         sortByTeam,
-        clearAllFilters,
-        moveToCart,
+        dispatch,
       }}>
       {children}
     </mainContext.Provider>
