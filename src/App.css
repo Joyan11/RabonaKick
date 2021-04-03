@@ -59,4 +59,13 @@ nav {
   .nav--logo p {
     padding-left: 0.5rem;
   }
+
+  .card--button {
+    max-width: 80%;
+  }
+
+  .snackbar {
+    width: 60%;
+    right: 20%;
+  }
 }
