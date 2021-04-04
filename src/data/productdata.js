@@ -14,7 +14,7 @@ export const productList = [
     id: uuid(),
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-united-home-jersey-2020-21-online-in-india-1-1.webp",
-    name: "Man United",
+    name: "Manchester United",
     price: faker.random.arrayElement([699, 799, 1099, 2099]),
     quantity: 0,
     stock: "instock",
@@ -32,7 +32,7 @@ export const productList = [
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
-    club: "barselona",
+    club: "barcelona",
   },
   {
     id: uuid(),
@@ -86,7 +86,7 @@ export const productList = [
     id: uuid(),
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-city-home-jersey-2020-21-online-in-india-1.webp",
-    name: "Man City",
+    name: "Manchester City",
     price: faker.random.arrayElement([699, 799, 1099, 2099]),
     quantity: 0,
     stock: "instock",
