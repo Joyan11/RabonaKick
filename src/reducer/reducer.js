@@ -1,11 +1,6 @@
 export const reducer = (state, action) => {
   // console.log(action.payload);
   switch (action.type) {
-    case "FETCHED_PRODUCTS":
-      return {
-        ...state,
-        products: action.payload,
-      };
     case "ADD_ITEM":
       if (
         state.cart.some((items) => items.id === action.payload.id) === false
@@ -79,10 +74,7 @@ export const reducer = (state, action) => {
       ) {
         return {
           ...state,
-          wishList: [
-            ...state.wishList,
-            { ...action.payload, inWishList: "yes" },
-          ],
+          wishList: [...state.wishList, { ...action.payload }],
           displayModal: true,
           modalContent: "Added to Wishlist",
         };
@@ -135,12 +127,6 @@ export const reducer = (state, action) => {
           wishList: newObj,
           displayModal: true,
           modalContent: "Added to cart",
-          products: state.products.map((items) => {
-            return {
-              ...items,
-              inWishList: "no",
-            };
-          }),
         };
       }
       return {
