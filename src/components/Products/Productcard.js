@@ -1,6 +1,6 @@
 import { useMainContext } from "../../context/context";
 
-export const ProductItem = ({ productFilters }) => {
+export const ProductCard = ({ productFilters }) => {
   const { wishList, dispatch } = useMainContext();
 
   const wishListButtonHandler = (item, wishList) => {
