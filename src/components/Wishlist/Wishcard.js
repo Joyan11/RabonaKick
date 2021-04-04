@@ -1,10 +1,15 @@
 import { useMainContext } from "../../context/context";
 
-export const WishItem = () => {
+export const Wishcard = () => {
   const { wishList, dispatch } = useMainContext();
 
   const removeFromWishList = (id) => {
     dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+    dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: id });
+  };
+
+  const moveToCart = (item, id) => {
+    dispatch({ type: "MOVE_TO_CART", payload: item });
     dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: id });
   };
 
@@ -36,9 +41,7 @@ export const WishItem = () => {
                 </span>
               </p>
               <button
-                onClick={() =>
-                  dispatch({ type: "MOVE_TO_CART", payload: item })
-                }
+                onClick={() => moveToCart(item, item.id)}
                 disabled={item.stock === "outofstock" && true}
                 className={`btn btn--round btn-primary card--button ${
                   item.stock === "outofstock" && "disabled"
