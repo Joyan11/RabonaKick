@@ -36,13 +36,3 @@ export default function App() {
     </div>
   );
 }
-
-{
-  /* <nav>
-        <button onClick={() => setRoute("products")}>Products</button>
-        <button onClick={() => setRoute("cart")}>Cart</button>
-        <span>{totalCartQuantity}</span>
-        <button onClick={() => setRoute("wishlist")}>Wishlist</button>
-        <span>{totalWishes}</span>
-      </nav> */
-}
