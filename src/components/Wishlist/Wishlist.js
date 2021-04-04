@@ -1,6 +1,6 @@
 import React from "react";
 import { useMainContext } from "../../context/context";
-import { WishItem } from "./WishItem";
+import { Wishcard } from "./Wishcard";
 import "../../css/wishlist.css";
 
 export const Wishlist = () => {
@@ -8,7 +8,7 @@ export const Wishlist = () => {
   return (
     <div className="wishlist-section">
       <div className="wish-container">
-        <WishItem />
+        <Wishcard />
       </div>
       <button
         className="btn btn-secondary"
