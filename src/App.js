@@ -19,11 +19,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Navbar
-        setRoute={setRoute}
-        totalCartQuantity={totalCartQuantity}
-        totalWishes={totalWishes}
-      />
+      <Navbar totalCartQuantity={totalCartQuantity} totalWishes={totalWishes} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
