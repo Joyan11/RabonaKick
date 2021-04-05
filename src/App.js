@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { useMainContext } from "./context/context";
 import "./App.css";
 import { Products } from "./components/Products/Products";
@@ -9,7 +10,6 @@ import { Modal } from "./components/Modal";
 import { Navbar } from "./components/Navbar";
 
 export default function App() {
-  const [route, setRoute] = useState("home");
   const {
     totalCartQuantity,
     totalWishes,
@@ -24,13 +24,12 @@ export default function App() {
         totalCartQuantity={totalCartQuantity}
         totalWishes={totalWishes}
       />
-
-      <div className="main">
-        {route === "home" && <Home setRoute={setRoute} />}
-        {route === "products" && <Products />}
-        {route === "cart" && <Cart />}
-        {route === "wishlist" && <Wishlist />}
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishList" element={<Wishlist />} />
+      </Routes>
 
       {displayModal && <Modal modalContent={modalContent} />}
     </div>
