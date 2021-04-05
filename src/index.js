@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
 import { MainProvider } from "./context/context";
-// import setupMockServer from "./api/mock.server";
-
-// setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainProvider>
-      <App />
-    </MainProvider>
+    <Router>
+      <MainProvider>
+        <App />
+      </MainProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
