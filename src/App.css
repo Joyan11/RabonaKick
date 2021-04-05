@@ -35,6 +35,10 @@ nav {
   color: #000;
 }
 
+route-link {
+  text-decoration: none;
+}
+
 .center-tabs {
   font-size: 1.5rem;
 }
@@ -45,6 +49,11 @@ nav {
   right: 20px;
   bottom: 20px;
   z-index: 1;
+}
+
+.router-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media (max-width: 786px) {
