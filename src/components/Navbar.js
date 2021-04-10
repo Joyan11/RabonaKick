@@ -5,9 +5,11 @@ export const Navbar = ({ totalCartQuantity, totalWishes }) => {
     <>
       <nav className="nav nav-primary">
         <div className="nav--logo">
-          <p>
-            Rabona<ion-icon name="football-outline"></ion-icon>Kick
-          </p>
+          <Link to="/" className="router-link">
+            <p>
+              Rabona<ion-icon name="football-outline"></ion-icon>Kick
+            </p>
+          </Link>
         </div>
         <ul className="list nav--list">
           <Link to="/" className="router-link">
