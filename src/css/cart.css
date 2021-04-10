@@ -55,6 +55,17 @@
   margin-top: 2rem;
 }
 
+.empty-text {
+  color: var(--light-gray);
+  margin-bottom: 2rem;
+}
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
 @media (max-width: 786px) {
   .cart--card {
     max-width: 100%;

@@ -16,3 +16,15 @@
   padding: 2rem;
   margin: 4rem 6rem;
 }
+
+.empty-text {
+  color: var(--light-gray);
+  margin-bottom: 2rem;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
