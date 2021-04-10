@@ -1,14 +1,6 @@
 import uuid from "react-uuid";
 import faker from "faker";
 
-// faker.seed(123);
-// const data = [...Array(25)].map((item) => ({
-//   id: faker.random.uuid(),
-//   name: faker.commerce.productName(),
-//   image: faker.random.image(),
-//   price: faker.commerce.price(),
-// }));
-
 export const productList = [
   {
     id: uuid(),
@@ -21,6 +13,7 @@ export const productList = [
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
     club: "manutd",
+    type: "home",
   },
   {
     id: uuid(),
@@ -62,7 +55,7 @@ export const productList = [
     id: uuid(),
     image:
       "https://footballmonk.in/wp-content/uploads/2020/07/buy-manchester-home-away-jersey-2020-21-online-in-india-1.jpg",
-    name: "Man United",
+    name: "Manchester United",
     price: faker.random.arrayElement([699, 799, 1099, 2099]),
     quantity: 0,
     stock: "instock",
@@ -141,7 +134,6 @@ export const productList = [
     inWishList: "no",
     club: "intermilan",
   },
-
   {
     id: uuid(),
     image:
@@ -153,5 +145,18 @@ export const productList = [
     delivery: faker.random.arrayElement(["standard", "fast"]),
     inWishList: "no",
     club: "liverpool",
+  },
+  {
+    id: uuid(),
+    image:
+      "https://footballmonk.in/wp-content/uploads/2020/07/buy-atletico-madrid-home-jersey-online-in-india-1.webp",
+    name: "Atletico Madrid",
+    price: faker.random.arrayElement([699, 799, 1099, 1599, 2099]),
+    quantity: 0,
+    stock: "instock",
+    delivery: faker.random.arrayElement(["standard", "fast"]),
+    inWishList: "no",
+    club: "atlmadrid",
+    type: "home",
   },
 ];
