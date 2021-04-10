@@ -11,7 +11,6 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
     club: "manutd",
     type: "home",
   },
@@ -24,7 +23,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "barcelona",
   },
   {
@@ -36,7 +35,7 @@ export const productList = [
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "juventus",
   },
   {
@@ -60,7 +59,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "manutd",
   },
   {
@@ -84,7 +83,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "mancity",
   },
   {
@@ -96,7 +95,7 @@ export const productList = [
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "acmilan",
   },
   {
@@ -107,7 +106,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "arsenal",
   },
   {
@@ -119,7 +118,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "dortmund",
   },
   {
@@ -131,7 +130,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "intermilan",
   },
   {
@@ -143,7 +142,7 @@ export const productList = [
     quantity: 0,
     stock: "outofstock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "liverpool",
   },
   {
@@ -155,7 +154,7 @@ export const productList = [
     quantity: 0,
     stock: "instock",
     delivery: faker.random.arrayElement(["standard", "fast"]),
-    inWishList: "no",
+
     club: "atlmadrid",
     type: "home",
   },

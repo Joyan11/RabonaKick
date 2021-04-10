@@ -86,27 +86,12 @@ export const reducer = (state, action) => {
       const newObj = state.wishList.filter(
         (items) => items.id !== action.payload
       );
-      console.log(action.payload);
+
       return {
         ...state,
         wishList: newObj,
         displayModal: true,
         modalContent: "Removed from Wishlist",
-      };
-    case "TOGGLE_PRODUCT_WISH":
-      const productToggle = state.products.map((items) => {
-        if (items.id === action.payload) {
-          return {
-            ...items,
-            inWishList: items.inWishList === "no" ? "yes" : "no",
-          };
-        } else {
-          return items;
-        }
-      });
-      return {
-        ...state,
-        products: productToggle,
       };
     case "MOVE_TO_CART":
       if (

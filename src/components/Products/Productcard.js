@@ -1,16 +1,24 @@
 import { useMainContext } from "../../context/context";
 
 export const ProductCard = ({ productFilters }) => {
-  const { wishList, dispatch } = useMainContext();
+  const { products, wishList, dispatch } = useMainContext();
 
   const wishListButtonHandler = (item, wishList) => {
     if (wishList.some((products) => products.id === item.id) === false) {
       dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-      dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: item.id });
     } else {
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item.id });
-      dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: item.id });
     }
+  };
+
+  const wishToggle = (itemid) => {
+    const wishid = wishList.find((item) => item.id === itemid);
+    if (wishid) {
+      if (products.some((item) => item.id === wishid.id)) {
+        return "wishlist-active";
+      }
+    }
+    return "wishlist-inactive";
   };
 
   return (
@@ -31,11 +39,9 @@ export const ProductCard = ({ productFilters }) => {
               </figure>
               <div className="card--body">
                 <span
-                  className={`wishlist-button wishlist-icon ${
-                    item.inWishList === "no"
-                      ? "wishlist-inactive"
-                      : "wishlist-active"
-                  }`}
+                  className={`wishlist-button wishlist-icon ${wishToggle(
+                    item.id
+                  )}`}
                   onClick={() => wishListButtonHandler(item, wishList)}>
                   <ion-icon name="heart"></ion-icon>
                 </span>
