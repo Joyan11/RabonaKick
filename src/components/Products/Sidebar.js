@@ -72,7 +72,7 @@ export const Sidebar = () => {
           </div>
           <div className="clearFilter">
             <button
-              className="btn btn-secondary"
+              className="btn btn--round btn-secondary"
               onClick={() => clearAllFilters()}>
               Clear Filters
             </button>
