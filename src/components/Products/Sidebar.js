@@ -29,6 +29,7 @@ export const Sidebar = () => {
               <option value="mancity">Manchester City</option>
               <option value="barcelona">Barcelona</option>
               <option value="juventus">Juventus</option>
+              <option value="atlmadrid">Atletico Madrid</option>
               <option value="intermilan">Inter Milan</option>
               <option value="acmilan">AC Milan</option>
               <option value="arsenal">Arsenal</option>
