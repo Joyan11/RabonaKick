@@ -46,19 +46,3 @@ export const CartItem = () => {
     </>
   );
 };
-
-{
-  /* <div key={item.id} class="card card--horizontal border">
-  <figure class="card--image">
-    <img src={item.image} alt="" />
-  </figure>
-  <div class="card--body">
-    <span class="card--title">{item.name}</span>
-    <p class="card--text">{item.price}</p>
-    <button onClick={() => decreaseQuantity(item.id)}>-</button>
-    <p>{item.quantity}</p>
-    <button onClick={() => increaseQuantity(item.id)}>+</button>
-    <button onClick={() => removeFromCart(item.id)}>Remove</button>
-  </div>
-</div>; */
-}
