@@ -21,7 +21,7 @@ export const Cart = () => {
           Total price: &#8377;{totalCartPrice}
         </h1>
         <button
-          className="btn btn-secondary clear--cart"
+          className="btn btn-secondary btn--round clear--cart"
           onClick={() => dispatch({ type: "CLEAR_CART" })}>
           Clear Cart
         </button>
