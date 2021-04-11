@@ -5,12 +5,10 @@ export const Wishcard = () => {
 
   const removeFromWishList = (id) => {
     dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
-    dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: id });
   };
 
   const moveToCart = (item, id) => {
     dispatch({ type: "MOVE_TO_CART", payload: item });
-    dispatch({ type: "TOGGLE_PRODUCT_WISH", payload: id });
   };
 
   return (
