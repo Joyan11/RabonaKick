@@ -20,7 +20,7 @@ export const Wishlist = () => {
           <Wishcard />
         </div>
         <button
-          className="btn btn-secondary"
+          className="btn btn--round btn-secondary"
           onClick={() => dispatch({ type: "CLEAR_WISHLIST" })}>
           Clear Wishlist
         </button>
