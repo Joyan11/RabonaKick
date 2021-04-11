@@ -6,6 +6,13 @@
   filter: brightness(1.3);
 }
 
+.card--horizontal .card--title {
+  font-size: 3rem;
+}
+
+.card--horizontal .card--text {
+  font-size: 1.6rem;
+}
 .wishlist-section {
   text-align: center;
 }
@@ -20,6 +27,7 @@
 .empty-text {
   color: var(--light-gray);
   margin-bottom: 2rem;
+  font-size: 6rem;
 }
 
 .empty {

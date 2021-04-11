@@ -1,5 +1,6 @@
 .cart-section {
   text-align: center;
+  height: 100vh;
 }
 
 .cart--card {
@@ -58,6 +59,7 @@
 .empty-text {
   color: var(--light-gray);
   margin-bottom: 2rem;
+  font-size: 6rem;
 }
 .empty {
   display: flex;
