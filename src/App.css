@@ -56,6 +56,22 @@ route-link {
   color: inherit;
 }
 
+.btn {
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.footer {
+  width: 100%;
+  padding: 3rem;
+  background-color: rgb(71, 67, 67);
+  color: white;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  position: static;
+}
+
 @media (max-width: 786px) {
   .nav--logo p {
     font-size: 1.5rem;
