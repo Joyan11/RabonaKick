@@ -26,7 +26,9 @@ export const ProductCard = ({ productFilters }) => {
       {productFilters.map((item) => {
         return (
           <>
-            <div key={item.id} className="card card--verticle card--m border">
+            <div
+              key={item.id}
+              className="card card--verticle card--m border product-card">
               <figure className="card--image">
                 {item.stock === "outofstock" && (
                   <p className="card--overlay--text">Out of Stock</p>
