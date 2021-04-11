@@ -109,6 +109,14 @@
   color: #746767;
 }
 
+.product-card {
+  border: none;
+  transition: box-shadow 0.3s ease-in;
+}
+.product-card:hover {
+  box-shadow: -1px 0px 17px -1px rgba(0, 0, 0, 0.32);
+}
+
 @media (max-width: 786px) {
   .card {
     margin-left: 0;
