@@ -10,7 +10,7 @@ export const Sidebar = () => {
     sortByDelivery,
     sortBySliderRange,
     sortByTeam,
-    clearAllFilters,
+    dispatch,
   } = useMainContext();
   return (
     <>
@@ -74,7 +74,7 @@ export const Sidebar = () => {
           <div className="clearFilter">
             <button
               className="btn btn--round btn-secondary"
-              onClick={() => clearAllFilters()}>
+              onClick={() => dispatch({ type: "CLEAR_FILTER" })}>
               Clear Filters
             </button>
           </div>
