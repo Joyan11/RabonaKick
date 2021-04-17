@@ -11,7 +11,7 @@ export const reducer = (state, action) => {
             ...state.cart,
             {
               ...action.payload,
-              quantity: action.payload.quantity + 1,
+              quantity: 1,
             },
           ],
           displayModal: true,
