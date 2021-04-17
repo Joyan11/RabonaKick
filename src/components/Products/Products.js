@@ -24,11 +24,11 @@ export const Products = () => {
     }
   };
 
-  const filterByStock = (prevFilterItems, stockFlag) => {
+  const filterByStock = (prevItems, stockFlag) => {
     if (stockFlag === "instock") {
-      return prevFilterItems.filter((item) => item.stock === "instock");
+      return prevItems.filter((item) => item.stock === "instock");
     } else {
-      return prevFilterItems;
+      return prevItems;
     }
   };
 
