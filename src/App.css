@@ -8,6 +8,14 @@
   position: relative;
 }
 
+.App {
+  max-width: 100%;
+}
+
+.main {
+  height: 100vh;
+}
+
 nav {
   position: sticky;
   top: 0;
