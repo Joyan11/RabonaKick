@@ -1,6 +1,11 @@
 export const reducer = (state, action) => {
   // console.log(action.payload);
   switch (action.type) {
+    case "SET_INITIAL_DATA":
+      return {
+        ...state,
+        products: action.payload,
+      };
     case "ADD_ITEM":
       if (
         state.cart.some((items) => items.id === action.payload.id) === false

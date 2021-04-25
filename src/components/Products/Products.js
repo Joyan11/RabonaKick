@@ -3,7 +3,11 @@ import { ProductCard } from "./Productcard";
 import "../../css/products.css";
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
+import { SpinLoader } from "../Loader";
+import useProductData from "../../hooks/useProductData/useProductData";
 export const Products = () => {
+  const loading = useProductData();
+  console.log(loading);
   const {
     products,
     priceSort,
@@ -67,16 +71,7 @@ export const Products = () => {
     return searchData;
   };
 
-  // const filteredItems = filterByPrice(productList, priceSort);
-  // const filteredItemsWithStock = filterByStock(filteredItems, stockSort);
-  // const filterByFastDelivery = filterByDelivery(
-  //   filteredItemsWithStock,
-  //   fastDelivery
-  // );
-  // const filterByPriceSlider = filterByPriceRange(
-  //   filterByFastDelivery,
-  //   priceRange
-  // );
+  // Funtion comosition of filters
   const productFilters = filterBySearch(
     filterByTeam(
       filterByPriceRange(
@@ -122,6 +117,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="product-container">
+          {loading && <SpinLoader />}
           <ProductCard productFilters={productFilters} />
         </div>
       </div>

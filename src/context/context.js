@@ -5,7 +5,7 @@ import { productList } from "../data/productdata";
 export const mainContext = createContext();
 
 const initialState = {
-  products: productList,
+  products: [],
   cart: [],
   wishList: [],
   totalCartPrice: 0,
