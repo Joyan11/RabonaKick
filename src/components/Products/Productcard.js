@@ -12,9 +12,9 @@ export const ProductCard = ({ productFilters }) => {
   };
 
   const wishToggle = (itemid) => {
-    const wishid = wishList.find((item) => item.id === itemid);
+    const wishid = wishList.find((item) => item._id === itemid);
     if (wishid) {
-      if (products.some((item) => item.id === wishid.id)) {
+      if (products.some((item) => item._id === wishid._id)) {
         return "wishlist-active";
       }
     }
@@ -27,7 +27,7 @@ export const ProductCard = ({ productFilters }) => {
         return (
           <>
             <div
-              key={item.id}
+              key={item._id}
               className="card card--verticle card--m border product-card">
               <figure className="card--image">
                 {item.stock === "outofstock" && (
@@ -35,14 +35,16 @@ export const ProductCard = ({ productFilters }) => {
                 )}
                 <img
                   src={item.image}
-                  className={item.stock === "outofstock" && "card--overlay "}
+                  className={
+                    item.stock === "outofstock" ? "card--overlay" : undefined
+                  }
                   alt={item.name}
                 />
               </figure>
               <div className="card--body">
                 <span
                   className={`wishlist-button wishlist-icon ${wishToggle(
-                    item.id
+                    item._id
                   )}`}
                   onClick={() => wishListButtonHandler(item, wishList)}>
                   <ion-icon name="heart"></ion-icon>
@@ -54,7 +56,6 @@ export const ProductCard = ({ productFilters }) => {
                     &#8377; {item.price + 100}
                   </span>
                 </p>
-
                 <button
                   className={`btn btn--round btn-primary card--button ${
                     item.stock === "outofstock" && "disabled"

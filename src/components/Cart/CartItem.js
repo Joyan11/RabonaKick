@@ -8,7 +8,7 @@ export const CartItem = () => {
       {cart.map((item) => {
         return (
           <div
-            key={item.id}
+            key={item._id}
             className="card card--horizontal border cart--card">
             <figure className="card--image">
               <img src={item.image} alt="{item.name}" />
