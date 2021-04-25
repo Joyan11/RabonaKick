@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <main>
+      <main className="main">
         <Navbar
           totalCartQuantity={totalCartQuantity}
           totalWishes={totalWishes}
@@ -30,7 +30,7 @@ export default function App() {
           <Route path="/wishList" element={<Wishlist />} />
         </Routes>
         {displayModal && <Modal modalContent={modalContent} />}
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );

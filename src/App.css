@@ -14,6 +14,7 @@
 
 .main {
   height: 100vh;
+  overflow-y: auto;
 }
 
 nav {
@@ -41,10 +42,6 @@ nav {
 
 .nav--logo ion-icon {
   color: #000;
-}
-
-route-link {
-  text-decoration: none;
 }
 
 .center-tabs {
@@ -78,6 +75,13 @@ route-link {
   justify-content: center;
   bottom: 0;
   position: static;
+}
+
+.roller {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
 }
 
 @media (max-width: 786px) {
