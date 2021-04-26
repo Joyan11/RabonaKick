@@ -78,6 +78,10 @@
   font-size: 1.5rem;
 }
 
+.go-to-cart {
+  display: block;
+  padding-left: 2rem;
+}
 /* product cards */
 
 .card {
