@@ -6,10 +6,10 @@ import { Sidebar } from "./Sidebar";
 import { SpinLoader } from "../Loader";
 import useProductData from "../../hooks/useProductData/useProductData";
 export const Products = () => {
-  const loading = useProductData();
-  console.log(loading);
+  useProductData();
   const {
     products,
+    loader,
     priceSort,
     stockSort,
     fastDelivery,
@@ -117,7 +117,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="product-container">
-          {loading && <SpinLoader />}
+          {loader && <SpinLoader />}
           <ProductCard productFilters={productFilters} />
         </div>
       </div>
