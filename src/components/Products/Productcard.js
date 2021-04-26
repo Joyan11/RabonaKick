@@ -1,24 +1,35 @@
 import { useMainContext } from "../../context/context";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ productFilters }) => {
-  const { products, wishList, dispatch } = useMainContext();
+  const { products, wishList, cart, dispatch } = useMainContext();
 
   const wishListButtonHandler = (item, wishList) => {
-    if (wishList.some((products) => products.id === item.id) === false) {
+    if (wishList.some((products) => products._id === item._id) === false) {
       dispatch({ type: "ADD_TO_WISHLIST", payload: item });
     } else {
-      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item.id });
+      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item._id });
     }
   };
 
   const wishToggle = (itemid) => {
-    const wishid = wishList.find((item) => item._id === itemid);
-    if (wishid) {
-      if (products.some((item) => item._id === wishid._id)) {
+    const wishItem = wishList.find((item) => item._id === itemid);
+    if (wishItem) {
+      if (products.some((item) => item._id === wishItem._id)) {
         return "wishlist-active";
       }
     }
     return "wishlist-inactive";
+  };
+
+  const goToCart = (itemid) => {
+    const cartItem = cart.find((item) => item._id === itemid);
+    if (cartItem) {
+      if (products.some((item) => item._id === cartItem._id)) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
@@ -56,14 +67,25 @@ export const ProductCard = ({ productFilters }) => {
                     &#8377; {item.price + 100}
                   </span>
                 </p>
-                <button
-                  className={`btn btn--round btn-primary card--button ${
-                    item.stock === "outofstock" && "disabled"
-                  }`}
-                  disabled={item.stock === "outofstock" && true}
-                  onClick={() => dispatch({ type: "ADD_ITEM", payload: item })}>
-                  Add to Cart
-                </button>
+
+                {goToCart(item._id) === false ? (
+                  <button
+                    className={`btn btn--round btn-primary card--button ${
+                      item.stock === "outofstock" && "disabled"
+                    }`}
+                    disabled={item.stock === "outofstock" && true}
+                    onClick={() =>
+                      dispatch({ type: "ADD_ITEM", payload: item })
+                    }>
+                    Add to Cart
+                  </button>
+                ) : (
+                  <Link
+                    to="/cart"
+                    className={`btn btn--round btn-primary card--button link go-to-cart `}>
+                    Go to Cart
+                  </Link>
+                )}
               </div>
             </div>
           </>
