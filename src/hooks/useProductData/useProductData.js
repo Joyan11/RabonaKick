@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useMainContext } from "../../context/context";
 function useProuctData() {
   const { products, dispatch } = useMainContext();
-  const [loading, setLoading] = useState(false);
   const getData = async () => {
     if (products.length === 0) {
       try {
@@ -11,7 +10,7 @@ function useProuctData() {
         const {
           data: { productdata },
           status,
-        } = await axios.get("https://EcommerceServer.joyan11.repl.co/products");
+        } = await axios.get("https://rabonaserver.joyan11.repl.co/products");
         dispatch({ type: "SHOW_LOADER" });
         console.log(productdata);
         if (status === 200) {
