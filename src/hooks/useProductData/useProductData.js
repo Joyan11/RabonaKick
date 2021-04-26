@@ -7,17 +7,13 @@ function useProuctData() {
   const getData = async () => {
     if (products.length === 0) {
       try {
-        setLoading(true);
+        dispatch({ type: "SHOW_LOADER" });
         const {
           data: { productdata },
           status,
         } = await axios.get("https://EcommerceServer.joyan11.repl.co/products");
-        const data = await axios.get(
-          "https://EcommerceServer.joyan11.repl.co/products"
-        );
-        setLoading(false);
-        console.log(data);
-        console.log(data.status);
+        dispatch({ type: "SHOW_LOADER" });
+        console.log(productdata);
         if (status === 200) {
           dispatch({
             type: "SET_INITIAL_DATA",
@@ -25,7 +21,7 @@ function useProuctData() {
           });
         }
       } catch (error) {
-        setLoading(false);
+        dispatch({ type: "SHOW_LOADER" });
         console.log(error.message);
         console.log(error.stack);
       }
@@ -35,8 +31,6 @@ function useProuctData() {
   useEffect(() => {
     getData();
   }, []);
-
-  return loading;
 }
 
 export default useProuctData;
