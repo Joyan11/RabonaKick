@@ -4,45 +4,29 @@ export const reducer = (state, action) => {
     case "SET_INITIAL_DATA":
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products, ...action.payload],
+      };
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        loader: !state.loader,
       };
     case "ADD_ITEM":
-      if (
-        state.cart.some((items) => items.id === action.payload.id) === false
-      ) {
-        return {
-          ...state,
-          cart: [
-            ...state.cart,
-            {
-              ...action.payload,
-              quantity: 1,
-            },
-          ],
-          displayModal: true,
-          modalContent: "Added to cart",
-        };
-      } else {
-        const newObj = state.cart.map((elements) => {
-          if (elements.id === action.payload.id) {
-            return {
-              ...elements,
-              quantity: elements.quantity + 1,
-            };
-          } else {
-            return elements;
-          }
-        });
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          {
+            ...action.payload,
+            quantity: 1,
+          },
+        ],
+        displayModal: true,
+        modalContent: "Added to cart",
+      };
 
-        return {
-          ...state,
-          cart: newObj,
-          displayModal: true,
-          modalContent: "Added to cart",
-        };
-      }
     case "REMOVE_ITEM":
-      const newArr = state.cart.filter((item) => item.id !== action.payload);
+      const newArr = state.cart.filter((item) => item._id !== action.payload);
       return {
         ...state,
         cart: newArr,
@@ -51,7 +35,7 @@ export const reducer = (state, action) => {
       };
     case "INCREASE_QUANTITY":
       const increasedQuantity = state.cart.map((item) => {
-        return item.id === action.payload
+        return item._id === action.payload
           ? { ...item, quantity: item.quantity + 1 }
           : item;
       });
@@ -61,35 +45,32 @@ export const reducer = (state, action) => {
       };
     case "DECREASE_QUANTITY":
       const decreasedQuantity = state.cart.map((item) => {
-        return item.id === action.payload
-          ? { ...item, quantity: item.quantity - 1 }
+        return item._id === action.payload
+          ? {
+              ...item,
+              quantity: item.quantity === 1 ? item.quantity : item.quantity - 1,
+            }
           : item;
       });
 
-      const nonZeroQuantities = decreasedQuantity.filter(
-        (item) => item.quantity !== 0
-      );
+      // const nonZeroQuantities = decreasedQuantity.filter(
+      //   (item) => item.quantity !== 0
+      // );
       return {
         ...state,
-        cart: nonZeroQuantities,
+        cart: decreasedQuantity,
       };
     case "ADD_TO_WISHLIST":
-      if (
-        state.wishList.some((items) => items.id === action.payload.id) === false
-      ) {
-        return {
-          ...state,
-          wishList: [...state.wishList, { ...action.payload }],
-          displayModal: true,
-          modalContent: "Added to Wishlist",
-        };
-      }
       return {
         ...state,
+        wishList: [...state.wishList, action.payload],
+        displayModal: true,
+        modalContent: "Added to Wishlist",
       };
+
     case "REMOVE_FROM_WISHLIST":
       const newObj = state.wishList.filter(
-        (items) => items.id !== action.payload
+        (items) => items._id !== action.payload
       );
 
       return {
@@ -111,7 +92,7 @@ export const reducer = (state, action) => {
             ...state.cart,
             {
               ...action.payload,
-              quantity: action.payload.quantity + 1,
+              quantity: 1,
             },
           ],
           wishList: newObj,
