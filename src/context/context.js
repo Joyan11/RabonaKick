@@ -1,7 +1,6 @@
 import { useReducer, createContext, useContext, useEffect } from "react";
 import { reducer } from "../reducer/reducer";
 import { productList } from "../data/productdata";
-
 export const mainContext = createContext();
 
 const initialState = {
@@ -11,13 +10,14 @@ const initialState = {
   totalCartPrice: 0,
   totalCartQuantity: 0,
   totalWishes: 0,
-  displayModal: false,
-  modalMessege: "",
   priceSort: "lowtohigh",
   stockSort: "totalstock",
   fastDelivery: "allDeliveries",
   priceRange: "2099",
   teamFilter: "allteams",
+  displayModal: false,
+  modalMessege: "",
+  loader: false,
 };
 
 export const MainProvider = ({ children }) => {
