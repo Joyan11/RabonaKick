@@ -15,7 +15,7 @@ export const Wishcard = () => {
     <>
       {wishList.map((item) => {
         return (
-          <div key={item.id} className="card card--verticle card--m border ">
+          <div key={item._id} className="card card--verticle card--m border ">
             <figure className="card--image">
               {item.stock === "outofstock" && (
                 <p className="card--overlay--text">Out of Stock</p>
@@ -23,7 +23,7 @@ export const Wishcard = () => {
               <ion-icon
                 class="card--dismiss"
                 name="close-circle-outline"
-                onClick={() => removeFromWishList(item.id)}></ion-icon>
+                onClick={() => removeFromWishList(item._id)}></ion-icon>
               <img
                 className={item.stock === "outofstock" && "card--overlay "}
                 src={item.image}
