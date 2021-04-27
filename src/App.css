@@ -4,6 +4,10 @@
   --gray1: #617d98;
 }
 
+.btn {
+  font-weight: 700;
+}
+
 .card--body {
   position: relative;
 }
@@ -77,7 +81,7 @@ nav {
   position: static;
 }
 
-.roller {
+.puff-loader {
   position: absolute;
   top: 50%;
   left: 50%;
