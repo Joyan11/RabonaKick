@@ -11,16 +11,15 @@ export const reducer = (state, action) => {
         ...state,
         loader: !state.loader,
       };
+    case "SAVE_CART_ID":
+      return {
+        ...state,
+        cartId: action.payload,
+      };
     case "ADD_ITEM":
       return {
         ...state,
-        cart: [
-          ...state.cart,
-          {
-            ...action.payload,
-            quantity: 1,
-          },
-        ],
+        cart: [...action.payload],
         displayModal: true,
         modalContent: "Added to cart",
       };
@@ -52,10 +51,6 @@ export const reducer = (state, action) => {
             }
           : item;
       });
-
-      // const nonZeroQuantities = decreasedQuantity.filter(
-      //   (item) => item.quantity !== 0
-      // );
       return {
         ...state,
         cart: decreasedQuantity,
@@ -111,7 +106,7 @@ export const reducer = (state, action) => {
         return sum;
       }, 0);
       const totalPrice = state.cart.reduce((acc, item) => {
-        const sum = item.quantity * item.price;
+        const sum = item.quantity * item.productId.price;
         return acc + sum;
       }, 0);
       return {
