@@ -1,8 +1,39 @@
 import { useMainContext } from "../../context/context";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const ProductCard = ({ productFilters }) => {
-  const { products, wishList, cart, dispatch } = useMainContext();
+  const { products, wishList, cart, cartId, dispatch } = useMainContext();
+
+  const addToCart = async (itemid) => {
+    try {
+      const {
+        status,
+        data: {
+          cartItems: { _id: cartid, products },
+        },
+      } = await axios.post(
+        cartId === null
+          ? `https://rabonaserver.joyan11.repl.co/cart`
+          : `https://rabonaserver.joyan11.repl.co/cart/${cartId}`,
+        {
+          products: {
+            _id: itemid,
+            productId: itemid,
+            quantity: 1,
+          },
+        }
+      );
+
+      if (status === 201) {
+        cartId === null && dispatch({ type: "SAVE_CART_ID", payload: cartid });
+        dispatch({ type: "ADD_ITEM", payload: products });
+      }
+      console.log(status, cartid, products);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const wishListButtonHandler = (item, wishList) => {
     if (wishList.some((products) => products._id === item._id) === false) {
@@ -74,9 +105,7 @@ export const ProductCard = ({ productFilters }) => {
                       item.stock === "outofstock" && "disabled"
                     }`}
                     disabled={item.stock === "outofstock" && true}
-                    onClick={() =>
-                      dispatch({ type: "ADD_ITEM", payload: item })
-                    }>
+                    onClick={() => addToCart(item._id)}>
                     Add to Cart
                   </button>
                 ) : (
