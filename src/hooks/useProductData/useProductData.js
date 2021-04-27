@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useMainContext } from "../../context/context";
-function useProuctData() {
+
+export const useProductData = () => {
   const { products, dispatch } = useMainContext();
   const getData = async () => {
     if (products.length === 0) {
@@ -29,6 +30,4 @@ function useProuctData() {
   useEffect(() => {
     getData();
   }, []);
-}
-
-export default useProuctData;
+};
