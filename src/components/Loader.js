@@ -8,7 +8,7 @@ export const PuffLoader = () => {
       color="#55b17e"
       height={80}
       width={80}
-      className="roller"
+      className="puff-loader"
     />
   );
 };
