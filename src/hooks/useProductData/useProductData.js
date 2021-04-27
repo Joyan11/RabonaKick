@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useMainContext } from "../../context/context";
 function useProuctData() {
   const { products, dispatch } = useMainContext();
@@ -12,7 +12,6 @@ function useProuctData() {
           status,
         } = await axios.get("https://rabonaserver.joyan11.repl.co/products");
         dispatch({ type: "SHOW_LOADER" });
-        console.log(productdata);
         if (status === 200) {
           dispatch({
             type: "SET_INITIAL_DATA",
