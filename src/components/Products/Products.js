@@ -3,7 +3,7 @@ import { ProductCard } from "./Productcard";
 import "../../css/products.css";
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { SpinLoader } from "../Loader";
+import { PuffLoader } from "../Loader";
 import useProductData from "../../hooks/useProductData/useProductData";
 export const Products = () => {
   useProductData();
@@ -117,7 +117,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="product-container">
-          {loader && <SpinLoader />}
+          {loader && <PuffLoader />}
           <ProductCard productFilters={productFilters} />
         </div>
       </div>
