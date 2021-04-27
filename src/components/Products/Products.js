@@ -4,9 +4,13 @@ import "../../css/products.css";
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { PuffLoader } from "../Loader";
-import useProductData from "../../hooks/useProductData/useProductData";
+import { useProductData } from "../../hooks/useProductData/useProductData";
+import { useCartData } from "../../hooks/useCart/useCartData";
+import { useCartLocalStorage } from "../../hooks/useCart/useCartLocalStorage";
 export const Products = () => {
   useProductData();
+  useCartLocalStorage();
+  useCartData();
   const {
     products,
     loader,
