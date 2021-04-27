@@ -110,9 +110,6 @@ export const CartItem = () => {
             <ion-icon
               class="cart-dismiss"
               name="close-circle-outline"
-              // onClick={() =>
-              //   dispatch({ type: "REMOVE_ITEM", payload: product._id })
-              // }
               onClick={() => removeFromCart(cartId, product._id)}></ion-icon>
           </div>
         );
