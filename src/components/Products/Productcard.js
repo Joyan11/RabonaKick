@@ -27,6 +27,8 @@ export const ProductCard = ({ productFilters }) => {
 
       if (status === 201) {
         cartId === null && dispatch({ type: "SAVE_CART_ID", payload: cartid });
+        cartId === null &&
+          localStorage.setItem("cartId", JSON.stringify(cartid));
         dispatch({ type: "ADD_ITEM", payload: products });
       }
       console.log(status, cartid, products);
