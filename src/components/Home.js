@@ -1,6 +1,10 @@
 import "../css/home.css";
 import { Link } from "react-router-dom";
-export const Home = ({ setRoute }) => {
+import { useCartLocalStorage } from "../hooks/useCart/useCartLocalStorage";
+import { useCartData } from "../hooks/useCart/useCartData";
+export const Home = () => {
+  useCartLocalStorage();
+  useCartData();
   return (
     <div className="homepage-container">
       <div className="main-title">
