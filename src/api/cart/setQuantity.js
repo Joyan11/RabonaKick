@@ -11,9 +11,9 @@ export const setQuantity = async (
     try {
       const {
         status,
-        data: {
-          cartItems: { _id: cartid, products },
-        },
+        // data: {
+        //   cartItems: { _id: cartid, products },
+        // },
       } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
         {
@@ -31,9 +31,9 @@ export const setQuantity = async (
     try {
       const {
         status,
-        data: {
-          cartItems: { _id: cartid, products },
-        },
+        // data: {
+        //   cartItems: { _id: cartid, products },
+        // },
       } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
         {

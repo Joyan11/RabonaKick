@@ -24,7 +24,7 @@ export const addToCart = async (cartId, itemid, dispatch) => {
       cartId === null && localStorage.setItem("cartId", JSON.stringify(cartid));
       dispatch({ type: "ADD_ITEM", payload: products });
     }
-    console.log(status, cartid, products);
+    // console.log(status, cartid, products);
   } catch (error) {
     console.log(error.message);
   }

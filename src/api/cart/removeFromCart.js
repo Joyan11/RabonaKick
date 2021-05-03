@@ -4,9 +4,9 @@ export const removeFromCart = async (cartId, productid, dispatch) => {
   try {
     const {
       status,
-      data: {
-        cartItems: { _id: cartid, products },
-      },
+      // data: {
+      //   cartItems: { _id: cartid, products },
+      // },
     } = await axios.delete(
       `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productid}`
     );
