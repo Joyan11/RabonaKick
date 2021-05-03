@@ -42,12 +42,10 @@
   margin-right: 2rem;
 }
 
-.cart-dismiss {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  color: black;
-  font-size: 3rem;
+.cart--container .card--text,
+.card--title,
+.cart--dismiss {
+  margin-left: 1rem;
 }
 
 .total--cart-price {
@@ -74,10 +72,5 @@
   .cart--card {
     max-width: 100%;
     position: relative;
-  }
-
-  .cart-dismiss {
-    top: 1rem;
-    right: 1rem;
   }
 }
