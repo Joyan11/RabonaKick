@@ -6,8 +6,9 @@ import { useCartData } from "../../hooks/useCart/useCartData";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import "../../css/cart.css";
 import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
+import { clearCart } from "../../api/cart/clearCart";
 export const Cart = () => {
-  const { cart, loader, totalCartPrice, dispatch } = useMainContext();
+  const { cart, cartId, loader, totalCartPrice, dispatch } = useMainContext();
   useLocalStorage();
   useWishlistData();
   useCartData();
@@ -29,7 +30,7 @@ export const Cart = () => {
         </h1>
         <button
           className="btn btn-secondary btn--round clear--cart"
-          onClick={() => dispatch({ type: "CLEAR_CART" })}>
+          onClick={() => clearCart(cartId, dispatch)}>
           Clear Cart
         </button>
       </div>
