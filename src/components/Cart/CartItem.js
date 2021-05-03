@@ -34,13 +34,14 @@ export const CartItem = () => {
                   +
                 </button>
               </div>
+              <div className="cart--dismiss">
+                <button
+                  class="btn btn-red"
+                  onClick={() => removeFromCart(cartId, product._id, dispatch)}>
+                  Remove
+                </button>
+              </div>
             </div>
-            <ion-icon
-              class="cart-dismiss"
-              name="trash-outline"
-              onClick={() =>
-                removeFromCart(cartId, product._id, dispatch)
-              }></ion-icon>
           </div>
         );
       })}
