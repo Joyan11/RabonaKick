@@ -1,5 +1,5 @@
 import { addToCart } from "../../api/cart/addToCart";
-import { removeFromWishlist } from "../../api/wishlist/removeFromWishlist";
+import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
 import { useMainContext } from "../../context/context";
 export const Wishcard = () => {
   const { cart, cartId, wishList, wishId, dispatch } = useMainContext();

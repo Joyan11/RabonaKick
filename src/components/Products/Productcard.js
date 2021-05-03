@@ -2,7 +2,7 @@ import { useMainContext } from "../../context/context";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { addToWishlist } from "../../api/wishlist/addToWishlist";
-import { removeFromWishlist } from "../../api/wishlist/removeFromWishlist";
+import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
 export const ProductCard = ({ productFilters }) => {
   const {
     products,
