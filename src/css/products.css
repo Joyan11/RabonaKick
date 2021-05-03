@@ -104,6 +104,10 @@
   font-size: 2.3rem;
 }
 
+.wishlist-icon:hover {
+  color: #e24f4f;
+}
+
 .wishlist-active {
   color: #e24f4f;
 }

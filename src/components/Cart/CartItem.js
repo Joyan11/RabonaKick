@@ -37,7 +37,7 @@ export const CartItem = () => {
             </div>
             <ion-icon
               class="cart-dismiss"
-              name="close-circle-outline"
+              name="trash-outline"
               onClick={() =>
                 removeFromCart(cartId, product._id, dispatch)
               }></ion-icon>
