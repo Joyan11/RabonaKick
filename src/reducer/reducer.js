@@ -132,12 +132,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         wishList: [],
-        products: state.products.map((items) => {
-          return {
-            ...items,
-            inWishList: "no",
-          };
-        }),
       };
     case "DISPLAY_MODAL":
       return {
