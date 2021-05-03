@@ -1,5 +1,4 @@
 import uuid from "react-uuid";
-import faker from "faker";
 
 export const productList = [
   {

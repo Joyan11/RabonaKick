@@ -1,47 +1,23 @@
 import { useMainContext } from "../../context/context";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
+import { addToCart } from "../../api/cart/addToCart";
+import { addToWishlist } from "../../api/wishlist/addToWishlist";
+import { removeFromWishlist } from "../../api/wishlist/removeFromWishlist";
 export const ProductCard = ({ productFilters }) => {
-  const { products, wishList, cart, cartId, dispatch } = useMainContext();
+  const {
+    products,
+    wishList,
+    wishId,
+    cart,
+    cartId,
+    dispatch,
+  } = useMainContext();
 
-  const addToCart = async (itemid) => {
-    try {
-      const {
-        status,
-        data: {
-          cartItems: { _id: cartid, products },
-        },
-      } = await axios.post(
-        cartId === null
-          ? `https://rabonaserver.joyan11.repl.co/cart`
-          : `https://rabonaserver.joyan11.repl.co/cart/${cartId}`,
-        {
-          products: {
-            _id: itemid,
-            productId: itemid,
-            quantity: 1,
-          },
-        }
-      );
-
-      if (status === 201) {
-        cartId === null && dispatch({ type: "SAVE_CART_ID", payload: cartid });
-        cartId === null &&
-          localStorage.setItem("cartId", JSON.stringify(cartid));
-        dispatch({ type: "ADD_ITEM", payload: products });
-      }
-      console.log(status, cartid, products);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const wishListButtonHandler = (item, wishList) => {
-    if (wishList.some((products) => products._id === item._id) === false) {
-      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+  const wishListButtonHandler = (itemid, wishList) => {
+    if (wishList.some((products) => products._id === itemid) === false) {
+      addToWishlist(wishId, itemid, dispatch);
     } else {
-      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item._id });
+      removeFromWishlist(wishId, itemid, dispatch);
     }
   };
 
@@ -90,7 +66,7 @@ export const ProductCard = ({ productFilters }) => {
                   className={`wishlist-button wishlist-icon ${wishToggle(
                     item._id
                   )}`}
-                  onClick={() => wishListButtonHandler(item, wishList)}>
+                  onClick={() => wishListButtonHandler(item._id, wishList)}>
                   <ion-icon name="heart"></ion-icon>
                 </span>
                 <span className="card--title">{item.name}</span>
@@ -107,7 +83,7 @@ export const ProductCard = ({ productFilters }) => {
                       item.stock === "outofstock" && "disabled"
                     }`}
                     disabled={item.stock === "outofstock" && true}
-                    onClick={() => addToCart(item._id)}>
+                    onClick={() => addToCart(cartId, item._id, dispatch)}>
                     Add to Cart
                   </button>
                 ) : (

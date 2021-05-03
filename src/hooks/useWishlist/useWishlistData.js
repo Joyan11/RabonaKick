@@ -2,22 +2,22 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useMainContext } from "../../context/context";
 
-export const useCartData = () => {
-  const { cart, cartId, dispatch } = useMainContext();
+export const useWishlistData = () => {
+  const { wishList, wishId, dispatch } = useMainContext();
   const getData = async () => {
-    if (cart.length === 0 && cartId) {
+    if (wishList.length === 0 && wishId) {
       try {
         const {
           status,
           data: {
-            cartItems: { products },
+            wishlistItems: { products },
           },
         } = await axios.get(
-          `https://rabonaserver.joyan11.repl.co/cart/${cartId}`
+          `https://rabonaserver.joyan11.repl.co/wishlist/${wishId}`
         );
         if ((status === 200) & (products.length !== 0)) {
           dispatch({
-            type: "ADD_ITEM",
+            type: "ADD_TO_WISHLIST",
             payload: products,
           });
         }
@@ -30,5 +30,5 @@ export const useCartData = () => {
 
   useEffect(() => {
     getData();
-  }, [cartId]);
+  }, [wishId]);
 };

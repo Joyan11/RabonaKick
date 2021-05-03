@@ -3,11 +3,13 @@ import { CartItem } from "./CartItem";
 import { CartEmpty } from "./CartEmpty";
 import { PuffLoader } from "../Loader";
 import { useCartData } from "../../hooks/useCart/useCartData";
-import { useCartLocalStorage } from "../../hooks/useCart/useCartLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import "../../css/cart.css";
+import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
 export const Cart = () => {
   const { cart, loader, totalCartPrice, dispatch } = useMainContext();
-  useCartLocalStorage();
+  useLocalStorage();
+  useWishlistData();
   useCartData();
   if (cart.length === 0) {
     return (

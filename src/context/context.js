@@ -8,6 +8,7 @@ const initialState = {
   cart: [],
   cartId: null,
   wishList: [],
+  wishId: null,
   totalCartPrice: 0,
   totalCartQuantity: 0,
   totalWishes: 0,

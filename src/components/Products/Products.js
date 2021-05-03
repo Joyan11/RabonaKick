@@ -6,11 +6,13 @@ import { Sidebar } from "./Sidebar";
 import { PuffLoader } from "../Loader";
 import { useProductData } from "../../hooks/useProductData/useProductData";
 import { useCartData } from "../../hooks/useCart/useCartData";
-import { useCartLocalStorage } from "../../hooks/useCart/useCartLocalStorage";
+import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 export const Products = () => {
   useProductData();
-  useCartLocalStorage();
+  useLocalStorage();
   useCartData();
+  useWishlistData();
   const {
     products,
     loader,

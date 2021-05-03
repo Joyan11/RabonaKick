@@ -1,68 +1,8 @@
 import { useMainContext } from "../../context/context";
-import axios from "axios";
+import { setQuantity } from "../../api/cart/setQuantity";
+import { removeFromCart } from "../../api/cart/removeFromCart";
 export const CartItem = () => {
   const { cart, cartId, dispatch } = useMainContext();
-
-  const setQuantity = async (cartId, productId, quantity, operation) => {
-    if (operation === "inc") {
-      try {
-        const {
-          status,
-          data: {
-            cartItems: { _id: cartid, products },
-          },
-        } = await axios.post(
-          `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
-          {
-            type: operation,
-          }
-        );
-
-        if (status === 201) {
-          dispatch({ type: "INCREASE_QUANTITY", payload: productId });
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    } else if (operation === "dec" && quantity > 1) {
-      try {
-        const {
-          status,
-          data: {
-            cartItems: { _id: cartid, products },
-          },
-        } = await axios.post(
-          `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
-          {
-            type: operation,
-          }
-        );
-        if (status === 201) {
-          dispatch({ type: "DECREASE_QUANTITY", payload: productId });
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-  };
-
-  const removeFromCart = async (cartId, productid) => {
-    try {
-      const {
-        status,
-        data: {
-          cartItems: { _id: cartid, products },
-        },
-      } = await axios.delete(
-        `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productid}`
-      );
-      if (status === 200) {
-        dispatch({ type: "REMOVE_ITEM", payload: productid });
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   return (
     <>
@@ -80,28 +20,16 @@ export const CartItem = () => {
               <div className="cart--buttons-container">
                 <button
                   className="cart--buttons btn btn-primary"
-                  // onClick={() =>
-                  //   dispatch({
-                  //     type: "DECREASE_QUANTITY",
-                  //     payload: product._id,
-                  //   })
-                  // }
                   onClick={() =>
-                    setQuantity(cartId, product._id, quantity, "dec")
+                    setQuantity(cartId, product._id, quantity, "dec", dispatch)
                   }>
                   -
                 </button>
                 <p>{quantity}</p>
                 <button
                   className="cart--buttons btn btn-primary"
-                  // onClick={() =>
-                  //   dispatch({
-                  //     type: "INCREASE_QUANTITY",
-                  //     payload: product._id,
-                  //   })
-                  // }
                   onClick={() =>
-                    setQuantity(cartId, product._id, quantity, "inc")
+                    setQuantity(cartId, product._id, quantity, "inc", dispatch)
                   }>
                   +
                 </button>
@@ -110,7 +38,9 @@ export const CartItem = () => {
             <ion-icon
               class="cart-dismiss"
               name="close-circle-outline"
-              onClick={() => removeFromCart(cartId, product._id)}></ion-icon>
+              onClick={() =>
+                removeFromCart(cartId, product._id, dispatch)
+              }></ion-icon>
           </div>
         );
       })}

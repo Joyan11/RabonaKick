@@ -16,6 +16,11 @@ export const reducer = (state, action) => {
         ...state,
         cartId: action.payload,
       };
+    case "SAVE_WISH_ID":
+      return {
+        ...state,
+        wishId: action.payload,
+      };
     case "ADD_ITEM":
       return {
         ...state,
@@ -58,7 +63,7 @@ export const reducer = (state, action) => {
     case "ADD_TO_WISHLIST":
       return {
         ...state,
-        wishList: [...state.wishList, action.payload],
+        wishList: [...action.payload],
         displayModal: true,
         modalContent: "Added to Wishlist",
       };
@@ -67,7 +72,6 @@ export const reducer = (state, action) => {
       const newObj = state.wishList.filter(
         (items) => items._id !== action.payload
       );
-
       return {
         ...state,
         wishList: newObj,
