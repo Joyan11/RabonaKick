@@ -1,6 +1,5 @@
 import { useReducer, createContext, useContext, useEffect } from "react";
 import { reducer } from "../reducer/reducer";
-import { productList } from "../data/productdata";
 export const mainContext = createContext();
 
 const initialState = {

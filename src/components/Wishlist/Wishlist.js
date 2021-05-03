@@ -6,9 +6,9 @@ import { Wishlistempty } from "./Wishlistempty";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
 import { useCartData } from "../../hooks/useCart/useCartData";
-
+import { clearWishlist } from "../../api/wishlist/clearWishlist";
 export const Wishlist = () => {
-  const { wishList, dispatch } = useMainContext();
+  const { wishList, wishId, dispatch } = useMainContext();
   useLocalStorage();
   useCartData();
   useWishlistData();
@@ -27,7 +27,7 @@ export const Wishlist = () => {
         </div>
         <button
           className="btn btn--round btn-secondary"
-          onClick={() => dispatch({ type: "CLEAR_WISHLIST" })}>
+          onClick={() => clearWishlist(wishId, dispatch)}>
           Clear Wishlist
         </button>
       </div>
