@@ -1,7 +1,9 @@
 import { useMainContext } from "../../context/context";
 import { setQuantity } from "../../api/cart/setQuantity";
 import { removeFromCart } from "../../api/cart/removeFromCart";
-export const CartItem = () => {
+import { discountCalc } from "../../utils/discount";
+import { Link } from "react-router-dom";
+export const CartCard = () => {
   const { cart, cartId, dispatch } = useMainContext();
 
   return (
@@ -11,12 +13,20 @@ export const CartItem = () => {
           <div
             key={product._id}
             className="card card--horizontal border cart--card">
-            <figure className="card--image">
-              <img src={product.image} alt="{item.name}" />
-            </figure>
+            <Link to={`/products/${product._id}`}>
+              <figure className="card--image">
+                <img src={product.image} alt="{item.name}" />
+              </figure>
+            </Link>
+
             <div className="card--body cart--card-body">
               <span className="card--title">{product.name}</span>
-              <p className="card--text"> &#8377;{product.price * quantity}</p>
+              <strong className="card--text">
+                {" "}
+                &#8377;{" "}
+                {discountCalc(product.price, product.discount) * quantity}
+              </strong>
+
               <div className="cart--buttons-container">
                 <button
                   className="cart--buttons btn btn-primary"
@@ -25,7 +35,7 @@ export const CartItem = () => {
                   }>
                   -
                 </button>
-                <p>{quantity}</p>
+                <p> {quantity}</p>
                 <button
                   className="cart--buttons btn btn-primary"
                   onClick={() =>
@@ -36,7 +46,7 @@ export const CartItem = () => {
               </div>
               <div className="cart--dismiss">
                 <button
-                  class="btn btn-red"
+                  className="btn btn-red"
                   onClick={() => removeFromCart(cartId, product._id, dispatch)}>
                   Remove
                 </button>

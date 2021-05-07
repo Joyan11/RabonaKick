@@ -1,5 +1,5 @@
 import { useMainContext } from "../../context/context";
-import { CartItem } from "./CartItem";
+import { CartCard } from "./CartCard";
 import { CartEmpty } from "./CartEmpty";
 import { PuffLoader } from "../Loader";
 import { useCartData } from "../../hooks/useCart/useCartData";
@@ -23,7 +23,7 @@ export const Cart = () => {
       <div className="cart-section">
         <div className="cart--container">
           {loader && <PuffLoader />}
-          <CartItem />
+          <CartCard />
         </div>
         <h1 className="total--cart-price">
           Total price: &#8377;{totalCartPrice}
