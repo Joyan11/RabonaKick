@@ -8,6 +8,7 @@ import { Home } from "./components/Home";
 import { Modal } from "./components/Modal";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { ProductDetail } from "./components/Products/ProductDetail";
 export default function App() {
   const {
     totalCartQuantity,
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishList" element={<Wishlist />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Routes>
         {displayModal && <Modal modalContent={modalContent} />}
         {/* <Footer /> */}
