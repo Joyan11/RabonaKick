@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
 import { useMainContext } from "../../context/context";
+import { discountCalc } from "../../utils/discount";
 export const Wishcard = () => {
   const { cart, cartId, wishList, wishId, dispatch } = useMainContext();
 
@@ -36,13 +38,15 @@ export const Wishcard = () => {
                 alt={product.name}
               />
             </figure>
+
             <div className="card--body">
-              <span className="card--title">{product.name}</span>
+              <Link to={`/products/${product._id}`} className="router-link">
+                <span className="card--title">{product.name}</span>
+              </Link>
               <p className="card--text">
-                &#8377; {product.price}
-                <span className="card--subtext">
-                  &#8377; {product.price + 100}
-                </span>
+                &#8377; {discountCalc(product.price, product.discount)}
+                <span className="card--subtext">&#8377; {product.price}</span>
+                <span className="discount">({product.discount}% off)</span>
               </p>
               <button
                 onClick={() => moveToCart(product._id)}

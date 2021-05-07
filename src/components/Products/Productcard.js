@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { addToWishlist } from "../../api/wishlist/addToWishlist";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
+import { discountCalc } from "../../utils/discount";
+import { goToCart } from "../../utils/goToCart";
 export const ProductCard = ({ productFilters }) => {
   const {
     products,
@@ -31,16 +33,6 @@ export const ProductCard = ({ productFilters }) => {
     return "wishlist-inactive";
   };
 
-  const goToCart = (itemid) => {
-    const cartItem = cart.find((item) => item._id === itemid);
-    if (cartItem) {
-      if (products.some((item) => item._id === cartItem._id)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   return (
     <>
       {productFilters.map((item) => {
@@ -49,18 +41,22 @@ export const ProductCard = ({ productFilters }) => {
             <div
               key={item._id}
               className="card card--verticle card--m border product-card">
-              <figure className="card--image">
-                {item.stock === "outofstock" && (
-                  <p className="card--overlay--text">Out of Stock</p>
-                )}
-                <img
-                  src={item.image}
-                  className={
-                    item.stock === "outofstock" ? "card--overlay" : undefined
-                  }
-                  alt={item.name}
-                />
-              </figure>
+              <Link to={`/products/${item._id}`}>
+                {" "}
+                <figure className="card--image">
+                  {item.stock === "outofstock" && (
+                    <p className="card--overlay--text">Out of Stock</p>
+                  )}
+                  <img
+                    src={item.image}
+                    className={
+                      item.stock === "outofstock" ? "card--overlay" : undefined
+                    }
+                    alt={item.name}
+                  />
+                </figure>
+              </Link>
+
               <div className="card--body">
                 <span
                   className={`wishlist-button wishlist-icon ${wishToggle(
@@ -71,13 +67,12 @@ export const ProductCard = ({ productFilters }) => {
                 </span>
                 <span className="card--title">{item.name}</span>
                 <p className="card--text">
-                  &#8377; {item.price}
-                  <span className="card--subtext">
-                    &#8377; {item.price + 100}
-                  </span>
+                  &#8377; {discountCalc(item.price, item.discount)}
+                  <span className="card--subtext">&#8377; {item.price}</span>
+                  <span className="discount">({item.discount}% off)</span>
                 </p>
 
-                {goToCart(item._id) === false ? (
+                {goToCart(cart, item._id) === false ? (
                   <button
                     className={`btn btn--round btn-primary card--button ${
                       item.stock === "outofstock" && "disabled"
