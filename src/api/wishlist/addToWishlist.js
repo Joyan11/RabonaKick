@@ -25,7 +25,6 @@ export const addToWishlist = async (wishId, itemid, dispatch) => {
       wishId === null && localStorage.setItem("wishId", JSON.stringify(wishid));
       dispatch({ type: "ADD_TO_WISHLIST", payload: products });
     }
-    console.log(status, wishid, products);
   } catch (error) {
     console.log(error.stack);
     console.log(error.message);

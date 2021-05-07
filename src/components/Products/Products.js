@@ -124,6 +124,7 @@ export const Products = () => {
         </div>
         <div className="product-container">
           {loader && <PuffLoader />}
+
           <ProductCard productFilters={productFilters} />
         </div>
       </div>
