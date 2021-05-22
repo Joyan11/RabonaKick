@@ -87,7 +87,23 @@
 
 @media (max-width: 786px) {
   .cart--card {
-    max-width: 100%;
+    max-width: 95%;
     position: relative;
+  }
+
+  .cart--container {
+    margin: 0;
+    align-items: center;
+  }
+
+  .price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .price-card {
+    position: static;
+    width: 90%;
+    margin-bottom: 1rem;
   }
 }

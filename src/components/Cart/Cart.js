@@ -7,7 +7,6 @@ import {
   useCartData,
 } from "../../hooks/index";
 import { clearCart } from "../../api/cart/clearCart";
-import { discountCalc } from "../../utils/discount";
 
 export const Cart = () => {
   const { cart, cartId, loader, totalCartPrice, totalDiscount, dispatch } =
@@ -35,7 +34,7 @@ export const Cart = () => {
             <CartCard />
           </div>
         </div>
-        <div>
+        <div className="price-container">
           <div class="card card--verticle card--l price-card">
             <div class="card--body">
               {" "}

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 export function Wishlistempty() {
   return (
-    <div className="wishlist-empty-container">
+    <div className="empty-container">
       <p className="text text-xl text--center empty-text">
         It's Free To Make a Wish
       </p>

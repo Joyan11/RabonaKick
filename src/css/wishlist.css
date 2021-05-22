@@ -32,6 +32,10 @@
   font-size: 6rem;
 }
 
+.empty-container {
+  text-align: center;
+}
+
 .empty {
   display: flex;
   justify-content: center;
