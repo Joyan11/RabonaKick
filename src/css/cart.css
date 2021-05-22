@@ -87,13 +87,12 @@
 
 @media (max-width: 786px) {
   .cart--card {
-    max-width: 95%;
+    max-width: 100%;
     position: relative;
   }
 
   .cart--container {
     margin: 0;
-    align-items: center;
   }
 
   .price-container {
@@ -104,6 +103,5 @@
   .price-card {
     position: static;
     width: 90%;
-    margin-bottom: 1rem;
   }
 }
