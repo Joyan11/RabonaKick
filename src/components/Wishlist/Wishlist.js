@@ -1,12 +1,14 @@
 import React from "react";
 import "../../css/wishlist.css";
 import { useMainContext } from "../../context/context";
-import { Wishcard } from "./Wishcard";
-import { Wishlistempty } from "./Wishlistempty";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
-import { useCartData } from "../../hooks/useCart/useCartData";
+import { Wishcard, Wishlistempty } from "../index";
+import {
+  useLocalStorage,
+  useWishlistData,
+  useCartData,
+} from "../../hooks/index";
 import { clearWishlist } from "../../api/wishlist/clearWishlist";
+
 export const Wishlist = () => {
   const { wishList, wishId, dispatch } = useMainContext();
   useLocalStorage();

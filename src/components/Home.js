@@ -1,8 +1,7 @@
 import "../css/home.css";
 import { Link } from "react-router-dom";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useCartData } from "../hooks/useCart/useCartData";
-import { useWishlistData } from "../hooks/useWishlist/useWishlistData";
+import { useLocalStorage, useCartData, useWishlistData } from "../hooks/index";
+
 export const Home = () => {
   useLocalStorage();
   useCartData();

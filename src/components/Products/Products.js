@@ -1,13 +1,14 @@
-import { useMainContext } from "../../context/context";
-import { ProductCard } from "./Productcard";
-import "../../css/products.css";
 import { useState } from "react";
-import { Sidebar } from "./Sidebar";
-import { PuffLoader } from "../Loader";
-import { useProductData } from "../../hooks/useProductData/useProductData";
-import { useCartData } from "../../hooks/useCart/useCartData";
-import { useWishlistData } from "../../hooks/useWishlist/useWishlistData";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useMainContext } from "../../context/context";
+import "../../css/products.css";
+import { ProductCard, Sidebar, PuffLoader } from "../index";
+import {
+  useCartData,
+  useWishlistData,
+  useLocalStorage,
+  useProductData,
+} from "../../hooks/index";
+
 export const Products = () => {
   useProductData();
   useLocalStorage();

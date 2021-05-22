@@ -1,21 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 import { useMainContext } from "./context/context";
 import "./App.css";
-import { Products } from "./components/Products/Products";
-import { Cart } from "./components/Cart/Cart";
-import { Wishlist } from "./components/Wishlist/Wishlist";
-import { Home } from "./components/Home";
-import { Modal } from "./components/Modal";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { ProductDetail } from "./components/Products/ProductDetail";
+import {
+  Products,
+  Cart,
+  Wishlist,
+  Home,
+  Navbar,
+  ProductDetail,
+  Modal,
+} from "./components/index";
+
 export default function App() {
-  const {
-    totalCartQuantity,
-    totalWishes,
-    displayModal,
-    modalContent,
-  } = useMainContext();
+  const { totalCartQuantity, totalWishes, displayModal, modalContent } =
+    useMainContext();
 
   return (
     <div className="App">

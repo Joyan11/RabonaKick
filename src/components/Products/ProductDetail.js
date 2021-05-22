@@ -14,7 +14,7 @@ export const ProductDetail = () => {
   const { cart, wishList, cartId, wishId, dispatch, loader } = useMainContext();
   const { id } = useParams();
   const productDetail = useProductDetails(id);
-
+  console.log(productDetail);
   return (
     <div className="product-details">
       {loader && <PuffLoader />}
