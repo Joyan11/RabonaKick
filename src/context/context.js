@@ -11,6 +11,7 @@ const initialState = {
   totalCartPrice: 0,
   totalCartQuantity: 0,
   totalWishes: 0,
+  totalDiscount: 0,
   priceSort: "lowtohigh",
   stockSort: "totalstock",
   fastDelivery: "allDeliveries",

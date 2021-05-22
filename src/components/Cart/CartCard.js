@@ -25,6 +25,8 @@ export const CartCard = () => {
                 {" "}
                 &#8377;{" "}
                 {discountCalc(product.price, product.discount) * quantity}
+                <span className="card--subtext">&#8377; {product.price}</span>
+                <span className="discount">({product.discount}% off)</span>
               </strong>
 
               <div className="cart--buttons-container">

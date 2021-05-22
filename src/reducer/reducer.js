@@ -1,3 +1,5 @@
+import { discountCalc } from "../utils/discount";
+
 export const reducer = (state, action) => {
   // console.log(action.payload);
   switch (action.type) {
@@ -113,10 +115,18 @@ export const reducer = (state, action) => {
         const sum = item.quantity * item.productId.price;
         return acc + sum;
       }, 0);
+      const totalDiscount = state.cart.reduce((acc, item) => {
+        const discount =
+          item.quantity *
+          discountCalc(item.productId.price, item.productId.discount);
+        return acc + discount;
+      }, 0);
+      console.log(totalDiscount);
       return {
         ...state,
         totalCartQuantity: totalQuantity,
         totalCartPrice: totalPrice.toFixed(2),
+        totalDiscount: totalDiscount.toFixed(2),
       };
     case "UPDATE_WISHLIST_TOTAL":
       return {
