@@ -68,3 +68,34 @@
   left: 45%;
   z-index: 1;
 }
+
+@media (max-width: 786px) {
+  .card--horizontal {
+    flex-direction: column !important;
+  }
+  .card {
+    height: 100%;
+  }
+  .product-detail-card .card--image img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .product-detail-card .card--title {
+    margin-top: 2rem;
+  }
+
+  .product-detail-card {
+    max-width: 90%;
+    box-shadow: none;
+  }
+  .product-detail-button {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+  }
+
+  .product-detail-button .btn {
+    width: 80%;
+    padding: 2rem;
+  }
+}
