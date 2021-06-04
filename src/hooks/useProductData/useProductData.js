@@ -12,7 +12,7 @@ export const useProductData = () => {
           data: { productdata },
           status,
         } = await axios.get("https://rabonaserver.joyan11.repl.co/products");
-        dispatch({ type: "SHOW_LOADER" });
+
         if (status === 200) {
           dispatch({
             type: "SET_INITIAL_DATA",
@@ -20,9 +20,11 @@ export const useProductData = () => {
           });
         }
       } catch (error) {
+        // console.log(error.message);
+        // console.log(error.stack);
+        console.log(error.response.data.message);
+      } finally {
         dispatch({ type: "SHOW_LOADER" });
-        console.log(error.message);
-        console.log(error.stack);
       }
     }
   };

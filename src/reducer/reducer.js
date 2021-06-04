@@ -1,7 +1,6 @@
 import { discountCalc } from "../utils/discount";
 
 export const reducer = (state, action) => {
-  // console.log(action.payload);
   switch (action.type) {
     case "SET_INITIAL_DATA":
       return {
@@ -27,8 +26,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: [...action.payload],
-        displayModal: true,
-        modalContent: "Added to cart",
       };
 
     case "REMOVE_ITEM":
@@ -36,8 +33,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: newArr,
-        displayModal: true,
-        modalContent: "Removed from cart",
       };
     case "INCREASE_QUANTITY":
       const increasedQuantity = state.cart.map((item) => {
@@ -66,8 +61,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         wishList: [...action.payload],
-        displayModal: true,
-        modalContent: "Added to Wishlist",
       };
 
     case "REMOVE_FROM_WISHLIST":
@@ -77,8 +70,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         wishList: newObj,
-        displayModal: true,
-        modalContent: "Removed from Wishlist",
       };
     case "MOVE_TO_CART":
       if (
@@ -97,14 +88,10 @@ export const reducer = (state, action) => {
             },
           ],
           wishList: newObj,
-          displayModal: true,
-          modalContent: "Added to cart",
         };
       }
       return {
         ...state,
-        displayModal: true,
-        modalContent: "Already in cart",
       };
     case "UPDATE_CART_TOTAL":
       const totalQuantity = state.cart.reduce((acc, item) => {
@@ -121,7 +108,6 @@ export const reducer = (state, action) => {
           discountCalc(item.productId.price, item.productId.discount);
         return acc + discount;
       }, 0);
-      console.log(totalDiscount);
       return {
         ...state,
         totalCartQuantity: totalQuantity,
@@ -137,11 +123,13 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: [],
+        cartId: null,
       };
     case "CLEAR_WISHLIST":
       return {
         ...state,
         wishList: [],
+        wishId: null,
       };
     case "DISPLAY_MODAL":
       return {
@@ -178,6 +166,15 @@ export const reducer = (state, action) => {
         ...state,
         teamFilter: action.payload,
       };
+    case "RESET": {
+      return {
+        ...state,
+        cart: [],
+        wishList: [],
+        cartId: null,
+        wishId: null,
+      };
+    }
     case "CLEAR_FILTER":
       return {
         ...state,
@@ -187,7 +184,27 @@ export const reducer = (state, action) => {
         priceRange: "2099",
         teamFilter: "allteams",
       };
+    case "CART_ACTION_LOADER":
+      return {
+        ...state,
+        cartactionLoader: action.payload,
+      };
 
+    case "WISH_ACTION_LOADER":
+      return {
+        ...state,
+        wishactionLoader: action.payload,
+      };
+    case "INC_LOADER":
+      return {
+        ...state,
+        incLoader: !state.incLoader,
+      };
+    case "DEC_LOADER":
+      return {
+        ...state,
+        decLoader: !state.decLoader,
+      };
     default:
       return state;
   }

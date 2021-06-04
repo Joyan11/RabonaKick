@@ -20,6 +20,10 @@ const initialState = {
   displayModal: false,
   modalMessege: "",
   loader: false,
+  CartactionLoader: null,
+  WishactionLoader: null,
+  incLoader: false,
+  decLoader: false,
 };
 
 export const MainProvider = ({ children }) => {
@@ -64,12 +68,12 @@ export const MainProvider = ({ children }) => {
     dispatch({ type: "UPDATE_WISHLIST_TOTAL" });
   }, [state.wishList]);
 
-  useEffect(() => {
-    setTimeout(() => dispatch({ type: "DISPLAY_MODAL" }), 3000);
-    return () => {
-      clearTimeout();
-    };
-  }, [state.displayModal]);
+  // useEffect(() => {
+  //   setTimeout(() => dispatch({ type: "DISPLAY_MODAL" }), 3000);
+  //   return () => {
+  //     clearTimeout();
+  //   };
+  // }, [state.displayModal]);
 
   // Passed diapatch in functions instead of passing it directly
   return (

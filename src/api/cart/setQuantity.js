@@ -5,20 +5,18 @@ export const setQuantity = async (
   productId,
   quantity,
   operation,
-  dispatch
+  dispatch,
+  token
 ) => {
   if (operation === "inc") {
     try {
-      const {
-        status,
-        // data: {
-        //   cartItems: { _id: cartid, products },
-        // },
-      } = await axios.post(
+      dispatch({ type: "INC_LOADER" });
+      const { status } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
         {
           type: operation,
-        }
+        },
+        { headers: { authorization: token } }
       );
 
       if (status === 201) {
@@ -26,25 +24,26 @@ export const setQuantity = async (
       }
     } catch (error) {
       console.log(error.message);
+    } finally {
+      dispatch({ type: "INC_LOADER" });
     }
   } else if (operation === "dec" && quantity > 1) {
     try {
-      const {
-        status,
-        // data: {
-        //   cartItems: { _id: cartid, products },
-        // },
-      } = await axios.post(
+      dispatch({ type: "DEC_LOADER" });
+      const { status } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
         {
           type: operation,
-        }
+        },
+        { headers: { authorization: token } }
       );
       if (status === 201) {
         dispatch({ type: "DECREASE_QUANTITY", payload: productId });
       }
     } catch (error) {
       console.log(error.message);
+    } finally {
+      dispatch({ type: "DEC_LOADER" });
     }
   }
 };

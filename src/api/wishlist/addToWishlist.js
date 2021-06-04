@@ -1,8 +1,9 @@
 import axios from "axios";
+import { toastMessages } from "../../utils/toastMessages";
 
-export const addToWishlist = async (wishId, itemid, dispatch) => {
-  console.log(itemid);
+export const addToWishlist = async (wishId, itemid, dispatch, token) => {
   try {
+    dispatch({ type: "WISH_ACTION_LOADER", payload: itemid });
     const {
       status,
       data: {
@@ -17,16 +18,19 @@ export const addToWishlist = async (wishId, itemid, dispatch) => {
           _id: itemid,
           productId: itemid,
         },
-      }
+      },
+      { headers: { authorization: token } }
     );
 
     if (status === 201) {
       wishId === null && dispatch({ type: "SAVE_WISH_ID", payload: wishid });
-      wishId === null && localStorage.setItem("wishId", JSON.stringify(wishid));
       dispatch({ type: "ADD_TO_WISHLIST", payload: products });
+      toastMessages("Added To Wishlist");
     }
   } catch (error) {
     console.log(error.stack);
     console.log(error.message);
+  } finally {
+    dispatch({ type: "WISH_ACTION_LOADER", payload: null });
   }
 };

@@ -1,23 +1,22 @@
 import { useMainContext } from "../../context/context";
 import "../../css/cart.css";
 import { CartCard, CartEmpty, PuffLoader } from "../index";
-import {
-  useWishlistData,
-  useLocalStorage,
-  useCartData,
-} from "../../hooks/index";
+import { useWishlistData, useCartData } from "../../hooks/index";
 import { clearCart } from "../../api/cart/clearCart";
+import { useAuth } from "../../context/auth-context";
 
 export const Cart = () => {
   const { cart, cartId, loader, totalCartPrice, totalDiscount, dispatch } =
     useMainContext();
-  useLocalStorage();
-  useWishlistData();
+  const { token } = useAuth();
   useCartData();
+  useWishlistData();
+
   if (cart.length === 0) {
     return (
       <div className="cart-section empty">
-        <CartEmpty />
+        {loader && <PuffLoader />}
+        {loader || <CartEmpty />}
       </div>
     );
   } else {
@@ -26,11 +25,10 @@ export const Cart = () => {
         <div>
           <button
             className="btn btn-secondary btn--round clear--cart"
-            onClick={() => clearCart(cartId, dispatch)}>
+            onClick={() => clearCart(cartId, dispatch, token)}>
             Clear Cart
           </button>
           <div className="cart--container">
-            {loader && <PuffLoader />}
             <CartCard />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Navbar = ({ totalCartQuantity, totalWishes }) => {
+export const Navbar = ({ totalCartQuantity, totalWishes, cart, wishList }) => {
   return (
     <>
       <nav className="nav nav-primary">
@@ -14,12 +14,12 @@ export const Navbar = ({ totalCartQuantity, totalWishes }) => {
         <ul className="list nav--list">
           <Link to="/" className="router-link">
             <li className="nav-item">
-              <a className="link center-tabs">Home</a>
+              <span className="text text-uppercase center-tabs">Home</span>
             </li>
           </Link>
           <Link to="/products" className="router-link">
             <li className="nav-item">
-              <a className="link center-tabs">Products</a>
+              <span className="text text-uppercase center-tabs">Products</span>
             </li>
           </Link>
         </ul>
@@ -30,9 +30,11 @@ export const Navbar = ({ totalCartQuantity, totalWishes }) => {
                 <ion-icon
                   name="cart-outline"
                   class="notification-icon"></ion-icon>
-                <span className="badge badge--round badge--top badge-primary">
-                  <p>{totalCartQuantity}</p>
-                </span>
+                {cart.length > 0 && (
+                  <span className="badge badge--round badge--top badge-primary">
+                    <p>{totalCartQuantity}</p>
+                  </span>
+                )}
               </div>
             </li>
           </Link>
@@ -43,9 +45,21 @@ export const Navbar = ({ totalCartQuantity, totalWishes }) => {
                 <ion-icon
                   name="heart-outline"
                   class="notification-icon"></ion-icon>
-                <span className="badge badge--round badge--top badge-primary">
-                  <p>{totalWishes}</p>
-                </span>
+                {wishList.length > 0 && (
+                  <span className="badge badge--round badge--top badge-primary">
+                    <p>{totalWishes}</p>
+                  </span>
+                )}
+              </div>
+            </li>
+          </Link>
+
+          <Link to="/user" className="router-link">
+            <li className="nav-item">
+              <div className="notification">
+                <ion-icon
+                  name="person-circle-outline"
+                  class="notification-icon"></ion-icon>
               </div>
             </li>
           </Link>

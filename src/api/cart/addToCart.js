@@ -1,6 +1,8 @@
 import axios from "axios";
-export const addToCart = async (cartId, itemid, dispatch) => {
+import { toastMessages } from "../../utils/toastMessages";
+export const addToCart = async (cartId, itemid, dispatch, token) => {
   try {
+    dispatch({ type: "CART_ACTION_LOADER", payload: itemid });
     const {
       status,
       data: {
@@ -16,16 +18,18 @@ export const addToCart = async (cartId, itemid, dispatch) => {
           productId: itemid,
           quantity: 1,
         },
-      }
+      },
+      { headers: { authorization: token } }
     );
 
     if (status === 201) {
       cartId === null && dispatch({ type: "SAVE_CART_ID", payload: cartid });
-      cartId === null && localStorage.setItem("cartId", JSON.stringify(cartid));
       dispatch({ type: "ADD_ITEM", payload: products });
+      toastMessages("Added To Cart");
     }
-    // console.log(status, cartid, products);
   } catch (error) {
     console.log(error.message);
+  } finally {
+    dispatch({ type: "CART_ACTION_LOADER", payload: null });
   }
 };

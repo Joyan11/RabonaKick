@@ -1,17 +1,29 @@
 import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
+import { useAuth } from "../../context/auth-context";
 import { useMainContext } from "../../context/context";
 import { discountCalc } from "../../utils/discount";
+import { toastMessages } from "../../utils/toastMessages";
+import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
 export const Wishcard = () => {
-  const { cart, cartId, wishList, wishId, dispatch } = useMainContext();
+  const {
+    cart,
+    cartId,
+    wishList,
+    wishId,
+    cartactionLoader,
+    wishactionLoader,
+    dispatch,
+  } = useMainContext();
+  const { token } = useAuth();
 
   const moveToCart = (itemid) => {
     if (cart.some((products) => products._id === itemid) === false) {
-      addToCart(cartId, itemid, dispatch);
-      removeFromWishlist(wishId, itemid, dispatch);
+      addToCart(cartId, itemid, dispatch, token);
+      removeFromWishlist(wishId, itemid, dispatch, token);
     } else {
-      console.log("exists");
+      toastMessages("Item Already Exists in Cart");
     }
   };
 
@@ -24,12 +36,18 @@ export const Wishcard = () => {
               {product.stock === "outofstock" && (
                 <p className="card--overlay--text">Out of Stock</p>
               )}
-              <ion-icon
-                name="trash-outline"
-                class="card--dismiss"
+              <span
+                className="card--dismiss"
                 onClick={() =>
-                  removeFromWishlist(wishId, product._id, dispatch)
-                }></ion-icon>
+                  removeFromWishlist(wishId, product._id, dispatch, token)
+                }>
+                {product._id === wishactionLoader ? (
+                  <OvalLoader />
+                ) : (
+                  <ion-icon name="trash-outline"></ion-icon>
+                )}
+              </span>
+
               <img
                 className={
                   product.stock === "outofstock" ? "card--overlay" : undefined
@@ -54,7 +72,11 @@ export const Wishcard = () => {
                 className={`btn btn--round btn-primary card--button ${
                   product.stock === "outofstock" && "disabled"
                 }`}>
-                Move To Cart
+                {product._id === cartactionLoader ? (
+                  <DotsLoader />
+                ) : (
+                  "Move To Cart"
+                )}
               </button>
             </div>
           </div>

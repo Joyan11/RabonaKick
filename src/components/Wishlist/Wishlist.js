@@ -2,36 +2,35 @@ import React from "react";
 import "../../css/wishlist.css";
 import { useMainContext } from "../../context/context";
 import { Wishcard, Wishlistempty } from "../index";
-import {
-  useLocalStorage,
-  useWishlistData,
-  useCartData,
-} from "../../hooks/index";
+import { useWishlistData, useCartData } from "../../hooks/index";
 import { clearWishlist } from "../../api/wishlist/clearWishlist";
+import { useAuth } from "../../context/auth-context";
+import { PuffLoader } from "../Loader";
 
 export const Wishlist = () => {
-  const { wishList, wishId, dispatch } = useMainContext();
-  useLocalStorage();
+  const { loader, wishList, wishId, dispatch } = useMainContext();
+  const { token } = useAuth();
   useCartData();
   useWishlistData();
 
   if (wishList.length === 0) {
     return (
       <div className="wishlist-section empty">
-        <Wishlistempty />
+        {loader && <PuffLoader />}
+        {loader || <Wishlistempty />}
       </div>
     );
   } else {
     return (
       <div className="wishlist-section">
+        <button
+          className="btn btn--round btn-secondary"
+          onClick={() => clearWishlist(wishId, dispatch, token)}>
+          Clear Wishlist
+        </button>
         <div className="wish-container">
           <Wishcard />
         </div>
-        <button
-          className="btn btn--round btn-secondary"
-          onClick={() => clearWishlist(wishId, dispatch)}>
-          Clear Wishlist
-        </button>
       </div>
     );
   }

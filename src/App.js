@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { useMainContext } from "./context/context";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Products,
   Cart,
@@ -9,11 +11,21 @@ import {
   Navbar,
   ProductDetail,
   Modal,
+  Login,
+  Signup,
+  PrivateRoute,
+  UserDetails,
 } from "./components/index";
 
 export default function App() {
-  const { totalCartQuantity, totalWishes, displayModal, modalContent } =
-    useMainContext();
+  const {
+    totalCartQuantity,
+    totalWishes,
+    cart,
+    wishList,
+    displayModal,
+    modalContent,
+  } = useMainContext();
 
   return (
     <div className="App">
@@ -21,16 +33,22 @@ export default function App() {
         <Navbar
           totalCartQuantity={totalCartQuantity}
           totalWishes={totalWishes}
+          cart={cart}
+          wishList={wishList}
         />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishList" element={<Wishlist />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />}></Route>
+          <PrivateRoute path="/cart" element={<Cart />} />
+          <PrivateRoute path="/user" element={<UserDetails />} />
+          <PrivateRoute path="/wishlist" element={<Wishlist />} />
         </Routes>
         {displayModal && <Modal modalContent={modalContent} />}
         {/* <Footer /> */}
+        <ToastContainer />
       </main>
     </div>
   );

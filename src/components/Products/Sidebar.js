@@ -51,12 +51,12 @@ export const Sidebar = () => {
           <div className="delivery-filter">
             <input
               type="checkbox"
-              name=""
-              id="stockfilter"
+              name="delivery-filter"
+              id="delivery-filter"
               checked={fastDelivery === "allDeliveries" ? false : true}
               onChange={(e) => sortByDelivery(e)}
             />
-            <label htmlFor="stockfilter">Fast Delivery</label>
+            <label htmlFor="delivery-filter">Fast Delivery</label>
           </div>
           <div className="price-slider">
             <p>Price range:</p>

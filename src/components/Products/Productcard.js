@@ -1,10 +1,14 @@
 import { useMainContext } from "../../context/context";
-import { Link } from "react-router-dom";
-import { addToCart } from "../../api/cart/addToCart";
+import { Link, useNavigate } from "react-router-dom";
+import { cartAuthCheck } from "../../utils/cartAuthCheck";
 import { addToWishlist } from "../../api/wishlist/addToWishlist";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
 import { discountCalc } from "../../utils/discount";
 import { goToCart } from "../../utils/goToCart";
+import { useAuth } from "../../context/auth-context";
+import { wishAuthCheck } from "../../utils/wishAuthCheck";
+import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
+
 export const ProductCard = ({ productFilters }) => {
   const {
     products,
@@ -12,14 +16,18 @@ export const ProductCard = ({ productFilters }) => {
     wishId,
     cart,
     cartId,
+    cartactionLoader,
+    wishactionLoader,
     dispatch,
   } = useMainContext();
+  const { token } = useAuth();
+  const navigate = useNavigate();
 
   const wishListButtonHandler = (itemid, wishList) => {
     if (wishList.some((products) => products._id === itemid) === false) {
-      addToWishlist(wishId, itemid, dispatch);
+      addToWishlist(wishId, itemid, dispatch, token);
     } else {
-      removeFromWishlist(wishId, itemid, dispatch);
+      removeFromWishlist(wishId, itemid, dispatch, token);
     }
   };
 
@@ -62,9 +70,22 @@ export const ProductCard = ({ productFilters }) => {
                   className={`wishlist-button wishlist-icon ${wishToggle(
                     item._id
                   )}`}
-                  onClick={() => wishListButtonHandler(item._id, wishList)}>
-                  <ion-icon name="heart"></ion-icon>
+                  onClick={() =>
+                    wishAuthCheck(
+                      token,
+                      navigate,
+                      wishListButtonHandler,
+                      item._id,
+                      wishList
+                    )
+                  }>
+                  {item._id === wishactionLoader ? (
+                    <OvalLoader />
+                  ) : (
+                    <ion-icon name="heart"></ion-icon>
+                  )}
                 </span>
+
                 <span className="card--title">{item.name}</span>
                 <p className="card--text">
                   &#8377; {discountCalc(item.price, item.discount)}
@@ -78,8 +99,15 @@ export const ProductCard = ({ productFilters }) => {
                       item.stock === "outofstock" && "disabled"
                     }`}
                     disabled={item.stock === "outofstock" && true}
-                    onClick={() => addToCart(cartId, item._id, dispatch)}>
-                    Add to Cart
+                    onClick={() =>
+                      cartAuthCheck(token, navigate, cartId, item._id, dispatch)
+                    }>
+                    {/* Made changes here */}
+                    {item._id === cartactionLoader ? (
+                      <DotsLoader />
+                    ) : (
+                      " Add to Cart"
+                    )}
                   </button>
                 ) : (
                   <Link

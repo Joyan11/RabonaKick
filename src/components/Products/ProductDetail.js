@@ -1,20 +1,23 @@
 import React from "react";
 import "../../css/products-details.css";
 import { PuffLoader } from "../Loader";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMainContext } from "../../context/context";
 import { discountCalc } from "../../utils/discount";
 import { useProductDetails } from "../../hooks/useProductDetails";
-import { addToCart } from "../../api/cart/addToCart";
 import { addToWishlist } from "../../api/wishlist/addToWishlist";
 import { goToCart } from "../../utils/goToCart";
 import { goToWishlist } from "../../utils/goToWishlist";
+import { cartAuthCheck } from "../../utils/cartAuthCheck";
+import { useAuth } from "../../context/auth-context";
+import { wishAuthProdDetail } from "../../utils/wishAuthCheck";
 
 export const ProductDetail = () => {
   const { cart, wishList, cartId, wishId, dispatch, loader } = useMainContext();
+  const { token } = useAuth();
   const { id } = useParams();
+  const navigate = useNavigate();
   const productDetail = useProductDetails(id);
-  console.log(productDetail);
   return (
     <div className="product-details">
       {loader && <PuffLoader />}
@@ -65,13 +68,21 @@ export const ProductDetail = () => {
                   <ion-icon name="cart"></ion-icon>
                 </Link>
               ) : (
-                <button className="btn  btn--icon btn--icon--back btn-primary">
-                  <div
-                    onClick={() =>
-                      addToCart(cartId, productDetail._id, dispatch)
-                    }>
-                    Add to Cart
-                  </div>
+                <button
+                  className={`btn  btn--icon btn--icon--back btn-primary ${
+                    productDetail.stock === "outofstock" && "disabled"
+                  }`}
+                  disabled={productDetail.stock === "outofstock" && true}
+                  onClick={() =>
+                    cartAuthCheck(
+                      token,
+                      navigate,
+                      cartId,
+                      productDetail._id,
+                      dispatch
+                    )
+                  }>
+                  <div>Add to Cart</div>
                   <ion-icon name="cart"></ion-icon>
                 </button>
               )}
@@ -86,7 +97,14 @@ export const ProductDetail = () => {
                 <button className="btn  btn--icon btn--icon--back btn-outline-primary">
                   <div
                     onClick={() =>
-                      addToWishlist(wishId, productDetail._id, dispatch)
+                      // addToWishlist(wishId, productDetail._id, dispatch, token)
+                      wishAuthProdDetail(
+                        wishId,
+                        productDetail._id,
+                        dispatch,
+                        token,
+                        navigate
+                      )
                     }>
                     Wishlist
                   </div>

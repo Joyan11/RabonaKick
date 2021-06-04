@@ -5,13 +5,11 @@ import { ProductCard, Sidebar, PuffLoader } from "../index";
 import {
   useCartData,
   useWishlistData,
-  useLocalStorage,
   useProductData,
 } from "../../hooks/index";
 
 export const Products = () => {
   useProductData();
-  useLocalStorage();
   useCartData();
   useWishlistData();
   const {
@@ -125,7 +123,6 @@ export const Products = () => {
         </div>
         <div className="product-container">
           {loader && <PuffLoader />}
-
           <ProductCard productFilters={productFilters} />
         </div>
       </div>
