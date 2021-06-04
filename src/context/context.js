@@ -22,8 +22,8 @@ const initialState = {
   loader: false,
   CartactionLoader: null,
   WishactionLoader: null,
-  incLoader: false,
-  decLoader: false,
+  incLoader: null,
+  decLoader: null,
 };
 
 export const MainProvider = ({ children }) => {

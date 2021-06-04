@@ -46,7 +46,7 @@ export const CartCard = () => {
                       token
                     )
                   }>
-                  {decLoader ? <OvalLoader /> : "-"}
+                  {decLoader === product._id ? <OvalLoader /> : "-"}
                 </button>
                 <p> {quantity}</p>
                 <button
@@ -61,7 +61,7 @@ export const CartCard = () => {
                       token
                     )
                   }>
-                  {incLoader ? <OvalLoader /> : "+"}
+                  {incLoader === product._id ? <OvalLoader /> : "+"}
                 </button>
               </div>
               <div className="cart--dismiss">

@@ -198,12 +198,12 @@ export const reducer = (state, action) => {
     case "INC_LOADER":
       return {
         ...state,
-        incLoader: !state.incLoader,
+        incLoader: action.payload,
       };
     case "DEC_LOADER":
       return {
         ...state,
-        decLoader: !state.decLoader,
+        decLoader: action.payload,
       };
     default:
       return state;
