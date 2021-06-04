@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
           password: password,
         },
       });
-      console.log(message, token);
       if (success === true && status === 200) {
         setToken(token);
         setUserData(userdata);
