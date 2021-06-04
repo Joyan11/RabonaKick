@@ -180,7 +180,8 @@
   }
 
   .search {
-    max-width: 100%;
+    width: 100%;
+    max-width: 80%;
     position: relative;
     text-align: center;
     margin-bottom: 2.5rem;
@@ -194,9 +195,9 @@
   }
 
   .product-container .card--m {
-    max-width: 20rem !important;
+    max-width: 24rem !important;
   }
-  .product-card:hover {
-    box-shadow: none;
+  .product-card {
+    box-shadow: -1px 0px 17px -1px rgba(0, 0, 0, 0.32);
   }
 }
