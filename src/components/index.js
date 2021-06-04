@@ -13,7 +13,6 @@ import { Cart } from "./Cart/Cart";
 import { CartCard } from "./Cart/CartCard";
 import { CartEmpty } from "./Cart/CartEmpty";
 import { Products } from "./Products/Products";
-import { Modal } from "./Modal";
 import { Login } from "./Auth/Login";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 import { Signup } from "./Auth/Signup";
@@ -36,6 +35,5 @@ export {
   Wishlistempty,
   CartEmpty,
   Products,
-  Modal,
   UserDetails,
 };

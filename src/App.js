@@ -10,7 +10,6 @@ import {
   Home,
   Navbar,
   ProductDetail,
-  Modal,
   Login,
   Signup,
   PrivateRoute,
@@ -46,8 +45,7 @@ export default function App() {
           <PrivateRoute path="/user" element={<UserDetails />} />
           <PrivateRoute path="/wishlist" element={<Wishlist />} />
         </Routes>
-        {displayModal && <Modal modalContent={modalContent} />}
-        {/* <Footer /> */}
+
         <ToastContainer />
       </main>
     </div>

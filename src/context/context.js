@@ -17,8 +17,6 @@ const initialState = {
   fastDelivery: "allDeliveries",
   priceRange: "2099",
   teamFilter: "allteams",
-  displayModal: false,
-  modalMessege: "",
   loader: false,
   CartactionLoader: null,
   WishactionLoader: null,
