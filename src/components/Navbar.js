@@ -12,11 +12,11 @@ export const Navbar = ({ totalCartQuantity, totalWishes, cart, wishList }) => {
           </Link>
         </div>
         <ul className="list nav--list">
-          <Link to="/" className="router-link">
+          {/* <Link to="/" className="router-link">
             <li className="nav-item">
               <span className="text text-uppercase center-tabs">Home</span>
             </li>
-          </Link>
+          </Link> */}
           <Link to="/products" className="router-link">
             <li className="nav-item">
               <span className="text text-uppercase center-tabs">Products</span>
