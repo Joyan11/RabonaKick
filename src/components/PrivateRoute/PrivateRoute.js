@@ -1,5 +1,4 @@
 import { Route, Navigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
 
 export const PrivateRoute = ({ path, ...props }) => {
   const token = JSON.parse(localStorage.getItem("token"));

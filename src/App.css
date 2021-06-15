@@ -6,6 +6,15 @@
 
 .btn {
   font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #205a3a;
+}
+
+.btn-secondary:hover {
+  background-color: #4c4f52;
 }
 
 .card--body {

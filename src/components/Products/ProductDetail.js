@@ -5,7 +5,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMainContext } from "../../context/context";
 import { discountCalc } from "../../utils/discount";
 import { useProductDetails } from "../../hooks/useProductDetails";
-import { addToWishlist } from "../../api/wishlist/addToWishlist";
 import { goToCart } from "../../utils/goToCart";
 import { goToWishlist } from "../../utils/goToWishlist";
 import { cartAuthCheck } from "../../utils/cartAuthCheck";
@@ -97,7 +96,6 @@ export const ProductDetail = () => {
                 <button className="btn  btn--icon btn--icon--back btn-outline-primary">
                   <div
                     onClick={() =>
-                      // addToWishlist(wishId, productDetail._id, dispatch, token)
                       wishAuthProdDetail(
                         wishId,
                         productDetail._id,

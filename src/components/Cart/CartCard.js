@@ -35,7 +35,7 @@ export const CartCard = () => {
 
               <div className="cart--buttons-container">
                 <button
-                  className="cart--buttons btn btn-primary"
+                  className="cart--buttons btn"
                   onClick={() =>
                     setQuantity(
                       cartId,
@@ -48,9 +48,9 @@ export const CartCard = () => {
                   }>
                   {decLoader === product._id ? <OvalLoader /> : "-"}
                 </button>
-                <p> {quantity}</p>
+                <p>{quantity}</p>
                 <button
-                  className="cart--buttons btn btn-primary"
+                  className="cart--buttons btn"
                   onClick={() =>
                     setQuantity(
                       cartId,
@@ -64,7 +64,7 @@ export const CartCard = () => {
                   {incLoader === product._id ? <OvalLoader /> : "+"}
                 </button>
               </div>
-              <div className="cart--dismiss">
+              <div className="cart--dismiss btn">
                 <button
                   className="btn btn-red"
                   onClick={() =>

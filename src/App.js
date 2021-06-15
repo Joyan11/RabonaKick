@@ -17,14 +17,7 @@ import {
 } from "./components/index";
 
 export default function App() {
-  const {
-    totalCartQuantity,
-    totalWishes,
-    cart,
-    wishList,
-    displayModal,
-    modalContent,
-  } = useMainContext();
+  const { totalCartQuantity, totalWishes, cart, wishList } = useMainContext();
 
   return (
     <div className="App">
