@@ -13,9 +13,7 @@ export const ProductCard = ({ productFilters }) => {
   const {
     products,
     wishList,
-    wishId,
     cart,
-    cartId,
     cartactionLoader,
     wishactionLoader,
     dispatch,
@@ -25,9 +23,9 @@ export const ProductCard = ({ productFilters }) => {
 
   const wishListButtonHandler = (itemid, wishList) => {
     if (wishList.some((products) => products._id === itemid) === false) {
-      addToWishlist(wishId, itemid, dispatch, token);
+      addToWishlist(itemid, dispatch, token);
     } else {
-      removeFromWishlist(wishId, itemid, dispatch, token);
+      removeFromWishlist(itemid, dispatch, token);
     }
   };
 
@@ -100,9 +98,8 @@ export const ProductCard = ({ productFilters }) => {
                     }`}
                     disabled={item.stock === "outofstock" && true}
                     onClick={() =>
-                      cartAuthCheck(token, navigate, cartId, item._id, dispatch)
+                      cartAuthCheck(token, navigate, item._id, dispatch)
                     }>
-                    {/* Made changes here */}
                     {item._id === cartactionLoader ? (
                       <DotsLoader />
                     ) : (

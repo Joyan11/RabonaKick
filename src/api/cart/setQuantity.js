@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const setQuantity = async (
-  cartId,
   productId,
   quantity,
   operation,
@@ -12,7 +11,7 @@ export const setQuantity = async (
     try {
       dispatch({ type: "INC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
+        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
           type: operation,
         },
@@ -31,7 +30,7 @@ export const setQuantity = async (
     try {
       dispatch({ type: "DEC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productId}`,
+        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
           type: operation,
         },

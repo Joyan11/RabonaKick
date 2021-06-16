@@ -1,16 +1,11 @@
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
 
-export const removeFromWishlist = async (
-  wishId,
-  productid,
-  dispatch,
-  token
-) => {
+export const removeFromWishlist = async (productid, dispatch, token) => {
   try {
     dispatch({ type: "WISH_ACTION_LOADER", payload: productid });
     const { status } = await axios.delete(
-      `https://rabonaserver.joyan11.repl.co/wishlist/${wishId}/${productid}`,
+      `https://rabonaserver.joyan11.repl.co/wishlist/${productid}`,
       { headers: { authorization: token } }
     );
     if (status === 200) {

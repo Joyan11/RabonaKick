@@ -37,14 +37,7 @@ export const CartCard = () => {
                 <button
                   className="cart--buttons btn"
                   onClick={() =>
-                    setQuantity(
-                      cartId,
-                      product._id,
-                      quantity,
-                      "dec",
-                      dispatch,
-                      token
-                    )
+                    setQuantity(product._id, quantity, "dec", dispatch, token)
                   }>
                   {decLoader === product._id ? <OvalLoader /> : "-"}
                 </button>
@@ -52,14 +45,7 @@ export const CartCard = () => {
                 <button
                   className="cart--buttons btn"
                   onClick={() =>
-                    setQuantity(
-                      cartId,
-                      product._id,
-                      quantity,
-                      "inc",
-                      dispatch,
-                      token
-                    )
+                    setQuantity(product._id, quantity, "inc", dispatch, token)
                   }>
                   {incLoader === product._id ? <OvalLoader /> : "+"}
                 </button>
@@ -67,9 +53,7 @@ export const CartCard = () => {
               <div className="cart--dismiss btn">
                 <button
                   className="btn btn-red"
-                  onClick={() =>
-                    removeFromCart(cartId, product._id, dispatch, token)
-                  }>
+                  onClick={() => removeFromCart(product._id, dispatch, token)}>
                   {product._id === cartactionLoader ? <DotsLoader /> : "Remove"}
                 </button>
               </div>

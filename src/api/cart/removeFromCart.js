@@ -1,11 +1,11 @@
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
 
-export const removeFromCart = async (cartId, productid, dispatch, token) => {
+export const removeFromCart = async (productid, dispatch, token) => {
   try {
     dispatch({ type: "CART_ACTION_LOADER", payload: productid });
     const { status } = await axios.delete(
-      `https://rabonaserver.joyan11.repl.co/cart/${cartId}/${productid}`,
+      `https://rabonaserver.joyan11.repl.co/cart/${productid}`,
       { headers: { authorization: token } }
     );
     if (status === 200) {

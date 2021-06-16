@@ -7,21 +7,14 @@ import { discountCalc } from "../../utils/discount";
 import { toastMessages } from "../../utils/toastMessages";
 import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
 export const Wishcard = () => {
-  const {
-    cart,
-    cartId,
-    wishList,
-    wishId,
-    cartactionLoader,
-    wishactionLoader,
-    dispatch,
-  } = useMainContext();
+  const { cart, wishList, cartactionLoader, wishactionLoader, dispatch } =
+    useMainContext();
   const { token } = useAuth();
 
   const moveToCart = (itemid) => {
     if (cart.some((products) => products._id === itemid) === false) {
-      addToCart(cartId, itemid, dispatch, token);
-      removeFromWishlist(wishId, itemid, dispatch, token);
+      addToCart(itemid, dispatch, token);
+      removeFromWishlist(itemid, dispatch, token);
     } else {
       toastMessages("Item Already Exists in Cart");
     }
@@ -39,7 +32,7 @@ export const Wishcard = () => {
               <span
                 className="card--dismiss"
                 onClick={() =>
-                  removeFromWishlist(wishId, product._id, dispatch, token)
+                  removeFromWishlist(product._id, dispatch, token)
                 }>
                 {product._id === wishactionLoader ? (
                   <OvalLoader />

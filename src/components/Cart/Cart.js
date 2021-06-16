@@ -6,7 +6,7 @@ import { clearCart } from "../../api/cart/clearCart";
 import { useAuth } from "../../context/auth-context";
 
 export const Cart = () => {
-  const { cart, cartId, loader, totalCartPrice, totalDiscount, dispatch } =
+  const { cart, loader, totalCartPrice, totalDiscount, dispatch } =
     useMainContext();
   const { token } = useAuth();
   useCartData();
@@ -25,7 +25,7 @@ export const Cart = () => {
         <div>
           <button
             className="btn btn-secondary btn--round clear--cart"
-            onClick={() => clearCart(cartId, dispatch, token)}>
+            onClick={() => clearCart(dispatch, token)}>
             Clear Cart
           </button>
           <div className="cart--container">

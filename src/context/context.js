@@ -5,9 +5,7 @@ export const mainContext = createContext();
 const initialState = {
   products: [],
   cart: [],
-  cartId: null,
   wishList: [],
-  wishId: null,
   totalCartPrice: 0,
   totalCartQuantity: 0,
   totalWishes: 0,

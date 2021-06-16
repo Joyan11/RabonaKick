@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const clearCart = async (cartId, dispatch, token) => {
+export const clearCart = async (dispatch, token) => {
   try {
     const { status } = await axios.delete(
-      `https://rabonaserver.joyan11.repl.co/cart/${cartId}`,
+      `https://rabonaserver.joyan11.repl.co/cart`,
       { headers: { authorization: token } }
     );
     if (status === 200) {

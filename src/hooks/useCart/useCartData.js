@@ -12,13 +12,12 @@ export const useCartData = () => {
         const {
           status,
           data: {
-            cartData: { _id: cartid, products },
+            cartData: { products },
           },
         } = await axios.get(`https://rabonaserver.joyan11.repl.co/cart`, {
           headers: { authorization: token },
         });
         if (status === 200 && products.length !== 0) {
-          dispatch({ type: "SAVE_CART_ID", payload: cartid });
           dispatch({
             type: "ADD_ITEM",
             payload: products,

@@ -8,7 +8,7 @@ import { useAuth } from "../../context/auth-context";
 import { PuffLoader } from "../Loader";
 
 export const Wishlist = () => {
-  const { loader, wishList, wishId, dispatch } = useMainContext();
+  const { loader, wishList, dispatch } = useMainContext();
   const { token } = useAuth();
   useCartData();
   useWishlistData();
@@ -25,7 +25,7 @@ export const Wishlist = () => {
       <div className="wishlist-section">
         <button
           className="btn btn--round btn-secondary"
-          onClick={() => clearWishlist(wishId, dispatch, token)}>
+          onClick={() => clearWishlist(dispatch, token)}>
           Clear Wishlist
         </button>
         <div className="wish-container">

@@ -22,8 +22,7 @@ export const wishAuthProdDetail = (
   navigate
 ) => {
   if (token) {
-    console.log("running");
-    addToWishlist(wishid, productid, dispatch, token);
+    addToWishlist(productid, dispatch, token);
   } else {
     navigate("/login");
   }
