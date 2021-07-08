@@ -6,8 +6,7 @@ import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
 import { discountCalc } from "../../utils/discount";
 import { goToCart } from "../../utils/goToCart";
 import { useAuth } from "../../context/auth-context";
-import { wishAuthCheck } from "../../utils/wishAuthCheck";
-import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
+import { DotsLoader, OvalLoader } from "../Loaders/Loaders";
 
 export const ProductCard = ({ productFilters }) => {
   const {
@@ -22,10 +21,14 @@ export const ProductCard = ({ productFilters }) => {
   const navigate = useNavigate();
 
   const wishListButtonHandler = (itemid, wishList) => {
-    if (wishList.some((products) => products._id === itemid) === false) {
-      addToWishlist(itemid, dispatch, token);
+    if (token) {
+      if (wishList.some((products) => products._id === itemid) === false) {
+        addToWishlist(itemid, dispatch, token);
+      } else {
+        removeFromWishlist(itemid, dispatch, token);
+      }
     } else {
-      removeFromWishlist(itemid, dispatch, token);
+      navigate("/login");
     }
   };
 
@@ -68,15 +71,7 @@ export const ProductCard = ({ productFilters }) => {
                   className={`wishlist-button wishlist-icon ${wishToggle(
                     item._id
                   )}`}
-                  onClick={() =>
-                    wishAuthCheck(
-                      token,
-                      navigate,
-                      wishListButtonHandler,
-                      item._id,
-                      wishList
-                    )
-                  }>
+                  onClick={() => wishListButtonHandler(item._id, wishList)}>
                   {item._id === wishactionLoader ? (
                     <OvalLoader />
                   ) : (

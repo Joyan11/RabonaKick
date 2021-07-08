@@ -2,16 +2,8 @@ import { useState } from "react";
 import { useMainContext } from "../../context/context";
 import "../../css/products.css";
 import { ProductCard, Sidebar, PuffLoader } from "../index";
-import {
-  useCartData,
-  useWishlistData,
-  useProductData,
-} from "../../hooks/index";
 
 export const Products = () => {
-  useProductData();
-  useCartData();
-  useWishlistData();
   const {
     products,
     loader,
@@ -92,9 +84,7 @@ export const Products = () => {
 
   return (
     <div className="product-section">
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+      <Sidebar />
       <div className="products-page">
         <div className="product-page-filter">
           <div className="search">

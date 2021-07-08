@@ -3,13 +3,11 @@ import { setQuantity } from "../../api/cart/setQuantity";
 import { removeFromCart } from "../../api/cart/removeFromCart";
 import { discountCalc } from "../../utils/discount";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
-export const CartCard = () => {
-  const { cart, cartId, cartactionLoader, incLoader, decLoader, dispatch } =
-    useMainContext();
-  const { token } = useAuth();
+import { DotsLoader, OvalLoader } from "../Loaders/Loaders";
 
+export const CartCard = () => {
+  const { cart, cartactionLoader, incLoader, decLoader, dispatch } =
+    useMainContext();
   return (
     <>
       {cart.map(({ productId: product, quantity }) => {
@@ -37,23 +35,27 @@ export const CartCard = () => {
                 <button
                   className="cart--buttons btn"
                   onClick={() =>
-                    setQuantity(product._id, quantity, "dec", dispatch, token)
+                    setQuantity(product._id, quantity, "dec", dispatch)
                   }>
-                  {decLoader === product._id ? <OvalLoader /> : "-"}
+                  -
                 </button>
-                <p>{quantity}</p>
+                <p className="cart-quantity">
+                  {decLoader === product._id || incLoader === product._id
+                    ? "wait.."
+                    : `Qty : ${quantity}`}
+                </p>
                 <button
                   className="cart--buttons btn"
                   onClick={() =>
-                    setQuantity(product._id, quantity, "inc", dispatch, token)
+                    setQuantity(product._id, quantity, "inc", dispatch)
                   }>
-                  {incLoader === product._id ? <OvalLoader /> : "+"}
+                  +
                 </button>
               </div>
               <div className="cart--dismiss btn">
                 <button
                   className="btn btn-red"
-                  onClick={() => removeFromCart(product._id, dispatch, token)}>
+                  onClick={() => removeFromCart(product._id, dispatch)}>
                   {product._id === cartactionLoader ? <DotsLoader /> : "Remove"}
                 </button>
               </div>

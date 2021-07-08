@@ -1,16 +1,11 @@
 import { useMainContext } from "../../context/context";
 import "../../css/cart.css";
 import { CartCard, CartEmpty, PuffLoader } from "../index";
-import { useWishlistData, useCartData } from "../../hooks/index";
 import { clearCart } from "../../api/cart/clearCart";
-import { useAuth } from "../../context/auth-context";
 
 export const Cart = () => {
   const { cart, loader, totalCartPrice, totalDiscount, dispatch } =
     useMainContext();
-  const { token } = useAuth();
-  useCartData();
-  useWishlistData();
 
   if (cart.length === 0) {
     return (
@@ -25,7 +20,7 @@ export const Cart = () => {
         <div>
           <button
             className="btn btn-secondary btn--round clear--cart"
-            onClick={() => clearCart(dispatch, token)}>
+            onClick={() => clearCart(dispatch)}>
             Clear Cart
           </button>
           <div className="cart--container">
@@ -51,6 +46,11 @@ export const Cart = () => {
               <strong class="text text--left price-detail">
                 Total Amount: <span>&#8377;{totalDiscount}</span>
               </strong>
+              <button
+                className="btn btn--round btn-primary"
+                style={{ paddingTop: "1rem" }}>
+                Checkout
+              </button>
             </div>
           </div>
         </div>

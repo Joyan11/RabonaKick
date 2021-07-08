@@ -1,7 +1,6 @@
 import "../css/home.css";
 import { Link } from "react-router-dom";
 import { useCartData, useWishlistData } from "../hooks/index";
-
 export const Home = () => {
   useCartData();
   useWishlistData();

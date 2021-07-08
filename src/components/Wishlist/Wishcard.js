@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
-import { useAuth } from "../../context/auth-context";
 import { useMainContext } from "../../context/context";
 import { discountCalc } from "../../utils/discount";
 import { toastMessages } from "../../utils/toastMessages";
-import { DotsLoader, OvalLoader } from "../Loaders/DotsLoader";
+import { DotsLoader, OvalLoader } from "../Loaders/Loaders";
 export const Wishcard = () => {
   const { cart, wishList, cartactionLoader, wishactionLoader, dispatch } =
     useMainContext();
-  const { token } = useAuth();
 
   const moveToCart = (itemid) => {
     if (cart.some((products) => products._id === itemid) === false) {
-      addToCart(itemid, dispatch, token);
-      removeFromWishlist(itemid, dispatch, token);
+      addToCart(itemid, dispatch);
+      removeFromWishlist(itemid, dispatch);
     } else {
       toastMessages("Item Already Exists in Cart");
     }
@@ -31,9 +29,7 @@ export const Wishcard = () => {
               )}
               <span
                 className="card--dismiss"
-                onClick={() =>
-                  removeFromWishlist(product._id, dispatch, token)
-                }>
+                onClick={() => removeFromWishlist(product._id, dispatch)}>
                 {product._id === wishactionLoader ? (
                   <OvalLoader />
                 ) : (
