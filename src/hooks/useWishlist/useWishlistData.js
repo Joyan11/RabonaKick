@@ -15,9 +15,7 @@ export const useWishlistData = () => {
           data: {
             wishlistItems: { _id: wishid, products },
           },
-        } = await axios.get(`https://rabonaserver.joyan11.repl.co/wishlist`, {
-          headers: { authorization: token },
-        });
+        } = await axios.get(`${process.env.REACT_APP_RABONA_SERVER}/wishlist`);
         if (status === 200 && products.length !== 0) {
           dispatch({ type: "SAVE_WISH_ID", payload: wishid });
           dispatch({
@@ -35,6 +33,6 @@ export const useWishlistData = () => {
   };
 
   useEffect(() => {
-    wishList.length === 0 && getData();
+    getData();
   }, [token]);
 };

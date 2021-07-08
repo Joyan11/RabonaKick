@@ -11,7 +11,7 @@ export const useProductData = () => {
         const {
           data: { productdata },
           status,
-        } = await axios.get("https://rabonaserver.joyan11.repl.co/products");
+        } = await axios.get(`${process.env.REACT_APP_RABONA_SERVER}/products`);
 
         if (status === 200) {
           dispatch({

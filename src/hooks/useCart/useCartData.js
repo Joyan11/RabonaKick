@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useMainContext } from "../../context/context";
 import { useAuth } from "../../context/auth-context";
 export const useCartData = () => {
-  const { cart, dispatch } = useMainContext();
+  const { dispatch } = useMainContext();
   const { token } = useAuth();
   const getData = async () => {
     if (token) {
@@ -14,9 +14,7 @@ export const useCartData = () => {
           data: {
             cartData: { products },
           },
-        } = await axios.get(`https://rabonaserver.joyan11.repl.co/cart`, {
-          headers: { authorization: token },
-        });
+        } = await axios.get(`${process.env.REACT_APP_RABONA_SERVER}/cart`);
         if (status === 200 && products.length !== 0) {
           dispatch({
             type: "ADD_ITEM",
@@ -24,8 +22,6 @@ export const useCartData = () => {
           });
         }
       } catch (error) {
-        // console.log(error.message);
-        // console.log(error.stack);
         console.log(error.response.data.message);
       } finally {
         dispatch({ type: "SHOW_LOADER" });
@@ -34,6 +30,6 @@ export const useCartData = () => {
   };
 
   useEffect(() => {
-    cart.length === 0 && getData();
+    getData();
   }, [token]);
 };

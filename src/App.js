@@ -15,10 +15,13 @@ import {
   PrivateRoute,
   UserDetails,
 } from "./components/index";
+import { useCartData, useProductData, useWishlistData } from "./hooks";
 
 export default function App() {
   const { totalCartQuantity, totalWishes, cart, wishList } = useMainContext();
-
+  useProductData();
+  useCartData();
+  useWishlistData();
   return (
     <div className="App">
       <main className="main">
@@ -38,7 +41,6 @@ export default function App() {
           <PrivateRoute path="/user" element={<UserDetails />} />
           <PrivateRoute path="/wishlist" element={<Wishlist />} />
         </Routes>
-
         <ToastContainer />
       </main>
     </div>
