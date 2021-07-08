@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
-export const addToCart = async (itemid, dispatch, token) => {
+export const addToCart = async (itemid, dispatch) => {
   try {
     dispatch({ type: "CART_ACTION_LOADER", payload: itemid });
     const {
@@ -8,17 +8,13 @@ export const addToCart = async (itemid, dispatch, token) => {
       data: {
         cartItems: { products },
       },
-    } = await axios.post(
-      `https://rabonaserver.joyan11.repl.co/cart`,
-      {
-        products: {
-          _id: itemid,
-          productId: itemid,
-          quantity: 1,
-        },
+    } = await axios.post(`${process.env.REACT_APP_RABONA_SERVER}/cart`, {
+      products: {
+        _id: itemid,
+        productId: itemid,
+        quantity: 1,
       },
-      { headers: { authorization: token } }
-    );
+    });
 
     if (status === 201) {
       dispatch({ type: "ADD_ITEM", payload: products });

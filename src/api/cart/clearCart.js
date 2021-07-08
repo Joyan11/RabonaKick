@@ -1,10 +1,9 @@
 import axios from "axios";
 
-export const clearCart = async (dispatch, token) => {
+export const clearCart = async (dispatch) => {
   try {
     const { status } = await axios.delete(
-      `https://rabonaserver.joyan11.repl.co/cart`,
-      { headers: { authorization: token } }
+      `${process.env.REACT_APP_RABONA_SERVER}/cart`
     );
     if (status === 200) {
       dispatch({ type: "CLEAR_CART" });

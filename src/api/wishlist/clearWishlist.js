@@ -1,10 +1,9 @@
 import axios from "axios";
 
-export const clearWishlist = async (dispatch, token) => {
+export const clearWishlist = async (dispatch) => {
   try {
     const { status } = await axios.delete(
-      `https://rabonaserver.joyan11.repl.co/wishlist`,
-      { headers: { authorization: token } }
+      `https://rabonaserver.joyan11.repl.co/wishlist`
     );
     console.log(status);
     if (status === 200) {

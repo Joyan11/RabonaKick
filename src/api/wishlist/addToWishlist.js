@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
 
-export const addToWishlist = async (itemid, dispatch, token) => {
+export const addToWishlist = async (itemid, dispatch) => {
   try {
     dispatch({ type: "WISH_ACTION_LOADER", payload: itemid });
     const {
@@ -9,16 +9,12 @@ export const addToWishlist = async (itemid, dispatch, token) => {
       data: {
         wishlistItems: { products },
       },
-    } = await axios.post(
-      `https://rabonaserver.joyan11.repl.co/wishlist`,
-      {
-        products: {
-          _id: itemid,
-          productId: itemid,
-        },
+    } = await axios.post(`https://rabonaserver.joyan11.repl.co/wishlist`, {
+      products: {
+        _id: itemid,
+        productId: itemid,
       },
-      { headers: { authorization: token } }
-    );
+    });
 
     if (status === 201) {
       dispatch({ type: "ADD_TO_WISHLIST", payload: products });

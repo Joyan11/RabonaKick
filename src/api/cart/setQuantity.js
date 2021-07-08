@@ -1,21 +1,14 @@
 import axios from "axios";
 
-export const setQuantity = async (
-  productId,
-  quantity,
-  operation,
-  dispatch,
-  token
-) => {
+export const setQuantity = async (productId, quantity, operation, dispatch) => {
   if (operation === "inc") {
     try {
       dispatch({ type: "INC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
+        `${process.env.REACT_APP_RABONA_SERVER}/cart/${productId}`,
         {
           type: operation,
-        },
-        { headers: { authorization: token } }
+        }
       );
 
       if (status === 201) {
@@ -30,11 +23,10 @@ export const setQuantity = async (
     try {
       dispatch({ type: "DEC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
+        `${process.env.REACT_APP_RABONA_SERVER}/cart/${productId}`,
         {
           type: operation,
-        },
-        { headers: { authorization: token } }
+        }
       );
       if (status === 201) {
         dispatch({ type: "DECREASE_QUANTITY", payload: productId });
