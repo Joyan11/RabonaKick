@@ -9,11 +9,6 @@
   position: relative;
 }
 
-/* .homepage-container img {
-  width: 100%;
-  max-width: 95%;
-} */
-
 figure {
   display: flex;
   justify-content: flex-end;

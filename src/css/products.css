@@ -155,11 +155,13 @@
     height: 60%;
     padding-bottom: 3rem;
     position: static;
+    font-size: 2rem;
+    width: 100%;
   }
 
   .filter {
     justify-content: center;
-    align-items: center;
+    align-items: left;
   }
 
   .product-container {
@@ -170,6 +172,18 @@
   .price-filter {
     align-self: center;
     padding: 0;
+  }
+
+  .teamselection {
+    padding: 0.4rem;
+    padding-left: 1rem;
+
+    margin-left: 0.3rem;
+    font-size: 2rem;
+  }
+
+  .price-slider {
+    width: 100%;
   }
 
   .product-page-filter {

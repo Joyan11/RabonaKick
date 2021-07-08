@@ -1,0 +1,47 @@
+.modal--input {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal--input-box {
+  font-size: 1.7rem;
+  padding: 0.6rem;
+  width: 70%;
+  border: none;
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.modal--input button {
+  margin-left: 1.5rem;
+}
+
+.playlist-names {
+  margin-left: 1rem;
+}
+
+input[type="checkbox"] {
+  width: 1.5rem; /*Desired width*/
+  height: 1.5rem; /*Desired height*/
+}
+.playlist-names label {
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+.modal--window {
+  width: 40rem;
+}
+
+.modal-show {
+  display: block;
+}
+
+.modal-hide {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .modal--window {
+    max-width: 90%;
+  }
+}

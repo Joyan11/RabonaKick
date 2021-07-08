@@ -69,6 +69,22 @@
   z-index: 1;
 }
 
+.product-detail-card {
+  position: relative !important;
+}
+
+.share-button {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  margin: 2rem;
+  cursor: pointer;
+}
+
+.share {
+  margin: 1rem;
+}
+
 @media (max-width: 786px) {
   .card--horizontal {
     flex-direction: column !important;
