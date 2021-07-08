@@ -12,27 +12,16 @@ export const reducer = (state, action) => {
         ...state,
         loader: !state.loader,
       };
-    case "SAVE_CART_ID":
-      return {
-        ...state,
-        cartId: action.payload,
-      };
-    case "SAVE_WISH_ID":
-      return {
-        ...state,
-        wishId: action.payload,
-      };
     case "ADD_ITEM":
       return {
         ...state,
-        cart: [...action.payload],
+        cart: action.payload,
       };
 
     case "REMOVE_ITEM":
-      const newArr = state.cart.filter((item) => item._id !== action.payload);
       return {
         ...state,
-        cart: newArr,
+        cart: state.cart.filter((item) => item._id !== action.payload),
       };
     case "INCREASE_QUANTITY":
       const increasedQuantity = state.cart.map((item) => {
@@ -60,38 +49,15 @@ export const reducer = (state, action) => {
     case "ADD_TO_WISHLIST":
       return {
         ...state,
-        wishList: [...action.payload],
+        wishList: action.payload,
       };
 
     case "REMOVE_FROM_WISHLIST":
-      const newObj = state.wishList.filter(
-        (items) => items._id !== action.payload
-      );
       return {
         ...state,
-        wishList: newObj,
-      };
-    case "MOVE_TO_CART":
-      if (
-        state.cart.some((items) => items.id === action.payload.id) === false
-      ) {
-        const newObj = state.wishList.filter(
-          (items) => items.id !== action.payload.id
-        );
-        return {
-          ...state,
-          cart: [
-            ...state.cart,
-            {
-              ...action.payload,
-              quantity: 1,
-            },
-          ],
-          wishList: newObj,
-        };
-      }
-      return {
-        ...state,
+        wishList: state.wishList.filter(
+          (items) => items._id !== action.payload
+        ),
       };
     case "UPDATE_CART_TOTAL":
       const totalQuantity = state.cart.reduce((acc, item) => {
@@ -123,18 +89,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: [],
-        cartId: null,
       };
     case "CLEAR_WISHLIST":
       return {
         ...state,
         wishList: [],
-        wishId: null,
-      };
-    case "DISPLAY_MODAL":
-      return {
-        ...state,
-        displayModal: false,
       };
     case "LOW_TO_HIGH":
       return {
