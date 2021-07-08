@@ -66,6 +66,7 @@ export const Sidebar = () => {
               type="range"
               name="slider"
               id="slider"
+              className="slider"
               value={priceRange}
               onChange={(e) => sortBySliderRange(e)}
             />
