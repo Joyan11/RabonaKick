@@ -4,7 +4,7 @@ import { useAuth } from "../../context/auth-context";
 import { useState, useEffect } from "react";
 import "../../css/form.css";
 import { Link } from "react-router-dom";
-import { DotsLoader } from "../Loaders/DotsLoader";
+import { DotsLoader } from "../Loaders/Loaders";
 
 export const Login = () => {
   const { checkUserPass, errorMessage, setErrorMessage, authLoader } =
@@ -33,7 +33,7 @@ export const Login = () => {
           <div className="form-control">
             <label htmlFor="email">Email</label>
             <input
-              autoFocus="true"
+              autoFocus={true}
               type="email"
               id="email"
               placeholder="Enter email"

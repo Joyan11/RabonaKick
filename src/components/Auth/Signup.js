@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import "../../css/form.css";
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
-import { DotsLoader } from "../Loaders/DotsLoader";
+import { DotsLoader } from "../Loaders/Loaders";
 
 export const Signup = () => {
   const [formError, setFormError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // const [errorModal, setErrorModal] = useState(false);
   const { authLoader, setAuthloader } = useAuth();
   const [values, setValues] = useState({
     email: "",
@@ -19,6 +18,13 @@ export const Signup = () => {
     password: "",
     confirmpassword: "",
   });
+
+  const handleChange = (e) => {
+    setValues((values) => ({
+      ...values,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   useEffect(() => {
     setTimeout(() => setErrorMessage(""), 4000);
@@ -33,14 +39,17 @@ export const Signup = () => {
       const {
         status,
         data: { success, message },
-      } = await axios.post("https://rabonaserver.joyan11.repl.co/auth/signup", {
-        user: {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
-          password: password,
-        },
-      });
+      } = await axios.post(
+        `${process.env.REACT_APP_RABONA_SERVER}/auth/signup`,
+        {
+          user: {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+          },
+        }
+      );
       console.log(message);
       if (status === 201 && success === true) {
         setValues({
@@ -60,13 +69,6 @@ export const Signup = () => {
     } finally {
       setAuthloader((value) => !value);
     }
-  };
-
-  const handleChange = (e) => {
-    setValues((values) => ({
-      ...values,
-      [e.target.name]: e.target.value,
-    }));
   };
 
   const refineUserdata = (str) => {
