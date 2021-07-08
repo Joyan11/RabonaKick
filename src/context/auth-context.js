@@ -9,11 +9,19 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [authLoader, setAuthloader] = useState(false);
 
+  function setUniversalRequestToken(token) {
+    if (token) {
+      return (axios.defaults.headers.common["Authorization"] = token);
+    }
+    delete axios.defaults.headers.common["Authorization"];
+  }
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     const user = JSON.parse(localStorage.getItem("user"));
     setToken(token);
     setUserData(user);
+    setUniversalRequestToken(token);
   }, []);
 
   const checkUserPass = async (email, password) => {
@@ -22,16 +30,20 @@ export const AuthProvider = ({ children }) => {
       setAuthloader(true);
       const {
         status,
-        data: { success, message, token, userdata },
-      } = await axios.post("https://rabonaserver.joyan11.repl.co/auth/login", {
-        user: {
-          email: email,
-          password: password,
-        },
-      });
+        data: { success, token, userdata },
+      } = await axios.post(
+        `${process.env.REACT_APP_RABONA_SERVER}/auth/login`,
+        {
+          user: {
+            email: email,
+            password: password,
+          },
+        }
+      );
       if (success === true && status === 200) {
         setToken(token);
         setUserData(userdata);
+        setUniversalRequestToken(token);
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("user", JSON.stringify(userdata));
       }
