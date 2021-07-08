@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/products-details.css";
 import { PuffLoader } from "../Loader";
+import { ShareProduct } from "./ShareProduct";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useMainContext } from "../../context/context";
 import { discountCalc } from "../../utils/discount";
@@ -9,19 +10,34 @@ import { goToCart } from "../../utils/goToCart";
 import { goToWishlist } from "../../utils/goToWishlist";
 import { cartAuthCheck } from "../../utils/cartAuthCheck";
 import { useAuth } from "../../context/auth-context";
-import { wishAuthProdDetail } from "../../utils/wishAuthCheck";
+import { addToWishlist } from "../../api/wishlist/addToWishlist";
 
 export const ProductDetail = () => {
-  const { cart, wishList, cartId, wishId, dispatch, loader } = useMainContext();
+  const [shareModal, setShareModal] = useState(false);
+  const { cart, wishList, dispatch, loader } = useMainContext();
   const { token } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
   const productDetail = useProductDetails(id);
+
+  const wishAuthProdDetail = (productid) => {
+    if (token) {
+      addToWishlist(productid, dispatch);
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="product-details">
       {loader && <PuffLoader />}
       {productDetail.length !== 0 && (
         <div className="card card--horizontal product-detail-card">
+          <div className="share-button" onClick={() => setShareModal(true)}>
+            <ion-icon
+              style={{ fontSize: "4rem" }}
+              name="share-social-outline"></ion-icon>
+          </div>
+
           <figure className="card--image">
             {" "}
             <img src={productDetail.image} alt="" />{" "}
@@ -73,13 +89,7 @@ export const ProductDetail = () => {
                   }`}
                   disabled={productDetail.stock === "outofstock" && true}
                   onClick={() =>
-                    cartAuthCheck(
-                      token,
-                      navigate,
-                      cartId,
-                      productDetail._id,
-                      dispatch
-                    )
+                    cartAuthCheck(token, navigate, productDetail._id, dispatch)
                   }>
                   <div>Add to Cart</div>
                   <ion-icon name="cart"></ion-icon>
@@ -96,13 +106,7 @@ export const ProductDetail = () => {
                 <button className="btn  btn--icon btn--icon--back btn-outline-primary">
                   <div
                     onClick={() =>
-                      wishAuthProdDetail(
-                        wishId,
-                        productDetail._id,
-                        dispatch,
-                        token,
-                        navigate
-                      )
+                      wishAuthProdDetail(productDetail._id, dispatch)
                     }>
                     Wishlist
                   </div>
@@ -113,6 +117,7 @@ export const ProductDetail = () => {
           </div>
         </div>
       )}
+      {shareModal && <ShareProduct setShareModal={setShareModal} />}
     </div>
   );
 };
