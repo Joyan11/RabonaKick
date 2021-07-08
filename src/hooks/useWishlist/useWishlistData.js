@@ -4,7 +4,7 @@ import { useAuth } from "../../context/auth-context";
 import { useMainContext } from "../../context/context";
 
 export const useWishlistData = () => {
-  const { wishList, dispatch } = useMainContext();
+  const { dispatch } = useMainContext();
   const { token } = useAuth();
   const getData = async () => {
     if (token) {
@@ -15,7 +15,7 @@ export const useWishlistData = () => {
           data: {
             wishlistItems: { _id: wishid, products },
           },
-        } = await axios.get(`${process.env.REACT_APP_RABONA_SERVER}/wishlist`);
+        } = await axios.get(`https://rabonaserver.joyan11.repl.co/wishlist`);
         if (status === 200 && products.length !== 0) {
           dispatch({ type: "SAVE_WISH_ID", payload: wishid });
           dispatch({
@@ -33,6 +33,6 @@ export const useWishlistData = () => {
   };
 
   useEffect(() => {
-    getData();
+    token && getData();
   }, [token]);
 };

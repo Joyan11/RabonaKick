@@ -8,7 +8,7 @@ export const addToCart = async (itemid, dispatch) => {
       data: {
         cartItems: { products },
       },
-    } = await axios.post(`${process.env.REACT_APP_RABONA_SERVER}/cart`, {
+    } = await axios.post(`https://rabonaserver.joyan11.repl.co/cart`, {
       products: {
         _id: itemid,
         productId: itemid,

@@ -14,7 +14,7 @@ export const useCartData = () => {
           data: {
             cartData: { products },
           },
-        } = await axios.get(`${process.env.REACT_APP_RABONA_SERVER}/cart`);
+        } = await axios.get(`https://rabonaserver.joyan11.repl.co/cart`);
         if (status === 200 && products.length !== 0) {
           dispatch({
             type: "ADD_ITEM",
@@ -30,6 +30,6 @@ export const useCartData = () => {
   };
 
   useEffect(() => {
-    getData();
+    token && getData();
   }, [token]);
 };

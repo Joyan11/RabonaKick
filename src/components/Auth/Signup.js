@@ -39,17 +39,14 @@ export const Signup = () => {
       const {
         status,
         data: { success, message },
-      } = await axios.post(
-        `${process.env.REACT_APP_RABONA_SERVER}/auth/signup`,
-        {
-          user: {
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-          },
-        }
-      );
+      } = await axios.post(`https://rabonaserver.joyan11.repl.co/auth/signup`, {
+        user: {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+        },
+      });
       console.log(message);
       if (status === 201 && success === true) {
         setValues({

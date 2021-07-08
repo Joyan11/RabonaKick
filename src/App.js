@@ -15,11 +15,10 @@ import {
   PrivateRoute,
   UserDetails,
 } from "./components/index";
-import { useCartData, useProductData, useWishlistData } from "./hooks";
+import { useCartData, useWishlistData } from "./hooks";
 
 export default function App() {
   const { totalCartQuantity, totalWishes, cart, wishList } = useMainContext();
-  useProductData();
   useCartData();
   useWishlistData();
   return (

@@ -5,7 +5,7 @@ export const setQuantity = async (productId, quantity, operation, dispatch) => {
     try {
       dispatch({ type: "INC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `${process.env.REACT_APP_RABONA_SERVER}/cart/${productId}`,
+        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
           type: operation,
         }
@@ -23,7 +23,7 @@ export const setQuantity = async (productId, quantity, operation, dispatch) => {
     try {
       dispatch({ type: "DEC_LOADER", payload: productId });
       const { status } = await axios.post(
-        `${process.env.REACT_APP_RABONA_SERVER}/cart/${productId}`,
+        `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
           type: operation,
         }

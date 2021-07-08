@@ -28,7 +28,7 @@ export const UserDetails = () => {
         status,
         data: { userdata },
       } = await axios.post(
-        `${process.env.REACT_APP_RABONA_SERVER}/auth/updateemail`,
+        `https://rabonaserver.joyan11.repl.co/auth/updateemail`,
         {
           email: email,
         }

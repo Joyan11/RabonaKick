@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMainContext } from "../../context/context";
 import "../../css/products.css";
+import { useProductData } from "../../hooks";
 import { ProductCard, Sidebar, PuffLoader } from "../index";
 
 export const Products = () => {
@@ -14,6 +15,7 @@ export const Products = () => {
     teamFilter,
     sortByCost,
   } = useMainContext();
+  useProductData();
 
   const [searchText, setSearchText] = useState("");
 

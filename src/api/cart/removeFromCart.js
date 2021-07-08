@@ -5,7 +5,7 @@ export const removeFromCart = async (productid, dispatch) => {
   try {
     dispatch({ type: "CART_ACTION_LOADER", payload: productid });
     const { data, status } = await axios.delete(
-      `${process.env.REACT_APP_RABONA_SERVER}/cart/${productid}`
+      `https://rabonaserver.joyan11.repl.co/cart/${productid}`
     );
     console.log(data);
     if (status === 200) {

@@ -31,15 +31,12 @@ export const AuthProvider = ({ children }) => {
       const {
         status,
         data: { success, token, userdata },
-      } = await axios.post(
-        `${process.env.REACT_APP_RABONA_SERVER}/auth/login`,
-        {
-          user: {
-            email: email,
-            password: password,
-          },
-        }
-      );
+      } = await axios.post(`https://rabonaserver.joyan11.repl.co/auth/login`, {
+        user: {
+          email: email,
+          password: password,
+        },
+      });
       if (success === true && status === 200) {
         setToken(token);
         setUserData(userdata);
