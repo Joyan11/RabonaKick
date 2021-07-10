@@ -20,7 +20,6 @@ export function setupAuthExceptionHandler(logOut, navigate) {
 
 export function setUniversalRequestToken(token) {
   if (token) {
-    console.log(token);
     return (axios.defaults.headers.common["Authorization"] = token);
   }
   delete axios.defaults.headers.common["Authorization"];

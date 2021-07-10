@@ -1,9 +1,11 @@
+/** @format */
+
 import { useMainContext } from "../../context/context";
 import { setQuantity } from "../../api/cart/setQuantity";
 import { removeFromCart } from "../../api/cart/removeFromCart";
 import { discountCalc } from "../../utils/discount";
 import { Link } from "react-router-dom";
-import { DotsLoader, OvalLoader } from "../Loaders/Loaders";
+import { DotsLoader } from "../Loaders/Loaders";
 
 export const CartCard = () => {
   const { cart, cartactionLoader, incLoader, decLoader, dispatch } =
