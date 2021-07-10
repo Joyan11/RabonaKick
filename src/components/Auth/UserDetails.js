@@ -4,7 +4,6 @@ import { useAuth } from "../../context/auth-context";
 import { useMainContext } from "../../context/context";
 import "../../css/user.css";
 import { toastMessages } from "../../utils/toastMessages";
-import { logOut } from "./util/logout";
 export const UserDetails = () => {
   const { dispatch } = useMainContext();
   const [showInput, setShowInput] = useState({
@@ -17,7 +16,7 @@ export const UserDetails = () => {
   });
   const {
     userData: { firstname, lastname, email },
-    setToken,
+    logOut,
     setUserData,
   } = useAuth();
 
@@ -45,6 +44,11 @@ export const UserDetails = () => {
         toastMessages("email already taken");
       }
     }
+  };
+
+  const logoutHandler = () => {
+    logOut();
+    dispatch({ type: "RESET" });
   };
 
   return (
@@ -92,7 +96,7 @@ export const UserDetails = () => {
 
       <button
         className="btn btn--round btn-primary logout"
-        onClick={() => logOut(setToken, setUserData, dispatch)}>
+        onClick={() => logoutHandler()}>
         Logout
       </button>
     </div>

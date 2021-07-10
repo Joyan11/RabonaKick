@@ -92,7 +92,7 @@ export const Signup = () => {
           <div className="form-control ">
             <label htmlFor="firstname">First Name</label>
             <input
-              autoFocus="true"
+              autoFocus={true}
               type="text"
               id="firstname"
               placeholder="Enter Your First Name"

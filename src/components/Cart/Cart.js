@@ -28,22 +28,22 @@ export const Cart = () => {
           </div>
         </div>
         <div className="price-container">
-          <div class="card card--verticle card--l price-card">
-            <div class="card--body">
+          <div className="card card--verticle card--l price-card">
+            <div className="card--body">
               {" "}
-              <span class="text text--left text-uppercase price-heading">
+              <span className="text text--left text-uppercase price-heading">
                 Price Details
               </span>
-              <p class="text text--left price-detail">
+              <p className="text text--left price-detail">
                 Price: <span>&#8377;{totalCartPrice}</span>
               </p>
-              <p class="text text--left price-detail">
+              <p className="text text--left price-detail">
                 Discount : <span>&#8377; {totalCartPrice - totalDiscount}</span>{" "}
               </p>
-              <p class="text text--left price-detail">
+              <p className="text text--left price-detail">
                 Delivery : <span>Free</span>{" "}
               </p>
-              <strong class="text text--left price-detail">
+              <strong className="text text--left price-detail">
                 Total Amount: <span>&#8377;{totalDiscount}</span>
               </strong>
               <button

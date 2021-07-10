@@ -1,5 +1,9 @@
+/** @format */
+
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { setUniversalRequestToken, setupAuthExceptionHandler } from "./helpers";
 
 const authContext = createContext();
 
@@ -8,21 +12,14 @@ export const AuthProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [token, setToken] = useState(null);
   const [authLoader, setAuthloader] = useState(false);
+  const navigate = useNavigate();
 
-  function setUniversalRequestToken(token) {
-    if (token) {
-      return (axios.defaults.headers.common["Authorization"] = token);
-    }
-    delete axios.defaults.headers.common["Authorization"];
-  }
-
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    const user = JSON.parse(localStorage.getItem("user"));
-    setToken(token);
-    setUserData(user);
-    setUniversalRequestToken(token);
-  }, []);
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setToken(null);
+    setUserData("");
+  };
 
   const checkUserPass = async (email, password) => {
     try {
@@ -38,9 +35,10 @@ export const AuthProvider = ({ children }) => {
         },
       });
       if (success === true && status === 200) {
+        setUniversalRequestToken(token);
+        setupAuthExceptionHandler(logOut, navigate);
         setToken(token);
         setUserData(userdata);
-        setUniversalRequestToken(token);
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("user", JSON.stringify(userdata));
       }
@@ -66,6 +64,7 @@ export const AuthProvider = ({ children }) => {
         checkUserPass,
         authLoader,
         setAuthloader,
+        logOut,
       }}>
       {children}
     </authContext.Provider>

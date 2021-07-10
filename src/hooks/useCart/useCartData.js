@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import { useEffect } from "react";
 import { useMainContext } from "../../context/context";

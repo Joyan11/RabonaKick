@@ -1,3 +1,5 @@
+/** @format */
+
 import { discountCalc } from "../utils/discount";
 
 export const reducer = (state, action) => {
@@ -64,11 +66,11 @@ export const reducer = (state, action) => {
         const sum = acc + item.quantity;
         return sum;
       }, 0);
-      const totalPrice = state.cart.reduce((acc, item) => {
+      let totalPrice = state.cart.reduce((acc, item) => {
         const sum = item.quantity * item.productId.price;
         return acc + sum;
       }, 0);
-      const totalDiscount = state.cart.reduce((acc, item) => {
+      let totalDiscount = state.cart.reduce((acc, item) => {
         const discount =
           item.quantity *
           discountCalc(item.productId.price, item.productId.discount);
@@ -77,8 +79,8 @@ export const reducer = (state, action) => {
       return {
         ...state,
         totalCartQuantity: totalQuantity,
-        totalCartPrice: totalPrice.toFixed(2),
-        totalDiscount: totalDiscount.toFixed(2),
+        totalCartPrice: totalPrice,
+        totalDiscount: totalDiscount,
       };
     case "UPDATE_WISHLIST_TOTAL":
       return {
@@ -130,8 +132,6 @@ export const reducer = (state, action) => {
         ...state,
         cart: [],
         wishList: [],
-        cartId: null,
-        wishId: null,
       };
     }
     case "CLEAR_FILTER":
