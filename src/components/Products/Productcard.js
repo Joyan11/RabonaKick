@@ -46,71 +46,69 @@ export const ProductCard = ({ productFilters }) => {
     <>
       {productFilters.map((item) => {
         return (
-          <>
-            <div
-              key={item._id}
-              className="card card--verticle card--m border product-card">
-              <Link to={`/products/${item._id}`}>
-                {" "}
-                <figure className="card--image">
-                  {item.stock === "outofstock" && (
-                    <p className="card--overlay--text">Out of Stock</p>
-                  )}
-                  <img
-                    src={item.image}
-                    className={
-                      item.stock === "outofstock" ? "card--overlay" : undefined
-                    }
-                    alt={item.name}
-                  />
-                </figure>
-              </Link>
-
-              <div className="card--body">
-                <span
-                  className={`wishlist-button wishlist-icon ${wishToggle(
-                    item._id
-                  )}`}
-                  onClick={() => wishListButtonHandler(item._id, wishList)}>
-                  {item._id === wishactionLoader ? (
-                    <OvalLoader />
-                  ) : (
-                    <ion-icon name="heart"></ion-icon>
-                  )}
-                </span>
-
-                <span className="card--title">{item.name}</span>
-                <p className="card--text">
-                  &#8377; {discountCalc(item.price, item.discount)}
-                  <span className="card--subtext">&#8377; {item.price}</span>
-                  <span className="discount">({item.discount}% off)</span>
-                </p>
-
-                {goToCart(cart, item._id) === false ? (
-                  <button
-                    className={`btn btn--round btn-primary card--button ${
-                      item.stock === "outofstock" && "disabled"
-                    }`}
-                    disabled={item.stock === "outofstock" && true}
-                    onClick={() =>
-                      cartAuthCheck(token, navigate, item._id, dispatch)
-                    }>
-                    {item._id === cartactionLoader ? (
-                      <DotsLoader />
-                    ) : (
-                      " Add to Cart"
-                    )}
-                  </button>
-                ) : (
-                  <Link
-                    to="/cart"
-                    className={`btn btn--round btn-primary card--button link go-to-cart `}>
-                    Go to Cart
-                  </Link>
+          <div
+            key={item._id}
+            className="card card--verticle card--m border product-card">
+            <Link to={`/products/${item._id}`}>
+              {" "}
+              <figure className="card--image">
+                {item.stock === "outofstock" && (
+                  <p className="card--overlay--text">Out of Stock</p>
                 )}
-              </div>
+                <img
+                  src={item.image}
+                  className={
+                    item.stock === "outofstock" ? "card--overlay" : undefined
+                  }
+                  alt={item.name}
+                />
+              </figure>
+            </Link>
+
+            <div className="card--body">
+              <span
+                className={`wishlist-button wishlist-icon ${wishToggle(
+                  item._id
+                )}`}
+                onClick={() => wishListButtonHandler(item._id, wishList)}>
+                {item._id === wishactionLoader ? (
+                  <OvalLoader />
+                ) : (
+                  <ion-icon name="heart"></ion-icon>
+                )}
+              </span>
+
+              <span className="card--title">{item.name}</span>
+              <p className="card--text">
+                &#8377; {discountCalc(item.price, item.discount)}
+                <span className="card--subtext">&#8377; {item.price}</span>
+                <span className="discount">({item.discount}% off)</span>
+              </p>
+
+              {goToCart(cart, item._id) === false ? (
+                <button
+                  className={`btn btn--round btn-primary card--button ${
+                    item.stock === "outofstock" && "disabled"
+                  }`}
+                  disabled={item.stock === "outofstock" && true}
+                  onClick={() =>
+                    cartAuthCheck(token, navigate, item._id, dispatch)
+                  }>
+                  {item._id === cartactionLoader ? (
+                    <DotsLoader />
+                  ) : (
+                    " Add to Cart"
+                  )}
+                </button>
+              ) : (
+                <Link
+                  to="/cart"
+                  className={`btn btn--round btn-primary card--button link go-to-cart `}>
+                  Go to Cart
+                </Link>
+              )}
             </div>
-          </>
+          </div>
         );
       })}
     </>
