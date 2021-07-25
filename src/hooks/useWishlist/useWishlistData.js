@@ -1,12 +1,14 @@
+/** @format */
+
 import axios from "axios";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useAuth } from "../../context/auth-context";
 import { useMainContext } from "../../context/context";
 
 export const useWishlistData = () => {
   const { dispatch } = useMainContext();
   const { token } = useAuth();
-  const getData = async () => {
+  const getData = useCallback(async () => {
     if (token) {
       try {
         dispatch({ type: "SHOW_LOADER" });
@@ -24,15 +26,14 @@ export const useWishlistData = () => {
           });
         }
       } catch (error) {
-        console.log(error.message);
-        console.log(error.stack);
+        console.log(error.response.data.message);
       } finally {
         dispatch({ type: "SHOW_LOADER" });
       }
     }
-  };
+  }, [dispatch, token]);
 
   useEffect(() => {
     token && getData();
-  }, [token]);
+  }, [getData, token]);
 };

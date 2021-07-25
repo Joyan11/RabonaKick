@@ -1,13 +1,14 @@
 /** @format */
 
 import axios from "axios";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useMainContext } from "../../context/context";
 import { useAuth } from "../../context/auth-context";
 export const useCartData = () => {
   const { dispatch } = useMainContext();
   const { token } = useAuth();
-  const getData = async () => {
+
+  const getData = useCallback(async () => {
     if (token) {
       try {
         dispatch({ type: "SHOW_LOADER" });
@@ -29,9 +30,9 @@ export const useCartData = () => {
         dispatch({ type: "SHOW_LOADER" });
       }
     }
-  };
+  }, [dispatch, token]);
 
   useEffect(() => {
     token && getData();
-  }, [token]);
+  }, [getData, token]);
 };
