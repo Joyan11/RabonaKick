@@ -1,9 +1,11 @@
+/** @format */
+
 import axios from "axios";
 
 export const setQuantity = async (productId, quantity, operation, dispatch) => {
   if (operation === "inc") {
     try {
-      dispatch({ type: "INC_LOADER", payload: productId });
+      dispatch({ type: "INC_DEC_LOADER", payload: productId });
       const { status } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
@@ -17,11 +19,11 @@ export const setQuantity = async (productId, quantity, operation, dispatch) => {
     } catch (error) {
       console.log(error.message);
     } finally {
-      dispatch({ type: "INC_LOADER", payload: null });
+      dispatch({ type: "INC_DEC_LOADER", payload: null });
     }
   } else if (operation === "dec" && quantity > 1) {
     try {
-      dispatch({ type: "DEC_LOADER", payload: productId });
+      dispatch({ type: "INC_DEC_LOADER", payload: productId });
       const { status } = await axios.post(
         `https://rabonaserver.joyan11.repl.co/cart/${productId}`,
         {
@@ -34,7 +36,7 @@ export const setQuantity = async (productId, quantity, operation, dispatch) => {
     } catch (error) {
       console.log(error.message);
     } finally {
-      dispatch({ type: "DEC_LOADER", payload: null });
+      dispatch({ type: "INC_DEC_LOADER", payload: null });
     }
   }
 };

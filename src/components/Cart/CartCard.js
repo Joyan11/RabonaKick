@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 import { DotsLoader } from "../Loaders/Loaders";
 
 export const CartCard = () => {
-  const { cart, cartactionLoader, incLoader, decLoader, dispatch } =
-    useMainContext();
+  const { cart, cartactionLoader, incDecLoader, dispatch } = useMainContext();
   return (
     <>
       {cart.map(({ productId: product, quantity }) => {
@@ -42,7 +41,7 @@ export const CartCard = () => {
                   -
                 </button>
                 <p className="cart-quantity">
-                  {decLoader === product._id || incLoader === product._id
+                  {incDecLoader === product._id
                     ? "wait.."
                     : `Qty : ${quantity}`}
                 </p>

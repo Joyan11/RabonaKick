@@ -1,3 +1,5 @@
+/** @format */
+
 import { useReducer, createContext, useContext, useEffect } from "react";
 import { reducer } from "../reducer/reducer";
 export const mainContext = createContext();
@@ -18,8 +20,7 @@ const initialState = {
   loader: false,
   CartactionLoader: null,
   WishactionLoader: null,
-  incLoader: null,
-  decLoader: null,
+  incDecLoader: null,
 };
 
 export const MainProvider = ({ children }) => {
