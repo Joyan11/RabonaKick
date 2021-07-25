@@ -154,15 +154,10 @@ export const reducer = (state, action) => {
         ...state,
         wishactionLoader: action.payload,
       };
-    case "INC_LOADER":
+    case "INC_DEC_LOADER":
       return {
         ...state,
-        incLoader: action.payload,
-      };
-    case "DEC_LOADER":
-      return {
-        ...state,
-        decLoader: action.payload,
+        incDecLoader: action.payload,
       };
     default:
       return state;
