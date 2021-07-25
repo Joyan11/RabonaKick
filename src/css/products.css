@@ -1,3 +1,5 @@
+/** @format */
+
 .product-section {
   display: flex;
 }
@@ -213,5 +215,9 @@
   }
   .product-card {
     box-shadow: -1px 0px 17px -1px rgba(0, 0, 0, 0.32);
+  }
+  .go-to-cart {
+    display: block;
+    padding-left: 5rem;
   }
 }
