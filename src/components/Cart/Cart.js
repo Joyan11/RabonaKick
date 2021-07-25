@@ -1,11 +1,74 @@
+/** @format */
+import axios from "axios";
 import { useMainContext } from "../../context/context";
 import "../../css/cart.css";
 import { CartCard, CartEmpty, PuffLoader } from "../index";
 import { clearCart } from "../../api/cart/clearCart";
+import { toastMessages } from "../../utils/toastMessages";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router";
+
+function loadRazorPay() {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    document.body.appendChild(script);
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+  });
+}
 
 export const Cart = () => {
   const { cart, loader, totalCartPrice, totalDiscount, dispatch } =
     useMainContext();
+  const { userData } = useAuth();
+  const navigate = useNavigate();
+  async function displayRazorPay() {
+    let orderdata;
+    try {
+      const res = await loadRazorPay();
+      if (!res) {
+        toastMessages("Something went wrong");
+        return;
+      }
+      const { data } = await axios.post(
+        "https://rabonaserver.joyan11.repl.co/razorpay/orders",
+        {
+          cart: cart,
+        }
+      );
+      orderdata = data;
+    } catch (error) {
+      console.log(error);
+    }
+
+    var options = {
+      key: "rzp_test_1IrqF0FiK0YEV0",
+      amount: orderdata.amount,
+      currency: orderdata.currency,
+      name: "RabonaKick Payment",
+      description: "Proceed with payment details",
+      order_id: orderdata.id,
+      handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        toastMessages("Payment successful");
+        clearCart(dispatch);
+        navigate("/products");
+      },
+      prefill: {
+        name: userData.firstName + userData.lastName,
+        email: userData.email,
+      },
+    };
+    var paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
 
   if (cart.length === 0) {
     return (
@@ -48,7 +111,8 @@ export const Cart = () => {
               </strong>
               <button
                 className="btn btn--round btn-primary"
-                style={{ paddingTop: "1rem" }}>
+                style={{ paddingTop: "1rem" }}
+                onClick={displayRazorPay}>
                 Checkout
               </button>
             </div>
