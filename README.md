@@ -2,7 +2,7 @@
 
 # RabonaKick
 
-RabonaKick is an Ecommerce platform for Football jerseys. The project is built using Reactjs as the main framework for the front end with the help of react useReducer + contextAPI for glbal state management. User Authentication done with the help of jwt tokens. User can perform CRUD operations on Cart & Wishlist.
+RabonaKick is an eCommerce platform for Football jerseys. The project is built using Reactjs as the main framework for the front end with the help of react useReducer + contextAPI for glbal state management. User Authentication done with the help of jwt tokens. User can perform CRUD operations on Cart & Wishlist.
 
 Live demo: [RabonaKick](https://rabonakick.netlify.app/).
 
