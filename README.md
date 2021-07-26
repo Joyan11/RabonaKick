@@ -30,11 +30,7 @@ backend : (https://github.com/Joyan11/rabona-server)
 
 **10. Private Routes**
 
-### Features to be added
-
-**1. Address management**
-
-**2. Stripe for checkout process**
+**11. Razorpay Integration for payments**
 
 ## Built With
 
