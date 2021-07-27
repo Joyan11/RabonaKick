@@ -1,7 +1,9 @@
+/** @format */
+
 import React, { useEffect } from "react";
 import { useAuth } from "../../context/auth-context";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/form.css";
 import axios from "axios";
 import { toastMessages } from "../../utils/toastMessages";
@@ -11,6 +13,7 @@ export const Signup = () => {
   const [formError, setFormError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { authLoader, setAuthloader } = useAuth();
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     firstname: "",
@@ -57,6 +60,7 @@ export const Signup = () => {
           confirmpassword: "",
         });
         toastMessages("Signup successful");
+        navigate("/login");
       }
     } catch (error) {
       if (error.response.status === 409) {
