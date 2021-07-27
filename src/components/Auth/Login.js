@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../../context/auth-context";
@@ -64,6 +66,11 @@ export const Login = () => {
             </Link>
           </p>
         </form>
+      </div>
+      <div style={{ textAlign: "center", paddingTop: "1rem" }}>
+        Test Login Credentials
+        <p>email: joes1@gmail.com</p>
+        <p>password: Qwerty123$</p>
       </div>
     </div>
   );
