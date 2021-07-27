@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import "../../css/products-details.css";
 import { PuffLoader } from "../Loader";
@@ -103,7 +105,7 @@ export const ProductDetail = () => {
                   <ion-icon name="heart-outline"></ion-icon>
                 </Link>
               ) : (
-                <button className="btn  btn--icon btn--icon--back btn-outline-primary">
+                <button className="btn  btn--icon btn--icon--back btn-outline-primary wishbuttonhover">
                   <div
                     onClick={() =>
                       wishAuthProdDetail(productDetail._id, dispatch)

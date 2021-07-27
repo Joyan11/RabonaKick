@@ -1,3 +1,5 @@
+/** @format */
+
 .product-details {
   display: flex;
   justify-content: center;
@@ -79,6 +81,15 @@
   right: 0;
   margin: 2rem;
   cursor: pointer;
+}
+
+.share-button:hover {
+  color: #03a685;
+}
+
+.wishbuttonhover:hover {
+  background-color: rgb(202, 199, 199);
+  color: white;
 }
 
 .share {
