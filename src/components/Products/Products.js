@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState } from "react";
 import { useMainContext } from "../../context/context";
 import "../../css/products.css";
@@ -115,6 +117,7 @@ export const Products = () => {
         </div>
         <div className="product-container">
           {loader && <PuffLoader />}
+          {productFilters.length === 0 && !loader && <p>No products found</p>}
           <ProductCard productFilters={productFilters} />
         </div>
       </div>
