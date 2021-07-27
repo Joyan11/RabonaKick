@@ -1,3 +1,5 @@
+/** @format */
+import React from "react";
 import { useMainContext } from "../../context/context";
 import { Link, useNavigate } from "react-router-dom";
 import { cartAuthCheck } from "../../utils/cartAuthCheck";
@@ -90,7 +92,10 @@ export const ProductCard = ({ productFilters }) => {
                   className={`btn btn--round btn-primary card--button ${
                     item.stock === "outofstock" && "disabled"
                   }`}
-                  disabled={item.stock === "outofstock" && true}
+                  disabled={
+                    (item.stock === "outofstock" && true) ||
+                    (item._id === cartactionLoader && true)
+                  }
                   onClick={() =>
                     cartAuthCheck(token, navigate, item._id, dispatch)
                   }>

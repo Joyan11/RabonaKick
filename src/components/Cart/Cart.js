@@ -7,6 +7,7 @@ import { clearCart } from "../../api/cart/clearCart";
 import { toastMessages } from "../../utils/toastMessages";
 import { useAuth } from "../../context/auth-context";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 function loadRazorPay() {
   return new Promise((resolve) => {
@@ -25,14 +26,17 @@ function loadRazorPay() {
 export const Cart = () => {
   const { cart, loader, totalCartPrice, totalDiscount, dispatch } =
     useMainContext();
+  const [loading, setLoading] = useState(false);
   const { userData } = useAuth();
   const navigate = useNavigate();
   async function displayRazorPay() {
     let orderdata;
     try {
+      setLoading(true);
       const res = await loadRazorPay();
       if (!res) {
         toastMessages("Something went wrong");
+        setLoading(false);
         return;
       }
       const { data } = await axios.post(
@@ -44,6 +48,8 @@ export const Cart = () => {
       orderdata = data;
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
 
     var options = {
@@ -54,9 +60,7 @@ export const Cart = () => {
       description: "Proceed with payment details",
       order_id: orderdata.id,
       handler: function (response) {
-        // alert(response.razorpay_payment_id);
-        // alert(response.razorpay_order_id);
-        // alert(response.razorpay_signature);
+        console.log(response);
         toastMessages("Payment successful");
         clearCart(dispatch);
         navigate("/products");
@@ -112,8 +116,9 @@ export const Cart = () => {
               <button
                 className="btn btn--round btn-primary"
                 style={{ paddingTop: "1rem" }}
+                disabled={loading && true}
                 onClick={displayRazorPay}>
-                Checkout
+                {loading ? "loading..." : "Checkout"}
               </button>
             </div>
           </div>

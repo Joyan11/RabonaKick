@@ -35,6 +35,7 @@ export const CartCard = () => {
               <div className="cart--buttons-container">
                 <button
                   className="cart--buttons btn"
+                  disabled={incDecLoader === product._id && true}
                   onClick={() =>
                     setQuantity(product._id, quantity, "dec", dispatch)
                   }>
@@ -47,6 +48,7 @@ export const CartCard = () => {
                 </p>
                 <button
                   className="cart--buttons btn"
+                  disabled={(incDecLoader === product._id) === true}
                   onClick={() =>
                     setQuantity(product._id, quantity, "inc", dispatch)
                   }>
@@ -56,6 +58,7 @@ export const CartCard = () => {
               <div className="cart--dismiss btn">
                 <button
                   className="btn btn-red"
+                  disabled={product._id === cartactionLoader && true}
                   onClick={() => removeFromCart(product._id, dispatch)}>
                   {product._id === cartactionLoader ? <DotsLoader /> : "Remove"}
                 </button>

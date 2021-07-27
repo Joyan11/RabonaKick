@@ -1,3 +1,5 @@
+/** @format */
+
 import { Link } from "react-router-dom";
 import { addToCart } from "../../api/cart/addToCart";
 import { removeFromWishlist } from "../../api/wishlist/removefomWishlist";
@@ -29,6 +31,7 @@ export const Wishcard = () => {
               )}
               <span
                 className="card--dismiss"
+                disabled={product._id === wishactionLoader && true}
                 onClick={() => removeFromWishlist(product._id, dispatch)}>
                 {product._id === wishactionLoader ? (
                   <OvalLoader />
@@ -57,7 +60,10 @@ export const Wishcard = () => {
               </p>
               <button
                 onClick={() => moveToCart(product._id)}
-                disabled={product.stock === "outofstock" && true}
+                disabled={
+                  (product.stock === "outofstock" && true) ||
+                  (product._id === cartactionLoader && true)
+                }
                 className={`btn btn--round btn-primary card--button ${
                   product.stock === "outofstock" && "disabled"
                 }`}>

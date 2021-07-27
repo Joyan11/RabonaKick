@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../context/auth-context";
@@ -47,8 +49,8 @@ export const UserDetails = () => {
   };
 
   const logoutHandler = () => {
-    logOut();
     dispatch({ type: "RESET" });
+    logOut();
   };
 
   return (
