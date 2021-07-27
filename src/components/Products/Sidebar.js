@@ -1,3 +1,5 @@
+/** @format */
+
 import { useMainContext } from "../../context/context";
 
 export const Sidebar = () => {
@@ -61,7 +63,7 @@ export const Sidebar = () => {
           <div className="price-slider">
             <p>Price range:</p>
             <input
-              min="799"
+              min="699"
               max="2099"
               type="range"
               name="slider"
