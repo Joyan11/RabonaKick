@@ -16,6 +16,11 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const enterGuestDetails = () => {
+    setEmail("joes1@gmail.com");
+    setPassword("Qwerty123$");
+  };
+
   const loginHandler = async (e) => {
     e.preventDefault();
     await checkUserPass(email, password);
@@ -39,6 +44,7 @@ export const Login = () => {
               type="email"
               id="email"
               placeholder="Enter email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required></input>
             <small>{errorMessage}</small>
@@ -49,6 +55,7 @@ export const Login = () => {
               type="password"
               id="password"
               placeholder="Enter Password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required></input>
             <small>{errorMessage}</small>
@@ -68,9 +75,11 @@ export const Login = () => {
         </form>
       </div>
       <div style={{ textAlign: "center", paddingTop: "1rem" }}>
-        Test Login Credentials
-        <p>email: joes1@gmail.com</p>
-        <p>password: Qwerty123$</p>
+        <button
+          onClick={enterGuestDetails}
+          className="btn btn-primary btn--round ">
+          Enter guest Details
+        </button>
       </div>
     </div>
   );
