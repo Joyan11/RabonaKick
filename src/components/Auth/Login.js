@@ -21,10 +21,20 @@ export const Login = () => {
     setPassword("Qwerty123$");
   };
 
+  const navigator = (state) => {
+    console.log(state);
+    if (state === "/user") {
+      navigate("/products");
+    } else {
+      navigate(state);
+    }
+  };
+
   const loginHandler = async (e) => {
     e.preventDefault();
     await checkUserPass(email, password);
-    navigate(state?.from ? state.from : "/user");
+    state?.from && navigator(state.from);
+    // navigate(state?.from ? state.from : "/products");
   };
 
   useEffect(() => {
@@ -65,6 +75,11 @@ export const Login = () => {
               {authLoader ? <DotsLoader /> : "Sign in"}
             </button>
           </div>
+          <div style={{ textAlign: "center", paddingTop: "1rem" }}>
+            <button onClick={enterGuestDetails} className="guest-details">
+              Enter guest Details
+            </button>
+          </div>
 
           <p className="form-message">
             Don't have an account?{" "}
@@ -73,13 +88,6 @@ export const Login = () => {
             </Link>
           </p>
         </form>
-      </div>
-      <div style={{ textAlign: "center", paddingTop: "1rem" }}>
-        <button
-          onClick={enterGuestDetails}
-          className="btn btn-primary btn--round ">
-          Enter guest Details
-        </button>
       </div>
     </div>
   );

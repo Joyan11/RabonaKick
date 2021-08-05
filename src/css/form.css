@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --success-color: #2ecc71;
   --error-color: #e743c3;
@@ -60,4 +62,16 @@ h2 {
 
 .form-button {
   text-align: center;
+}
+
+.guest-details {
+  font-weight: bold;
+  cursor: pointer;
+  color: #55b17e;
+  border: none;
+  background: none;
+}
+
+.guest-details:hover {
+  color: #3c634d;
 }
