@@ -33,7 +33,7 @@ export const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
     await checkUserPass(email, password);
-    state?.from && navigator(state.from);
+    state?.from ? navigator(state.from) : navigate("/products");
     // navigate(state?.from ? state.from : "/products");
   };
 
